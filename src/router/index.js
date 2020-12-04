@@ -1,14 +1,28 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import GoodsHome from '../views/goods/GoodsHome.vue'
+import AccountHome from '../views/account/AccountHome.vue'
+import Login from '../views/login/Login.vue'
+import Help from '../views/login/Help.vue'
+import Test from '../views/Test.vue'
+import BlogHome from '../views/blogs/BlogHome.vue'
+import BlogDetail from '../views/blogs/BlogDetail.vue'
+import BlogAdd from '../views/blogs/BlogAdd.vue'
+import BlogEdit from '../views/blogs/BlogEdit.vue'
 
 Vue.use(VueRouter)
 
-  const routes = [
+const routes = [
   {
     path: '/',
+    name: 'Index',
+    redirect:{name:"BlogHome"}
+  },
+  {
+    path: '/home',
     name: 'Home',
-    component: Home
+    component: Home,
   },
   {
     path: '/about',
@@ -17,10 +31,69 @@ Vue.use(VueRouter)
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  },
+
+    // 账号管理
+  {
+    path: '/accountHome',
+    name: 'AccountHome',
+    component: AccountHome
+  },
+
+    // 商品中心
+  {
+    path:'/goodsHome',
+    name:'GoodsHome',
+    component:GoodsHome
+  },
+
+    // 博客博文
+  {
+    path: '/blogHome',
+    name: 'BlogHome',
+    component: BlogHome
+  },
+  {
+    path: '/blog/add',
+    name: 'BlogAdd',
+    component: BlogEdit,
+    meta:{
+      requireAuth:true
+    }
+  },
+  {
+    path: '/blogs/blog/:blogId',
+    name: 'BlogDetail',
+    component: BlogDetail
+  },
+  {
+    path: '/blogs/blog/:blogId/edit',
+    name: 'BlogEdit',
+    component: BlogEdit,
+    meta:{
+      requireAuth:true
+    }
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/help',
+    name: '/Help',
+    component: Help
+  },
+  {
+    path: '/test',
+    name: '/Test',
+    component: Test
   }
 ]
 
 const router = new VueRouter({
+  mode: 'history', // 去掉访问路径后面的#
+  base: process.env.BASE_URL,
   routes
 })
 

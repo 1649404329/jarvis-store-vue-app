@@ -1,0 +1,76 @@
+.el-header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    text-align: left;
+    background-color: rgba(255, 255, 255, 1);
+    color: #333;
+    line-height: 60px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+    padding: 0 50px;
+    box-sizing: border-box;
+}
+
+.el-footer {
+    width: 100%;
+    background-color: rgba(240, 242, 245, 1);
+    color: rgb(192, 194, 240);
+    line-height: 60px;
+    padding: 0 50px;
+    box-sizing: border-box;
+}
+
+.el-aside {
+    background-color: rgba(255, 255, 255, 1);
+    color: #333;
+    text-align: center;
+    line-height: 200px;
+    margin: 20px 10px 20px 0;
+    box-sizing: border-box;
+}
+
+.el-main {
+    background-color: rgba(255, 255, 255, 1);
+    color: #333;
+    text-align: center;
+    overflow-y: auto;
+    margin: 20px 10px 20px 0;
+    box-sizing: border-box;
+}
+
+body > .el-container {
+    margin-bottom: 30px;
+    margin-right: 20px;
+    overflow-x: hidden;
+}
+
+.el-scrollbar__wrap {
+    overflow-x: hidden;
+}
+
+.el-container:nth-child(5) .el-aside,
+.el-container:nth-child(6) .el-aside {
+    line-height: 260px;
+}
+
+.el-container:nth-child(7) .el-aside {
+    line-height: 320px;
+}
+
+.el-row {
+    /*方法一*/
+    /*这里是全局添加内行距以此来解决el-row加:gutter="20"*/
+    /*带来的宽度变多引起的页面不美观问题*/
+    /*20间隔就需要加上padding：0 20px;*/
+    /*padding: 0 20px;*/
+    /*box-sizing: border-box;*/
+
+    /*方法二*/
+    /*父容器设置隐藏横向滚动条的样式*/
+    /*overflow-x: hidden*/
+
+    /*方法三*/
+    /*直接去掉 :gutter="20"*/
+}

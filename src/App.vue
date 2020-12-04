@@ -1,9 +1,10 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <!--<div id="nav">-->
+      <!--<router-link to="/">Home</router-link> |-->
+      <!--<router-link to="/about">About</router-link> |-->
+      <!--<router-link to="/blogs">blogs</router-link>-->
+    <!--</div>-->
     <router-view/>
   </div>
 </template>
@@ -19,6 +20,7 @@
 
 #nav {
   padding: 30px;
+  box-sizing: border-box;
 }
 
 #nav a {
@@ -29,4 +31,24 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+/*vue中改变滚动条样式（CSS）========开始*/
+::-webkit-scrollbar
+{
+  width: 5px;
+}
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track
+{
+  border-radius: 10px;
+  background-color: rgba(0,0,0,0.1);
+}
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: rgba(0,0,0,0.1);
+}
+/*vue中改变滚动条样式（CSS）========结束*/
 </style>
