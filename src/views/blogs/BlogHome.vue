@@ -10,6 +10,8 @@
                     <Header/>
                 </el-header>
 
+<transition name="animated  el-zoom-in-bottom">
+    <div v-show="showTransition" class="transition-box">
                 <el-row>
                     <el-col :span="18" offset="3">
                         <el-container class="grayTopic">
@@ -36,6 +38,8 @@
                         </el-main>
                     </el-col>
                 </el-row>
+    </div>
+     </transition>
 
                 <el-footer>
                     <Footer/>
@@ -69,6 +73,8 @@
                 currentPage: 1,
                 total: 0,
                 pageSize: 5,
+
+                showTransition:false
             }
         },
         components: {
@@ -80,13 +86,16 @@
             BlogBanner,
             BlogRanking,
         },
+        mounted(){
+            this.showTransition=true;
+        },
         methods: {
             handleSelect(key, keyPath) {
                 console.log(key, keyPath);
             },
             test() {
                 const _this = this;
-                this.$axios.get('/api-activity/blog/pageBlog?pageNo=0&pageSize=10').then(res => {
+                _this.$axios.get('/api-activity/blog/pageBlog?pageNo=0&pageSize=10').then(res => {
                     this.$alert('操作成功', '提示', {
                         confirmButtonText: '确定',
                         showClose: false,

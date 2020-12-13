@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Element from 'element-ui'
-import router from './router'
-import store from './store'
+import router from '../router'
+import store from '../store'
 
 axios.defaults.baseURL = "http://localhost:8889"
 
@@ -15,7 +15,7 @@ axios.interceptors.response.use(response => {
         console.log("===================")
         console.log(res)
         console.log("===================")
-        if (res.code === 200) {
+        if (res.code === 0) {
             return response;
         } else {
             Element.Message.error(response.data.msg, {duration: 3 * 1000});

@@ -8,7 +8,9 @@ import "element-ui/lib/theme-chalk/index.css"
 //引入axios
 import axios from 'axios'
 //引入自定义axios.js进行全局拦截
-import "./axios"
+import "./common/axios"
+//公共常量
+import global from "./common/Global.vue"
 
 import './assets/css/common.css'// 创建公共样式文件
 
@@ -16,6 +18,7 @@ Vue.config.productionTip = false
 //添加使用element-ui
 Vue.use(Element)
 Vue.prototype.$axios=axios
+Vue.prototype.GLOBAL=global
 
 new Vue({
   router,

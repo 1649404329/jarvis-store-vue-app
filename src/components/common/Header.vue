@@ -5,7 +5,7 @@
             <el-menu-item index="/home" style="border-bottom: 2px solid #FFF; color: rgb(0,0,0);">
                 <!--<el-avatar :size="50">JARVIS</el-avatar>-->
                 <el-avatar :src="logoUrl" :size="40"></el-avatar>
-                <b> 饭团</b><br>
+                <b> 小店</b><br>
             </el-menu-item>
 
             <el-menu-item index="/home">广场</el-menu-item>
@@ -25,7 +25,7 @@
                 </el-submenu>
             </el-submenu>
 
-            <el-menu-item index="/blogHome">写点啥</el-menu-item>
+            <el-menu-item index="/blogHome" >写点啥</el-menu-item>
 
             <el-menu-item index="6" disabled>交易中心</el-menu-item>
 

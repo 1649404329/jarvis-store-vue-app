@@ -7,6 +7,8 @@
                     <Header/>
                 </el-header>
 
+<transition name="animated  el-zoom-in-bottom">
+    <div v-show="showTransition" class="transition-box">
                 <el-row>
                     <el-col :span="18" offset="3">
                         <el-container class="grayTopic">
@@ -22,6 +24,8 @@
                         </el-container>
                     </el-col>
                 </el-row>
+                    </div>
+     </transition>
 
                 <el-footer><Footer/></el-footer>
 
@@ -50,6 +54,8 @@
                 currentPage: 1,
                 total: 0,
                 pageSize: 5,
+
+                showTransition:false
             }
         },
         components: {
@@ -58,6 +64,9 @@
             Footer,
             Aside,
             Main,
+        },
+        mounted(){
+            this.showTransition=true;
         },
         methods: {
             handleSelect(key, keyPath) {

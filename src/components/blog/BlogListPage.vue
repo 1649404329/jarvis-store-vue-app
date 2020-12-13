@@ -1,31 +1,44 @@
 <template>
     <div class="block">
-        <el-timeline>
+        <div>
+            <el-timeline>
+                <el-timeline-item 
+                :timestamp="blog.createTime" 
+                placement="top"
+                :key="blog.id"
+                v-for="blog in blogs">
+                    <el-card>
+                        <h4>
+                            <router-link
+                            :to="{name:'BlogDetail',params:{blogId:blog.id}}">{{blog.title}}</router-link>
+                        </h4>
+                        <p>{{blog.userId}} 提交于 {{blog.createTime}}</p>
+                    </el-card>
+                </el-timeline-item>
+            </el-timeline>
+            <el-pagination
+                    background
+                    layout="prev, pager, next"
+                    @size-change="handleSizeChange"
+                    @current-change="page"
+                    :currentPage="currentPage"
+                    :total="total"
+                    :page-size="pageSize"
+                    :page-sizes="[2,4,6]">
+            </el-pagination>
+            <el-image
+                    style="width: 100px; height: 100px;margin-right: 10px;"
+                    :src="url"
+                    :preview-src-list="srcList">
+            </el-image>
+        </div>
 
-            <el-timeline-item :timestamp="blog.createTime" placement="top" v-for="blog in blogs">
-                <el-card>
-                    <h4>{{blog.title}}</h4>
-                    <p>{{blog.userId}} 提交于 {{blog.createTime}}</p>
-                </el-card>
-            </el-timeline-item>
 
-        </el-timeline>
-        <el-pagination
-                background
-                layout="prev, pager, next"
-                @size-change="handleSizeChange"
-                @current-change="page"
-                :currentPage="currentPage"
-                :total="total"
-                :page-size="pageSize"
-                :page-sizes="[2,4,6]">
-        </el-pagination>
+        <div>
+            <el-page-header @back="goBack" content="详情页面">
+            </el-page-header>
+        </div>
 
-        <el-image
-                style="width: 100px; height: 100px;margin-right: 10px;"
-                :src="url"
-                :preview-src-list="srcList">
-        </el-image>
     </div>
 </template>
 
@@ -48,6 +61,23 @@
         created() {
             this.page(1)
         },
+        //=====滚动回原来位置====
+        mounted() {
+            window.CateListScrollTop = 0;
+        },
+        beforeRouteLeave (to, from, next) {
+        //离开该页面的时候把高度记录
+            window.CateListScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            next()
+        },
+        activated() { 
+        //返回的时候滚动到记录的高度
+        //延时200ms，不延迟滚动的话，有商品页内容高度比较小的情况就返不回原来的位置
+            setTimeout(() => {
+            window.scrollTo(0, window.CateListScrollTop);
+            }, 200);
+        },
+        //=====滚动回原来位置====
         methods: {
             handleSizeChange(pageSize) {
                 const _this = this
@@ -68,7 +98,10 @@
                     this.total = response.data.total
                     this.pageSize = response.data.size
                 })
-            }
+            },
+            goBack() {
+                console.log('go back');
+            },
         },
     }
 </script>

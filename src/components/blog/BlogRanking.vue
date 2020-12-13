@@ -1,7 +1,7 @@
 <template>
     <div>
         <el-row>
-            <div v-for="blog in blogsOfRecommend">
+            <div :key="blog.id" v-for="blog in blogsOfRecommend">
                 <div class="whiteTopic font-small">
                     <el-col :span="8">
                         <el-image

@@ -92,7 +92,7 @@
                 const _this = this;
                 this.$axios.get("/api-admin/knowledgeBase/listSuper").then((res) => {
                     console.log(res);
-                    if (res.data.code !== 200) {
+                    if (res.data.code !== this.GLOBAL.RESPONSE_SUCCESS) {
                         this.$message({
                             message: res.data.msg,
                             type: "error",
@@ -106,7 +106,7 @@
                 const _this = this;
                 this.$axios.get("/api-admin/knowledgeBase/getDetailById/" + id).then((res) => {
                     console.log("输出细节：" + res.data.data.content)
-                    if (res.data.code !== 200) {
+                    if (res.data.code !== this.GLOBAL.RESPONSE_SUCCESS) {
                         this.$message({
                             message: res.data.msg,
                             type: "error",

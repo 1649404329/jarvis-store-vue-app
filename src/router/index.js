@@ -61,6 +61,7 @@ const routes = [
       requireAuth:true
     }
   },
+  //博客详情
   {
     path: '/blogs/blog/:blogId',
     name: 'BlogDetail',
