@@ -8,10 +8,10 @@
                 :key="blog.id"
                 v-for="blog in blogs">
                     <el-card>
-                        <h4>
+                        <h3>
                             <router-link
-                            :to="{name:'BlogDetail',params:{blogId:blog.id}}">{{blog.title}}</router-link>
-                        </h4>
+                            :to="{name:'BlogDetail',params:{blogId:blog.id}}"  target="_blank">{{blog.title}}</router-link>
+                        </h3>
                         <p>{{blog.userId}} 提交于 {{blog.createTime}}</p>
                     </el-card>
                 </el-timeline-item>
@@ -31,12 +31,6 @@
                     :src="url"
                     :preview-src-list="srcList">
             </el-image>
-        </div>
-
-
-        <div>
-            <el-page-header @back="goBack" content="详情页面">
-            </el-page-header>
         </div>
 
     </div>

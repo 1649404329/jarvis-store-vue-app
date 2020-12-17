@@ -27,11 +27,19 @@
 
                         <div class="detail">
                             <h2>{{blog.title}}</h2>
-                            <el-link icon="el-icon-edit" v-if="ownBlog">
-                                <router-link :to="{name:'BlogEdit',params:{blogId:blog.id}}">
-                                    编辑
-                                </router-link>
-                            </el-link>
+                            <el-row>
+                                <el-col :span="18">
+                                    <span><i class="el-icon-alarm-clock"></i>{{blog.createTime}} </span>
+                                    <span><i class="el-icon-user-solid"></i>{{blog.createTime}} </span>
+
+                                    <el-link icon="el-icon-edit" v-if="ownBlog">
+                                        <router-link :to="{name:'BlogEdit',params:{blogId:blog.id}}">
+                                            编辑
+                                        </router-link>
+                                    </el-link>
+                                </el-col>
+                                <el-col :span="6">右边</el-col>
+                            </el-row>
                             <el-divider></el-divider>
                             <!-- <div class="markdown-body" v-html="blog.content"></div> -->
                             <div><span v-html="blog.content"></span></div>
@@ -68,12 +76,12 @@
         data() {
             return {
                 blog: {
-                    id: '',
-                    title: '',
-                    content: '',
-                    editMode:'',
+                    // id: '',
+                    // title: '',
+                    // content: '',
+                    // editMode:'',
                 },
-                ownBlog: false
+                ownBlog: true
             }
         },
         components: {
@@ -90,6 +98,7 @@
                 this.$axios.get('/api-activity/blog/detail/' + blogId).then(res => {
                     const blog = res.data.data
                     console.log(blog);
+                    _this.blog=blog
                     _this.blog.id = blog.id
                     _this.blog.title = blog.title
                     _this.blog.content = blog.content
@@ -139,10 +148,17 @@
         overflow-y: auto;
         box-sizing: border-box;
     }
+    
+    .main {
+        height: auto;
+        text-align: left;
+        box-sizing: border-box;
+    }
 
     .detail {
         margin: 0 auto;
         margin-top: 20px;
+        /*text-align: center;*/
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
         width: 96%;
         min-height: 700px;

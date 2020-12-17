@@ -3,9 +3,11 @@
         <el-row>
             <div :key="blog.id" v-for="blog in blogsOfRecommend">
                 <div class="whiteTopic font-small">
+                    <router-link
+                        :to="{name:'BlogDetail',params:{blogId:blog.id}}"  target="_blank">
                     <el-col :span="8">
                         <el-image
-                                style="width: 80px; height: 60px"
+                                style="max-width: 120px; height: 60px"
                                 :src="url"
                                 :fit="fill"></el-image>
                     </el-col>
@@ -13,6 +15,7 @@
                         <span> {{blog.title}}</span>
                         <p style=" "> {{blog.userId}} <span style="float: right;"><i  class="el-icon-view"></i> {{blog.viewCount}}</span></p>
                     </el-col>
+                    </router-link>
                 </div>
             </div>
         </el-row>
