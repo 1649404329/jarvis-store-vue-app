@@ -13,12 +13,15 @@ import "./common/axios"
 import global from "./common/Global.vue"
 
 import './assets/css/common.css'// 创建公共样式文件
+//公共方法
+import publicMethod from './common/common'
 
 Vue.config.productionTip = false
 //添加使用element-ui
 Vue.use(Element)
 Vue.prototype.$axios=axios
 Vue.prototype.GLOBAL=global
+Vue.prototype.publicMethod = publicMethod
 
 new Vue({
   router,

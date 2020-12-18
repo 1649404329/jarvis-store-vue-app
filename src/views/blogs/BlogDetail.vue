@@ -25,12 +25,17 @@
                             </el-page-header>
                         </div>
 
-                        <div class="detail">
+                    </div>
+                </el-main>
+
+                <el-main  class="main detail">
+                    <div>
+                        <div>
                             <h2>{{blog.title}}</h2>
                             <el-row>
                                 <el-col :span="18">
-                                    <span><i class="el-icon-alarm-clock"></i>{{blog.createTime}} </span>
-                                    <span><i class="el-icon-user-solid"></i>{{blog.createTime}} </span>
+                                    <span><i class="el-icon-alarm-clock"></i>{{this.publicMethod.dateFormat(blog.createTime)}} </span>
+                                    <span><i class="el-icon-user-solid"></i>{{blog.userId}} </span>
 
                                     <el-link icon="el-icon-edit" v-if="ownBlog">
                                         <router-link :to="{name:'BlogEdit',params:{blogId:blog.id}}">
@@ -43,6 +48,42 @@
                             <el-divider></el-divider>
                             <!-- <div class="markdown-body" v-html="blog.content"></div> -->
                             <div><span v-html="blog.content"></span></div>
+                        </div>
+
+                    </div>
+                </el-main>
+
+                <el-main>
+                    <div>
+                        <div>
+                            <el-badge :value="12" class="item">
+                                <el-button size="small">评论</el-button>
+                            </el-badge>
+                            <el-badge :value="3" class="item">
+                                <el-button size="small">回复</el-button>
+                            </el-badge>
+                            <el-badge :value="1" class="item" type="primary">
+                                <el-button size="small">评论</el-button>
+                            </el-badge>
+                            <el-badge :value="2" class="item" type="warning">
+                                <el-button size="small">回复</el-button>
+                            </el-badge>
+
+                            <el-dropdown trigger="click">
+                                  <span class="el-dropdown-link">
+                                    点我查看<i class="el-icon-caret-bottom el-icon--right"></i>
+                                  </span>
+                                <el-dropdown-menu slot="dropdown">
+                                    <el-dropdown-item class="clearfix">
+                                        评论
+                                        <el-badge class="mark" :value="12" />
+                                    </el-dropdown-item>
+                                    <el-dropdown-item class="clearfix">
+                                        回复
+                                        <el-badge class="mark" :value="3" />
+                                    </el-dropdown-item>
+                                </el-dropdown-menu>
+                            </el-dropdown>
                         </div>
                     </div>
                 </el-main>
@@ -91,6 +132,7 @@
             BlogRanking,
         },
         created() {
+            console.log(this.publicMethod.dateFormat('2020-06-02T15:40:18'))
             const _this = this
             const blogId = this.$route.params.blogId
             console.log(blogId)
@@ -160,9 +202,14 @@
         margin-top: 20px;
         /*text-align: center;*/
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-        width: 96%;
+        /*width: 96%;*/
         min-height: 700px;
         padding: 20px;
         box-sizing: border-box;
+    }
+
+    .item {
+        margin-top: 10px;
+        margin-right: 40px;
     }
 </style>
