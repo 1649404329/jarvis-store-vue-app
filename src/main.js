@@ -16,6 +16,9 @@ import './assets/css/common.css'// 创建公共样式文件
 //公共方法
 import publicMethod from './common/common'
 
+//引入icon矢量图标库
+import './assets/icon/iconfont.css'
+
 Vue.config.productionTip = false
 //添加使用element-ui
 Vue.use(Element)

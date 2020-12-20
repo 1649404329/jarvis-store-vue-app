@@ -3,20 +3,23 @@
         <div>
             <el-timeline>
                 <el-timeline-item 
-                :timestamp="blog.createTime" 
+                :timestamp="dateFormat(blog.createTime)"
                 placement="top"
                 :key="blog.id"
                 v-for="blog in blogs">
-                    <el-card>
+                    <el-card shadow="hover">
                         <h3>
                             <router-link
                             :to="{name:'BlogDetail',params:{blogId:blog.id}}"  target="_blank">{{blog.title}}</router-link>
                         </h3>
-                        <p>{{blog.userId}} 提交于 {{blog.createTime}}</p>
+                        <p class="blog-content" v-html="blog.content"></p>
+                        <p style="align-items: center;display: flex;"><el-avatar :src="url" :size="30" ></el-avatar>
+                            <span>{{blog.userId}} 提交于 {{dateFormat(blog.createTime)}}</span></p>
                     </el-card>
                 </el-timeline-item>
             </el-timeline>
             <el-pagination
+                    style="text-align: center;"
                     background
                     layout="prev, pager, next"
                     @size-change="handleSizeChange"
@@ -26,11 +29,11 @@
                     :page-size="pageSize"
                     :page-sizes="[2,4,6]">
             </el-pagination>
-            <el-image
-                    style="width: 100px; height: 100px;margin-right: 10px;"
-                    :src="url"
-                    :preview-src-list="srcList">
-            </el-image>
+            <!--<el-image-->
+                    <!--style="width: 100px; height: 100px;margin-right: 10px;"-->
+                    <!--:src="url"-->
+                    <!--:preview-src-list="srcList">-->
+            <!--</el-image>-->
         </div>
 
     </div>
@@ -96,10 +99,32 @@
             goBack() {
                 console.log('go back');
             },
+
+            dateFormat(time){
+                let date = new Date(time);
+                let year = date.getFullYear();
+                /* 在日期格式中，月份是从0开始的，因此要加0
+                 * 使用三元表达式在小于10的前面加0，以达到格式统一  如 09:11:05
+                 * */
+                let month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+                let day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+                let hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+                let minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+                let seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+                // 拼接
+                return year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
+            }
         },
     }
 </script>
 
 <style scoped>
 
+    .blog-content{
+        display:-webkit-box;
+        text-overflow:ellipsis;
+        overflow:hidden;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient:vertical;
+    }
 </style>
