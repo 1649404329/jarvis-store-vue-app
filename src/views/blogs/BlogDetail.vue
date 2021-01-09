@@ -7,7 +7,7 @@
             </el-header>
 
             <el-row>
-                <el-col :span="18" offset="3">
+                <el-col :span="16" offset="4">
                     <el-container class="grayTopic">
                         <el-main style="margin-bottom: 0;">
                             <BlogBanner/>
@@ -17,7 +17,16 @@
             </el-row>
 
         <el-row>
-            <el-col :span="13" offset="3">
+            <div class="left-fixed">
+                <div class="left-fixed-btn">
+                <el-button type="info" circle icon="iconfont icon-dianzan"></el-button><br>点赞</div>
+
+                <div class="left-fixed-btn">
+                <el-button type="text" circle style="background: #fff;">赏</el-button><br>赞赏</div>
+
+            </div>
+
+            <el-col :span="11" offset="4">
                 <el-main  class="main detail">
                     <div>
                         <div>
@@ -234,7 +243,7 @@
                     _this.blog.title = blog.title
                     _this.blog.content = blog.content
                     if(blog.editMode===0){
-                        
+
                     }
                     // var MarkDownIt = require("markdown-it")
                     // var md = new MarkDownIt()
@@ -253,12 +262,12 @@
             goBack() {
                 console.log('go back');
                 this.$router.push({
-                    path: '/blogHome',   
-                    name: 'BlogHome',  
-                    params: {   
-                        key: 'blogId',   
-                        msgKey: this.blog.id  
-                    }  
+                    path: '/blogHome',
+                    name: 'BlogHome',
+                    params: {
+                        key: 'blogId',
+                        msgKey: this.blog.id
+                    }
                     /*query: {  
                         key: 'key',   
                         msgKey: this.msg  
@@ -279,7 +288,7 @@
         overflow-y: auto;
         box-sizing: border-box;
     }
-    
+
     .main {
         height: auto;
         text-align: left;
@@ -333,5 +342,21 @@
     }
     .comment-reply-button{
         float: right;
+    }
+
+    /*左侧点赞/赞赏固定悬浮按钮*/
+    .left-fixed{
+        position: fixed;
+        top: 30%;
+        /*left: calc((100vw - 1000px)/2 - 190px);*/
+        left: 10%;
+        user-select: none;
+    }
+    .left-fixed-btn{
+        cursor: pointer;
+        flex-direction: column;
+        margin-bottom: 16px;
+        font-size: 14px;
+        color: rgba(150,150,150,1);
     }
 </style>
