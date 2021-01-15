@@ -13,7 +13,7 @@
 <transition name="animated  el-zoom-in-bottom">
     <div v-show="showTransition" class="transition-box">
                 <el-row>
-                    <el-col :span="18" offset="3">
+                    <el-col :span="14" offset="6">
                         <el-container class="grayTopic">
                             <el-main style="margin-bottom: 0;">
                                 <BlogBanner/>
@@ -23,14 +23,14 @@
                 </el-row>
 
                 <el-row>
-                    <el-col :span="13" offset="3">
+                    <el-col :span="10" offset="6">
                         <el-main>
                             <div class="main">
                                 <Main/>
                             </div>
                         </el-main>
                     </el-col>
-                    <el-col :span="5">
+                    <el-col :span="4">
                         <el-main>
                             <div class="main">
                                 <BlogRanking/>

@@ -7,6 +7,7 @@ import Login from '../views/login/Login.vue'
 import Help from '../views/login/Help.vue'
 import Test from '../views/Test.vue'
 import BlogHome from '../views/blogs/BlogHome.vue'
+import BlogUser from '../views/blogs/BlogUser.vue'
 import BlogDetail from '../views/blogs/BlogDetail.vue'
 import BlogAdd from '../views/blogs/BlogAdd.vue'
 import BlogEdit from '../views/blogs/BlogEdit.vue'
@@ -53,6 +54,11 @@ const routes = [
     name: 'BlogHome',
     component: BlogHome
   },
+    {
+        path:'/blogUser',
+        name:'BlogUser',
+        component:BlogUser
+    },
   {
     path: '/blog/add',
     name: 'BlogAdd',
