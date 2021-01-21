@@ -12,8 +12,18 @@ let dateFormat = (time) => {
     let seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
     // 拼接
     return year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
+};
+
+let isEmpty = (obj) => {
+    if (typeof obj === 'undefined' || obj == null || obj === '') {
+        return true;
+    } else {
+        return false;
+    }
 }
 
+
 export default {
-    dateFormat
+    dateFormat,
+    isEmpty,
 }

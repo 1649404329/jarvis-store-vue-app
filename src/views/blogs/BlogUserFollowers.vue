@@ -17,9 +17,9 @@
                             </div>
 
                             <div style="margin-top: 10px;margin-bottom: 10px;">
-                                <el-tabs v-model="blog_activeName" @tab-click="handleClick">
-                                    <el-tab-pane label="文章" name="first">
-                                        <span slot="label"><i class="el-icon-date"></i> 文章</span>
+                                <el-tabs v-model="blog_top_activeName" @tab-click="handleClick">
+                                    <el-tab-pane   name="first">
+                                        <span slot="label">关注用户</span>
                                         <div style="padding-bottom: 30px;">
                                             <ul class="note-list">
                                                 <li v-for="(item, key) in 2 ">
@@ -39,18 +39,13 @@
                                         </div>
 
                                         <el-divider></el-divider>
-                                        <div style="display:flex;flex-direction: column;align-items: center;">
-                                            <p>扫码联系作者</p>
-                                            <img style="width: 100px; height: 100px" src="../../assets/images/weixin.png"><br>
-                                            <p style="font-size: 16px;">"小礼物走一走，来小店关注我"</p>
-                                            <el-button type="danger" size="mini" class="_2Bo4Th"  round>赞赏支持</el-button>
-                                            <p style="font-size: 14px;color: rgb(150,150,150)">还没有人赞赏，支持一下</p>
-                                        </div>
                                     </el-tab-pane>
-                                    <el-tab-pane label="动态" name="second">动态</el-tab-pane>
+                                    <el-tab-pane name="second">
+                                        <span slot="label">粉丝</span>
+                                        动态
+                                    </el-tab-pane>
                                 </el-tabs>
                             </div>
-
 
                         </div>
                     </el-main>
@@ -68,7 +63,6 @@
             </el-footer>
 
         </el-container>
-        <el-backtop target=".backTop_wrap"></el-backtop>
     </div>
 </template>
 
@@ -78,20 +72,14 @@
     import BlogUserTop from '@/components/blog/BlogUserTop.vue'
     import TestComponents from '@/components/blog/TestComponents.vue'
     import BlogUserAside from '@/components/blog/BlogUserAside.vue'
+    import VueEvent from '../../common/VueEvent.js'
 
     export default {
-        name: "BlogUser",
-        data() {
+        name: "BlogUserFollowers",
+        data(){
             return {
-                blog: { },
-                ownBlog: true,
 
-                comment_textarea: "",
-
-
-                lookSwitch:true,
-
-                blog_activeName: 'first',
+                blog_top_activeName: 'first',
             }
         },
         components: {
@@ -101,18 +89,33 @@
             TestComponents,
             BlogUserAside,
         },
+        methods:{
+
+        },
         created() {
+            //显示“关注”/“粉丝”
+            console.log("this.$route.query: "+this.$route.query.p)
+            console.log("this.$route.params: "+this.$route.params.p)
+            let query_page = this.$route.query.p;
             let params_page = this.$route.params.p;
-            if(!this.publicMethod.isEmpty(params_page)){
-                this.blog_activeName = String(params_page);
+            if(!this.publicMethod.isEmpty(query_page)){
+                this.blog_top_activeName = String(query_page);
+            }else if(!this.publicMethod.isEmpty(params_page)){
+                this.blog_top_activeName = String(params_page);
             }else{
-                this.blog_activeName = "first";
+                this.blog_top_activeName = "1";
             }
-            console.info("this.blog_activeName: "+this.blog_activeName);
+            console.info("this.blog_top_activeName: "+this.blog_top_activeName);
+        },
+        mounted() {
+            VueEvent.$on('blog_top_activeName', function (data) {
+                this.blog_top_activeName = ""+String(data);
+                console.log(this.blog_top_activeName);
+                this.blog_top_activeName = "2";
+            })
         }
     }
 </script>
-
 
 <style scoped>
     .main {
@@ -130,62 +133,6 @@
         padding: 20px;
         box-sizing: border-box;
     }
-
-
-    .note-list{
-        margin: 0;
-        padding: 0;
-        list-style: none;
-    }
-    .note-list li {
-        position: relative;
-        width: 100%;
-        margin: 0 0 15px;
-        padding: 15px 2px 20px 0;
-        border-bottom: 1px solid #f0f0f0;
-        word-wrap: break-word;
-    }
-    .note-list .title:visited {
-        color: #969696;
-    }
-    .note-list .title {
-        margin: -7px 0 4px;
-        display: inherit;
-        font-size: 18px;
-        font-weight: 700;
-        line-height: 1.5;
-    }
-    .note-list .abstract {
-        margin: 0 0 8px;
-        font-size: 13px;
-        line-height: 24px;
-        color: #999;
-    }
-    .note-list .meta {
-        padding-right: 0!important;
-        font-size: 12px;
-        font-weight: 400;
-        line-height: 20px;
-    }
-    .note-list .meta span {
-        margin-right: 10px;
-    }
-    .jsd-meta {
-        color: #ea6f5a!important;
-    }
-    .note-list .meta a i{
-        font-size: 12px;
-    }
-    .note-list .meta a {
-        margin-right: 10px;
-        color: #b4b4b4;
-    }
-    .blog-user-aside{
-        font-size: 16px;
-        color: #333;
-        line-height: 30px;
-    }
-
 </style>
 <!--scoped去掉让重写的样式显示出来-->
 <style>
