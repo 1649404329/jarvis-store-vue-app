@@ -63,7 +63,7 @@
             hrefToBlogUserFollowers_2(){
                 VueEvent.$emit('blog_top_activeName', "second");
                 this.$router.push({
-                    name: 'BlogUserFollowers',
+                    name: 'BlogUserFollowing',
                     params:{
                         p:"second"
                     }

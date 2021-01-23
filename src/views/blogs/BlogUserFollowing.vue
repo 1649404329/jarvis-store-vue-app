@@ -26,7 +26,7 @@
                                                     <a><el-avatar :src="avatarUrl" class="avatar"></el-avatar></a>
                                                     <el-button type="success" round class="btn-hollow">+ 关注</el-button>
                                                     <div class="info">
-                                                        <p class="title">xiaotian是个混子</p>
+                                                        <p class="title">Spring Event使用</p>
                                                         <div class="meta">
                                                             <span>关注 0</span>
                                                             <el-divider  direction="vertical"></el-divider>
@@ -42,10 +42,11 @@
                                                 </li>
                                             </ul>
                                         </div>
+
                                         <el-divider></el-divider>
                                     </el-tab-pane>
                                     <el-tab-pane name="second">
-                                        <span slot="label">粉丝 13</span>
+                                        <span slot="label">粉丝 6</span>
                                         <div style="padding-bottom: 30px;">
                                             <ul class="user-list">
                                                 <li v-for="(item, key) in 5 ">
@@ -106,7 +107,7 @@
             return {
 
                 blog_top_activeName: 'first',
-                avatarUrl: "https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg",
+                avatarUrl: "https://upload.jianshu.io/users/upload_avatars/18253298/adc2ffe8-16ba-4ad7-a0d0-4d3f768625a0.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/180/h/180",
             }
         },
         components: {
@@ -172,7 +173,7 @@
         position: relative;
         width: 100%;
         margin: 0 0 15px 0;
-        padding: 0 2px 20px 0;
+        padding: 0px 2px 20px 0;
         border-bottom: 1px solid #f0f0f0;
         word-wrap: break-word;
     }

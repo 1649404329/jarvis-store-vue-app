@@ -12,6 +12,7 @@ import BlogDetail from '../views/blogs/BlogDetail.vue'
 import BlogAdd from '../views/blogs/BlogAdd.vue'
 import BlogEdit from '../views/blogs/BlogEdit.vue'
 import BlogUserFollowers from '../views/blogs/BlogUserFollowers.vue'
+import BlogUserFollowing from '../views/blogs/BlogUserFollowing.vue'
 
 Vue.use(VueRouter)
 
@@ -101,6 +102,11 @@ const routes = [
     path: '/blogUserFollowers',
     name: 'BlogUserFollowers',
     component: BlogUserFollowers
+  },
+  {
+    path: '/blogUserFollowing',
+    name: 'BlogUserFollowing',
+    component: BlogUserFollowing
   }
 ]
 

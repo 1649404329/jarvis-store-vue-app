@@ -19,7 +19,7 @@
                             <div style="margin-top: 10px;margin-bottom: 10px;">
                                 <el-tabs v-model="blog_activeName" @tab-click="handleClick">
                                     <el-tab-pane label="文章" name="first">
-                                        <span slot="label"><i class="el-icon-date"></i> 文章</span>
+                                        <span slot="label"><i class="iconfont icon-top-wenzhang"></i> 文章</span>
                                         <div style="padding-bottom: 30px;">
                                             <ul class="note-list">
                                                 <li v-for="(item, key) in 2 ">
@@ -37,7 +37,6 @@
                                                 </li>
                                             </ul>
                                         </div>
-
                                         <el-divider></el-divider>
                                         <div style="display:flex;flex-direction: column;align-items: center;">
                                             <p>扫码联系作者</p>
@@ -47,7 +46,31 @@
                                             <p style="font-size: 14px;color: rgb(150,150,150)">还没有人赞赏，支持一下</p>
                                         </div>
                                     </el-tab-pane>
-                                    <el-tab-pane label="动态" name="second">动态</el-tab-pane>
+                                    <el-tab-pane label="动态" name="second">
+                                        <span slot="label"><i class="iconfont icon-top-clock"></i> 动态</span>
+                                        <div style="padding-bottom: 30px;">
+                                            <ul class="note-list">
+                                                <li v-for="(item, key) in 2 ">
+                                                    <div class="content">
+                                                        <p class="title">Spring Event使用2</p>
+                                                        <p class="abstract">SpringEvent 自定义事件链，实用性很强的一种设计，可以利用它来做业务剥离，复杂场景解耦、代码独立等，也是事件驱动模型的核心，并且可以处...</p>
+                                                        <div class="meta">
+                                                            <span class="jsd-meta"><i class="iconfont icon-chakanguo">dsd</i></span>
+                                                            <a><i class="iconfont icon-pinglun"> 0</i></a>
+                                                            <a><i class="iconfont icon-pinglun"> 0</i></a>
+                                                            <a><i class="iconfont icon-pinglun"> 0</i></a>
+                                                            <span style="margin-right: 10px;color: #b4b4b4;">2019.03.12 16:07</span>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <el-divider></el-divider>
+                                    </el-tab-pane>
+                                    <el-tab-pane label="动态" name="second">
+                                        <span slot="label"><i class="iconfont icon-top-remenx"></i> 动态</span>
+                                    </el-tab-pane>
+
                                 </el-tabs>
                             </div>
 
