@@ -13,7 +13,7 @@
 <transition name="animated  el-zoom-in-bottom">
     <div v-show="showTransition" class="transition-box">
                 <el-row>
-                    <el-col :span="14" offset="6">
+                    <el-col :span="19" offset="3">
                         <el-container class="grayTopic">
                             <el-main style="margin-bottom: 0;">
                                 <BlogBanner/>
@@ -23,18 +23,37 @@
                 </el-row>
 
                 <el-row>
-                    <el-col :span="10" offset="6">
+                    <el-col :span="13" offset="3">
                         <el-main>
                             <div class="main">
                                 <Main/>
                             </div>
                         </el-main>
                     </el-col>
-                    <el-col :span="4">
+                    <el-col :span="6">
                         <el-main>
                             <div class="main">
                                 <BlogRanking/>
                             </div>
+                        </el-main>
+                        <el-main>
+                            <div>
+                                <div>
+                                    <el-image src="https://cdn2.jianshu.io/assets/web/banner-s-daily-e6f6601abc495573ad37f2532468186f.png"></el-image>
+                                </div>
+                                <div>
+                                    <el-image src="https://cdn2.jianshu.io/assets/web/banner-s-daily-e6f6601abc495573ad37f2532468186f.png"></el-image>
+                                </div>
+                                <div>
+                                    <el-image src="https://cdn2.jianshu.io/assets/web/banner-s-daily-e6f6601abc495573ad37f2532468186f.png"></el-image>
+                                </div>
+                                <div>
+                                    <el-image src="https://cdn2.jianshu.io/assets/web/banner-s-daily-e6f6601abc495573ad37f2532468186f.png"></el-image>
+                                </div>
+                            </div>
+                        </el-main>
+                        <el-main>
+                            <BlogAuthorBanner/>
                         </el-main>
                     </el-col>
                 </el-row>
@@ -62,6 +81,7 @@
     import Main from '@/components/blog/Main.vue'
     import BlogBanner from '@/components/blog/BlogBanner.vue'
     import BlogRanking from '@/components/blog/BlogRanking.vue'
+    import BlogAuthorBanner from '@/components/blog/BlogAuthorBanner.vue'
 
     export default {
         name: 'BlogHome',
@@ -85,6 +105,7 @@
             Main,
             BlogBanner,
             BlogRanking,
+            BlogAuthorBanner,
         },
         mounted(){
             this.showTransition=true;

@@ -23,8 +23,8 @@
                                         <div style="padding-bottom: 30px;">
                                             <ul class="note-list">
                                                 <li v-for="(item, key) in 2 ">
-                                                    <div class="content">
-                                                        <p class="title">Spring Event使用</p>
+                                                    <div class="content" >
+                                                        <p class="title" @click="clickToBlogDetail">Spring Event使用</p>
                                                         <p class="abstract">SpringEvent 自定义事件链，实用性很强的一种设计，可以利用它来做业务剥离，复杂场景解耦、代码独立等，也是事件驱动模型的核心，并且可以处...</p>
                                                         <div class="meta">
                                                             <span class="jsd-meta"><i class="iconfont icon-chakanguo">dsd</i></span>
@@ -124,6 +124,16 @@
             TestComponents,
             BlogUserAside,
         },
+        methods:{
+            clickToBlogDetail(){
+                this.$router.push({
+                    name: 'BlogDetail',
+                    params:{
+                        blogId:"1"
+                    }
+                });
+            }
+        },
         created() {
             let params_page = this.$route.params.p;
             if(!this.publicMethod.isEmpty(params_page)){
@@ -177,6 +187,7 @@
         font-size: 18px;
         font-weight: 700;
         line-height: 1.5;
+        cursor: pointer;
     }
     .note-list .abstract {
         margin: 0 0 8px;
@@ -207,6 +218,11 @@
         font-size: 16px;
         color: #333;
         line-height: 30px;
+    }
+
+    .content{
+        text-align: left;
+
     }
 
 </style>
