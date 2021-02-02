@@ -3,24 +3,29 @@
         <el-row :gutter="20">
             <!--<el-col :span="16">-->
                 <div class="font-size-middle bg-withe" style="float: left;">
-                    <el-col :span="5">
+                    <el-col :span="4" style="color:rgb(0,126,233);;">
                         <i class="el-icon-star-off"></i>&nbsp;
                         <span>我的收藏</span>
                     </el-col>
                     <el-col :span="1"><el-divider direction="vertical"></el-divider></el-col>
-                    <el-col :span="5">
+                    <el-col :span="4" style="color: rgb(0,126,233);">
                         <i class="el-icon-edit"></i>&nbsp;
                         <span>我的创作</span>
                     </el-col>
                     <el-col :span="1"><el-divider direction="vertical"></el-divider></el-col>
-                    <el-col :span="5">
+                    <el-col :span="4" style="color:rgb(0,126,233);;">
                         <i class="el-icon-view"></i>&nbsp;
                         <span>我的关注</span>
                     </el-col>
                     <el-col :span="1"><el-divider direction="vertical"></el-divider></el-col>
-                    <el-col :span="5">
+                    <el-col :span="4" style="color: rgb(0,126,233);;">
                         <i class="el-icon-orange"></i>&nbsp;
                         <span>朋友圈</span>
+                    </el-col>
+                    <el-col :span="1"><el-divider direction="vertical"></el-divider></el-col>
+                    <el-col :span="4" style="color:rgb(0,126,233);;">
+                        <i class="el-icon-orange"></i>&nbsp;
+                        <span>闲聊区</span>
                     </el-col>
                 </div>
             <!--</el-col>-->
