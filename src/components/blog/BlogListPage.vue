@@ -88,13 +88,7 @@
             },
             page(currentPage) {
                 const _this = this
-                _this.$axios.get("/api-activity/blog/pageBlog?currentPage=" + currentPage + "&pageSize=" + this.pageSize
-                    // ,{
-                    // headers: {
-                    //     "token": "dsdsd",//localStorage.getItem("token")，
-                    //     "userId": "4545"
-                    // }}
-                    ).then(res => {
+                _this.$axios.get("/api-activity/blog/pageBlog?currentPage=" + currentPage + "&pageSize=" + this.pageSize).then(res => {
                     const response = res.data;
                     this.blogs = response.data.records
                     this.currentPage = response.data.current

@@ -249,7 +249,7 @@
                 </el-main>
             </el-col>
             <el-col :span="4">
-                <el-main  class="main detail" style="padding: 0px;text-align: center;">
+                <el-main  class="main detail" style="padding: 0px;text-align: center;width: 280px;">
                     <div>
                         <el-row>
                             <el-col :span="24">
@@ -277,11 +277,11 @@
                         </el-row>
                     </div>
                 </el-main>
-                    <div class="main " ref="scrollFixedNav">
-                <el-main>
-                            <BlogRanking/>
+                <div ref="scrollFixedNav" >
+                <el-main  class="main " style="width: 280px;">
+                    <BlogRanking/>
                 </el-main>
-                    </div>
+                </div>
             </el-col>
         </el-row>
 
@@ -290,7 +290,23 @@
         </el-footer>
 
         </el-container>
+
         <el-backtop target=".backTop_wrap"></el-backtop>
+
+        <!--查看点赞人-->
+        <div v-if="play" style="width: 100%;height: 100%;z-index: 999;position: fixed;top: 0;left: 0;background:rgba(0,0,0,0.5);">
+            <div style=" ">
+                <el-card class="box-card">
+                    <div slot="header" class="clearfix">
+                        <span>卡片名称</span>
+                        <el-button style="float: right; padding: 3px 0" type="text" @click="playPopover">收回</el-button>
+                    </div>
+                    <div v-for="o in 4" :key="o" class="text item">
+                        {{'列表内容 ' + o }}
+                    </div>
+                </el-card>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -312,6 +328,8 @@
                 avatarUrl: "https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg",
 
                 lookSwitch:true,
+
+                play: true,
             }
         },
         components: {
@@ -378,22 +396,33 @@
                 })
             },
             open() {
-                this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
-                    type: 'warning'
-                }).then(() => {
-                    this.$message({
-                        type: 'success',
-                        message: '删除成功!'
-                    });
-                }).catch(() => {
-                    this.$message({
-                        type: 'info',
-                        message: '已取消删除'
-                    });
-                });
+                // this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                //     confirmButtonText: '确定',
+                //     cancelButtonText: '取消',
+                //     type: 'warning'
+                // }).then(() => {
+                //     this.$message({
+                //         type: 'success',
+                //         message: '删除成功!'
+                //     });
+                // }).catch(() => {
+                //     this.$message({
+                //         type: 'info',
+                //         message: '已取消删除'
+                //     });
+                // });
+
+                // this.$message('<strong>这是 <i>HTML</i> 片段</strong>', 'HTML 片段', {
+                //     dangerouslyUseHTMLString: true
+                // });
+
+                this.playPopover();
             },
+
+            //显示关闭遮罩层
+            playPopover(){
+                this.play=!this.play;
+            }
 
         }
     }
@@ -524,5 +553,32 @@
     }
     .comment-divider{
         margin: 16px 0px 16px 0;
+    }
+
+    /*全局遮罩层*/
+    .text {
+        font-size: 14px;
+    }
+    .item {
+        margin-bottom: 18px;
+    }
+    .clearfix:before,
+    .clearfix:after {
+        display: table;
+        content: "";
+    }
+    .clearfix:after {
+        clear: both
+    }
+    .box-card {
+        position:fixed;
+        background: #fff;
+        top: calc(50% - 320px);
+        left: calc(50% - 260px);
+        width: 640px;
+        height: 520px;
+        margin-top:auto;
+        margin-bottom:auto;
+        text-align: left;
     }
 </style>
