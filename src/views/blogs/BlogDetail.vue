@@ -294,15 +294,22 @@
         <el-backtop target=".backTop_wrap"></el-backtop>
 
         <!--查看点赞人-->
-        <div v-if="play" style="width: 100%;height: 100%;z-index: 999;position: fixed;top: 0;left: 0;background:rgba(0,0,0,0.5);">
-            <div style=" ">
+        <div v-if="play" class="box-card-out" @click="playPopover">
+            <div @click.stop="stopPlayPopover">
                 <el-card class="box-card">
                     <div slot="header" class="clearfix">
-                        <span>卡片名称</span>
-                        <el-button style="float: right; padding: 3px 0" type="text" @click="playPopover">收回</el-button>
+                        <span>2人点赞</span>
+                        <el-button style="float: right; padding: 3px 0" type="text" @click.stop="playPopover">收回</el-button>
                     </div>
-                    <div v-for="o in 4" :key="o" class="text item">
-                        {{'列表内容 ' + o }}
+                    <div class="box-card-body">
+                        <div v-for="o in 40" :key="o" class="look-like-text look-like-item">
+                            <!--{{'列表内容 ' + o }}-->
+                            <a><el-avatar :src="avatarUrl" class="avatar"></el-avatar></a>
+                            <el-button type="success" round class="btn-hollow">+ 关注</el-button>
+                            <div class="info">
+                                <p class="title">xiaotian是个混子</p>
+                            </div>
+                        </div>
                     </div>
                 </el-card>
             </div>
@@ -329,7 +336,7 @@
 
                 lookSwitch:true,
 
-                play: true,
+                play: false,
             }
         },
         components: {
@@ -422,6 +429,9 @@
             //显示关闭遮罩层
             playPopover(){
                 this.play=!this.play;
+            },
+            stopPlayPopover(){
+
             }
 
         }
@@ -556,11 +566,40 @@
     }
 
     /*全局遮罩层*/
-    .text {
+    .box-card-out{
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background:rgba(0,0,0,0.5);
+    }
+    .box-card {
+        position:fixed;
+        background: #fff;
+        top: calc(50% - 320px);
+        left: calc(50% - 260px);
+        width: 640px;
+        height: 620px;
+        margin-top:auto;
+        margin-bottom:auto;
+        text-align: left;
+        z-index: 11;
+    }
+    .box-card-body{
+        height: 520px;
+        overflow: scroll;
+    }
+    .look-like-text {
         font-size: 14px;
     }
-    .item {
+    .look-like-item {
         margin-bottom: 18px;
+        display: block;
+        width: 100%;
+        line-height: 50px;
+        border-bottom: 1px solid rgb(249,249,249);
     }
     .clearfix:before,
     .clearfix:after {
@@ -570,15 +609,22 @@
     .clearfix:after {
         clear: both
     }
-    .box-card {
-        position:fixed;
-        background: #fff;
-        top: calc(50% - 320px);
-        left: calc(50% - 260px);
-        width: 640px;
-        height: 520px;
-        margin-top:auto;
-        margin-bottom:auto;
-        text-align: left;
+
+
+    .avatar {
+        float: left;
+        width: 52px;
+        height: 52px;
+        margin-right: 8px;
+    }
+    .info{
+        max-width: 450px;
+    }
+    .btn-hollow{
+        float: right;
+        margin-top: 8px;
+        padding: 8px 0;
+        width: 100px;
+        font-size: 15px;
     }
 </style>
