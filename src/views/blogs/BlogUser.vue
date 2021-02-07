@@ -16,6 +16,7 @@
                                 <BlogUserTop/>
                             </div>
 
+
                             <div style="margin-top: 10px;margin-bottom: 10px;">
                                 <el-tabs v-model="blog_activeName" @tab-click="handleClick">
                                     <el-tab-pane label="文章" name="first">
@@ -24,8 +25,14 @@
                                             <ul class="note-list">
                                                 <li v-for="(item, key) in 2 ">
                                                     <div class="content">
-                                                        <p class="title">Spring Event使用</p>
-                                                        <p class="abstract">SpringEvent 自定义事件链，实用性很强的一种设计，可以利用它来做业务剥离，复杂场景解耦、代码独立等，也是事件驱动模型的核心，并且可以处...</p>
+                                                        <p class="title">
+                                                        <p class="abstract">
+                                                            <router-link
+                                                                    :to="{name:'BlogDetail',params:{blogId:blog.id}}">
+                                                                Spring Event使用
+                                                            </router-link></p>
+                                                        <p>SpringEvent 自定义事件链，实用性很强的一种设计，可以利用它来做业务剥离，复杂场景解耦、代码独立等，也是事件驱动模型的核心，并且可以处...</p>
+
                                                         <div class="meta">
                                                             <span class="jsd-meta"><i class="iconfont icon-chakanguo">dsd</i></span>
                                                             <a><i class="iconfont icon-pinglun"> 0</i></a>

@@ -9,9 +9,9 @@
             <el-row>
                 <el-col :span="14" offset="6">
                     <el-container class="grayTopic">
-                        <el-main style="margin-bottom: 0;">
-                            <BlogBanner/>
-                        </el-main>
+                        <!--<el-main style="margin-bottom: 0;">-->
+                            <!--<BlogBanner/>-->
+                        <!--</el-main>-->
                     </el-container>
                 </el-col>
             </el-row>
@@ -294,18 +294,19 @@
         <el-backtop target=".backTop_wrap"></el-backtop>
 
         <!--查看点赞人-->
+        <transition name="el-zoom-in-center">
         <div v-if="play" class="box-card-out" @click="playPopover">
             <div @click.stop="stopPlayPopover">
                 <el-card class="box-card">
                     <div slot="header" class="clearfix">
-                        <span>2人点赞</span>
+                        <span>4人点赞</span>
                         <el-button style="float: right; padding: 3px 0" type="text" @click.stop="playPopover">收回</el-button>
                     </div>
-                    <div class="box-card-body">
+                    <div class="box-card-body" style="padding: 10px;">
                         <div v-for="o in 40" :key="o" class="look-like-text look-like-item">
                             <!--{{'列表内容 ' + o }}-->
                             <a><el-avatar :src="avatarUrl" class="avatar"></el-avatar></a>
-                            <el-button type="success" round class="btn-hollow">+ 关注</el-button>
+                            <el-button type="danger" plain round class="btn-hollow">+ 关注</el-button>
                             <div class="info">
                                 <p class="title">xiaotian是个混子</p>
                             </div>
@@ -314,6 +315,7 @@
                 </el-card>
             </div>
         </div>
+        </transition>
     </div>
 </template>
 
@@ -590,6 +592,7 @@
     .box-card-body{
         height: 520px;
         overflow: scroll;
+        overflow-x:hidden
     }
     .look-like-text {
         font-size: 14px;
@@ -626,5 +629,6 @@
         padding: 8px 0;
         width: 100px;
         font-size: 15px;
+        box-sizing: border-box;
     }
 </style>

@@ -20,7 +20,7 @@
                     <el-col :span="1"><el-divider direction="vertical"></el-divider></el-col>
                     <el-col :span="4" style="color: rgb(0,126,233);;">
                         <i class="el-icon-orange"></i>&nbsp;
-                        <span>朋友圈</span>
+                        <span>文章池</span>
                     </el-col>
                     <el-col :span="1"><el-divider direction="vertical"></el-divider></el-col>
                     <el-col :span="4" style="color:rgb(0,126,233);;">

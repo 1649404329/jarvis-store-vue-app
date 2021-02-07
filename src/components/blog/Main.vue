@@ -1,6 +1,6 @@
 <template>
     <div>
-        <PanelTitle msg="朋友圈" style="margin-left: -10px;"/>
+        <PanelTitle msg="文章池" style="margin-left: -10px;"/>
 
         <BlogListPage/>
 
