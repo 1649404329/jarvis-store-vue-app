@@ -3,11 +3,18 @@ import Element from 'element-ui'
 import router from '../router'
 import store from '../store'
 
-axios.defaults.baseURL = "http://localhost:9999"
+axios.defaults.baseURL = "http://localhost:9999";//设置路由访问
+
+axios.defaults.timeout=30000;//设置超时时间
 
 //前置拦截
 axios.interceptors.request.use(config => {
-    return config
+    // if(localStorage.getItem("token")){
+        config.headers.token = store.getters.getToken//localStorage.getItem("token");
+        config.headers.userId = store.getters.getUserId;
+        console.log("axios.interceptors.request:"+config);
+    // }
+    return config;
 })
 
 axios.interceptors.response.use(response => {

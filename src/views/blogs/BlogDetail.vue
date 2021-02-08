@@ -9,9 +9,9 @@
             <el-row>
                 <el-col :span="14" offset="6">
                     <el-container class="grayTopic">
-                        <el-main style="margin-bottom: 0;">
-                            <BlogBanner/>
-                        </el-main>
+                        <!--<el-main style="margin-bottom: 0;">-->
+                            <!--<BlogBanner/>-->
+                        <!--</el-main>-->
                     </el-container>
                 </el-col>
             </el-row>
@@ -249,7 +249,7 @@
                 </el-main>
             </el-col>
             <el-col :span="4">
-                <el-main  class="main detail" style="padding: 0px;text-align: center;">
+                <el-main  class="main detail" style="padding: 0px;text-align: center;width: 280px;">
                     <div>
                         <el-row>
                             <el-col :span="24">
@@ -277,11 +277,11 @@
                         </el-row>
                     </div>
                 </el-main>
-                    <div class="main " ref="scrollFixedNav">
-                <el-main>
-                            <BlogRanking/>
+                <div ref="scrollFixedNav" >
+                <el-main  class="main " style="width: 280px;">
+                    <BlogRanking/>
                 </el-main>
-                    </div>
+                </div>
             </el-col>
         </el-row>
 
@@ -290,7 +290,32 @@
         </el-footer>
 
         </el-container>
+
         <el-backtop target=".backTop_wrap"></el-backtop>
+
+        <!--查看点赞人-->
+        <transition name="el-zoom-in-center">
+        <div v-if="play" class="box-card-out" @click="playPopover">
+            <div @click.stop="stopPlayPopover">
+                <el-card class="box-card">
+                    <div slot="header" class="clearfix">
+                        <span>4人点赞</span>
+                        <el-button style="float: right; padding: 3px 0" type="text" @click.stop="playPopover">收回</el-button>
+                    </div>
+                    <div class="box-card-body" style="padding: 10px;">
+                        <div v-for="o in 40" :key="o" class="look-like-text look-like-item">
+                            <!--{{'列表内容 ' + o }}-->
+                            <a><el-avatar :src="avatarUrl" class="avatar"></el-avatar></a>
+                            <el-button type="danger" plain round class="btn-hollow">+ 关注</el-button>
+                            <div class="info">
+                                <p class="title">xiaotian是个混子</p>
+                            </div>
+                        </div>
+                    </div>
+                </el-card>
+            </div>
+        </div>
+        </transition>
     </div>
 </template>
 
@@ -312,6 +337,8 @@
                 avatarUrl: "https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg",
 
                 lookSwitch:true,
+
+                play: false,
             }
         },
         components: {
@@ -378,22 +405,36 @@
                 })
             },
             open() {
-                this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
-                    type: 'warning'
-                }).then(() => {
-                    this.$message({
-                        type: 'success',
-                        message: '删除成功!'
-                    });
-                }).catch(() => {
-                    this.$message({
-                        type: 'info',
-                        message: '已取消删除'
-                    });
-                });
+                // this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                //     confirmButtonText: '确定',
+                //     cancelButtonText: '取消',
+                //     type: 'warning'
+                // }).then(() => {
+                //     this.$message({
+                //         type: 'success',
+                //         message: '删除成功!'
+                //     });
+                // }).catch(() => {
+                //     this.$message({
+                //         type: 'info',
+                //         message: '已取消删除'
+                //     });
+                // });
+
+                // this.$message('<strong>这是 <i>HTML</i> 片段</strong>', 'HTML 片段', {
+                //     dangerouslyUseHTMLString: true
+                // });
+
+                this.playPopover();
             },
+
+            //显示关闭遮罩层
+            playPopover(){
+                this.play=!this.play;
+            },
+            stopPlayPopover(){
+
+            }
 
         }
     }
@@ -524,5 +565,70 @@
     }
     .comment-divider{
         margin: 16px 0px 16px 0;
+    }
+
+    /*全局遮罩层*/
+    .box-card-out{
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background:rgba(0,0,0,0.5);
+    }
+    .box-card {
+        position:fixed;
+        background: #fff;
+        top: calc(50% - 320px);
+        left: calc(50% - 260px);
+        width: 640px;
+        height: 620px;
+        margin-top:auto;
+        margin-bottom:auto;
+        text-align: left;
+        z-index: 11;
+    }
+    .box-card-body{
+        height: 520px;
+        overflow: scroll;
+        overflow-x:hidden
+    }
+    .look-like-text {
+        font-size: 14px;
+    }
+    .look-like-item {
+        margin-bottom: 18px;
+        display: block;
+        width: 100%;
+        line-height: 50px;
+        border-bottom: 1px solid rgb(249,249,249);
+    }
+    .clearfix:before,
+    .clearfix:after {
+        display: table;
+        content: "";
+    }
+    .clearfix:after {
+        clear: both
+    }
+
+
+    .avatar {
+        float: left;
+        width: 52px;
+        height: 52px;
+        margin-right: 8px;
+    }
+    .info{
+        max-width: 450px;
+    }
+    .btn-hollow{
+        float: right;
+        margin-top: 8px;
+        padding: 8px 0;
+        width: 100px;
+        font-size: 15px;
+        box-sizing: border-box;
     }
 </style>
