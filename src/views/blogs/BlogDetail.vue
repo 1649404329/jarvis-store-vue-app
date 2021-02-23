@@ -580,17 +580,17 @@
     .box-card {
         position:fixed;
         background: #fff;
-        top: calc(50% - 320px);
+        top: calc(50% - 250px);
         left: calc(50% - 260px);
         width: 640px;
-        height: 620px;
+        height: 520px;
         margin-top:auto;
         margin-bottom:auto;
         text-align: left;
         z-index: 11;
     }
     .box-card-body{
-        height: 520px;
+        height: 420px;
         overflow: scroll;
         overflow-x:hidden
     }

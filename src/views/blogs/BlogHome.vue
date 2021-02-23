@@ -23,7 +23,12 @@
                 </el-row>
 
                 <el-row>
-                    <el-col :span="10" offset="6">
+                    <el-col :span="3" offset="3">
+                        <el-main>
+                            <BlogBanner2/>
+                        </el-main>
+                    </el-col>
+                    <el-col :span="10" >
                         <el-main>
                             <div class="main">
                                 <Main/>
@@ -85,6 +90,7 @@
     import Aside from '@/components/blog/Aside.vue'
     import Main from '@/components/blog/Main.vue'
     import BlogBanner from '@/components/blog/BlogBanner.vue'
+    import BlogBanner2 from '@/components/blog/BlogBanner2.vue'
     import BlogRanking from '@/components/blog/BlogRanking.vue'
 
     export default {
@@ -109,6 +115,7 @@
             Aside,
             Main,
             BlogBanner,
+            BlogBanner2,
             BlogRanking,
         },
         mounted(){
