@@ -12,25 +12,23 @@
 
 <transition name="animated  el-zoom-in-bottom">
     <div v-show="showTransition" class="transition-box">
-                <el-row>
-                    <el-col :span="14" offset="6">
-                        <el-container class="grayTopic">
-                            <el-main style="margin-bottom: 0;">
-                                <BlogBanner/>
-                            </el-main>
-                        </el-container>
-                    </el-col>
-                </el-row>
+                <!--<el-row>-->
+                    <!--<el-col :span="14" offset="6">-->
+                        <!--<el-container class="grayTopic">-->
+                            <!--<el-main style="margin-bottom: 0;">-->
+                                <!--<BlogBanner/>-->
+                            <!--</el-main>-->
+                        <!--</el-container>-->
+                    <!--</el-col>-->
+                <!--</el-row>-->
 
-                <el-row>
-                    <el-col :span="3" offset="3">
+                <el-row class="grayTopic">
+                    <el-main style="position: fixed;top: 60px;left:12%;padding:0;/*background-color: rgba(240, 242, 245, 1);*/">
+                        <BlogBanner2/>
+                    </el-main>
+                    <el-col :span="10" offset="6">
                         <el-main>
-                            <BlogBanner2/>
-                        </el-main>
-                    </el-col>
-                    <el-col :span="10" >
-                        <el-main>
-                            <div class="main">
+                            <div class="main"  style="height: 2000px">
                                 <Main/>
                             </div>
                         </el-main>
@@ -50,7 +48,6 @@
                                     <span>王淳的猫2</span>
                                     <div class="bottom clearfix">
                                         <time class="time">{{ currentDate }}</time><br>
-                                        <el-button type="" class="button" plain round>+ 关注</el-button>
                                     </div>
                                     <el-col :span="6"><p><b>89</b></p>文章</el-col>
                                     <el-col :span="6"><p><b>46</b></p>评论</el-col>
@@ -60,11 +57,22 @@
                             </el-card>
                         </el-main>
 
-                        <el-main style="width: 280px;">
-                            <div class="main">
+                        <div ref="scrollFixedNav1">
+                        <el-main style="width: 280px;padding: 0">
+                            <div class="main" >
                                 <BlogRanking/>
                             </div>
                         </el-main>
+                        </div>
+
+                        <div ref="scrollFixedNav2">
+                        <el-main style="width: 280px;padding: 0">
+                            <div class="main" >
+                                <HotTopic/>
+                            </div>
+                        </el-main>
+                        </div>
+
                     </el-col>
                 </el-row>
     </div>
@@ -92,6 +100,7 @@
     import BlogBanner from '@/components/blog/BlogBanner.vue'
     import BlogBanner2 from '@/components/blog/BlogBanner2.vue'
     import BlogRanking from '@/components/blog/BlogRanking.vue'
+    import HotTopic from '@/components/blog/HotTopic.vue'
 
     export default {
         name: 'BlogHome',
@@ -117,11 +126,25 @@
             BlogBanner,
             BlogBanner2,
             BlogRanking,
+            HotTopic,
         },
         mounted(){
             this.showTransition=true;
+
+            //绑定页面滚动事件
+            window.addEventListener('scroll',this.scrollHandle);
         },
         methods: {
+            scrollHandle(e){
+                let top = e.srcElement.scrollingElement.scrollTop;    // 获取页面滚动高度
+                if(top>593){
+                    this.$refs.scrollFixedNav1.classList.add('sfixed')
+                    this.$refs.scrollFixedNav2.classList.add('sfixed2')
+                }else{
+                    this.$refs.scrollFixedNav1.classList.remove('sfixed')
+                    this.$refs.scrollFixedNav2.classList.remove('sfixed2')
+                }
+            },
             handleSelect(key, keyPath) {
                 console.log(key, keyPath);
             },
@@ -185,4 +208,14 @@
         transform:translate(-50%,-50%);
     }
 
+    .sfixed{
+        position:fixed;
+        top:300px;
+        z-index:10;
+    }
+    .sfixed2{
+        position:fixed;
+        top:50px;
+        z-index:10;
+    }
 </style>

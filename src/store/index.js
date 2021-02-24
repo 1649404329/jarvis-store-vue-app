@@ -6,7 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     token: 'dsdasd',
-    userId: 10,
+    userId: 102,
     userInfo: JSON.parse(sessionStorage.getItem("userInfo"))
   },
   mutations: {

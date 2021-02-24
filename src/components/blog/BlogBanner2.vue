@@ -1,39 +1,56 @@
 <template>
     <div>
-        <div style="flex-direction: column;font-size: 14px;">
-            <div>
-                <span>首页</span>
-            </div>
-            <div>
-                <span>我的赞</span>
-            </div>
-            <div>
-                <span>我的收藏</span>
-            </div>
-            <el-divider direction="horizontal"></el-divider>
-            <div>
-                <span>我的创作</span>
-            </div>
-            <el-divider direction="horizontal"></el-divider>
-            <div>
-                <span>文章池</span>
-            </div>
-            <el-divider direction="horizontal"></el-divider>
-            <div>
-                <span>好友圈</span>
-            </div>
-            <el-divider direction="horizontal"></el-divider>
-            <div>
-                <span>特别关注</span>
-            </div>
-            <el-divider direction="horizontal"></el-divider>
-        </div>
+        <el-menu
+                default-active="1-1"
+                class="el-menu-vertical-demo"
+                @open="handleOpen"
+                @close="handleClose"
+                style="min-height: 400px;width:auto;height:auto;overflow-x: hidden;text-align: left;">
+            <el-submenu index="1">
+                <template slot="title">
+                    <i class="el-icon-location"></i>
+                    <span>首页</span>
+                </template>
+                <el-menu-item-group>
+                    <template slot="title">分组一</template>
+                    <el-menu-item index="1-1">选项1</el-menu-item>
+                    <el-menu-item index="1-2">选项2</el-menu-item>
+                </el-menu-item-group>
+                <el-menu-item-group title="分组2">
+                    <el-menu-item index="1-3">选项3</el-menu-item>
+                </el-menu-item-group>
+                <el-submenu index="1-4">
+                    <template slot="title">选项4</template>
+                    <el-menu-item index="1-4-1">选项1</el-menu-item>
+                </el-submenu>
+            </el-submenu>
+            <el-menu-item index="2">
+                <i class="el-icon-menu"></i>
+                <span slot="title">我的赞</span>
+            </el-menu-item>
+            <el-menu-item index="3" disabled>
+                <i class="el-icon-document"></i>
+                <span slot="title">我的收藏</span>
+            </el-menu-item>
+            <el-menu-item index="4">
+                <i class="el-icon-setting"></i>
+                <span slot="title">我的创作</span>
+            </el-menu-item>
+            <el-menu-item index="4">
+                <i class="el-icon-setting"></i>
+                <span slot="title">特别关注</span>
+            </el-menu-item>
+            <el-menu-item index="4">
+                <i class="el-icon-setting"></i>
+                <span slot="title">好友圈</span>
+            </el-menu-item>
+        </el-menu>
     </div>
 </template>
 
 <script>
     export default {
-        name: "BlogBanner",
+        name: "BlogBanner2",
         data() {
             return {
                 avatarUrl: "https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg",

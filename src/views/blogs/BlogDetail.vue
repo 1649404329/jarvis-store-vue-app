@@ -278,7 +278,7 @@
                     </div>
                 </el-main>
                 <div ref="scrollFixedNav" >
-                <el-main  class="main " style="width: 280px;">
+                <el-main  class="main " style="width: 280px;padding: 0">
                     <BlogRanking/>
                 </el-main>
                 </div>

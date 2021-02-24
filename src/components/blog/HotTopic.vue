@@ -3,22 +3,19 @@
         <el-row>
             <el-card class="box-card">
                 <div slot="header" class="clearfix">
-                    <span>文章排行榜</span>
+                    <span>热门话题</span>
                     <el-button style="float: right; padding: 3px 0" type="text"><i class="el-icon-refresh"></i> 换一批</el-button>
                 </div>
                 <div :key="blog.id" v-for="blog in blogsOfRecommend">
                     <div class="whiteTopic font-small">
                         <router-link
                             :to="{name:'BlogDetail',params:{blogId:blog.id}}"  target="_blank">
-                        <el-col :span="8">
-                            <el-image
-                                    style="max-width: 120px; height: 60px"
-                                    :src="url"
-                                    :fit="fill"></el-image>
+                        <el-col :span="18" style="display:-webkit-box;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
+                            <span>#{{blog.title}}</span>
+                            <span>#{{blog.userId}}</span>
                         </el-col>
-                        <el-col :span="14"  :offset="2" style="height: 60px;white-space:nowrap;text-overflow: clip;">
-                            <span> {{blog.title}}</span>
-                            <p style=" "> {{blog.userId}} <span style="float: right;"><i  class="el-icon-view"></i> {{blog.viewCount}}</span></p>
+                        <el-col :span="6"  style="height: auto;text-overflow: clip;">
+                            <span style="float: right;"> {{blog.viewCount}}亿</span>
                         </el-col>
                         </router-link>
                     </div>
@@ -30,7 +27,7 @@
 
 <script>
     export default {
-        name: "BlogRanking",
+        name: "HotTopic",
         data() {
             return {
                 url: "https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg",

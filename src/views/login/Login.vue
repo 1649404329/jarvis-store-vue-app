@@ -131,11 +131,13 @@
                         confirmButtonText: '确定',
                         showClose: false,
                         callback: action => {
-                            /*this.$message({
-                                type: 'info',
-                                message: `action: ${action}`
-                            });*/
-                            this.$router.push("/blogs")
+                            const jwt=res.headers['authorization'];
+                            const userInfo=res.data.data;
+
+                            _this.$store.commit('SET_TOKEN',jwt);
+                            _this.$store.commit('SET_USERINFO',userInfo);
+                            console.log(_this.$store.getters.getUser)
+                            _this.$router.push("/blogs")
                         }
                     });
                 })
