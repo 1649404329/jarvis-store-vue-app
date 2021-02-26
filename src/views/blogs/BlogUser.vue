@@ -116,6 +116,8 @@
                 blog: { },
                 ownBlog: true,
 
+                userInfo:{},
+
                 comment_textarea: "",
 
 
@@ -132,6 +134,8 @@
             BlogUserAside,
         },
         created() {
+            const _this = this;
+            //跳转选中
             let params_page = this.$route.params.p;
             if(!this.publicMethod.isEmpty(params_page)){
                 this.blog_activeName = String(params_page);
@@ -139,6 +143,17 @@
                 this.blog_activeName = "first";
             }
             console.info("this.blog_activeName: "+this.blog_activeName);
+
+            //查询用户信息
+            let userId = this.$route.params.userId;
+            if(userId){
+                this.$axios.get('/api-user/user/info?userId=' + userId).then(res => {
+                    const userInfo = res.data.data;
+                    console.log(userInfo);
+                    _this.userInfo=userInfo
+                })
+            }
+
         }
     }
 </script>

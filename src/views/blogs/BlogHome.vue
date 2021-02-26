@@ -23,10 +23,12 @@
                 <!--</el-row>-->
 
                 <el-row class="grayTopic">
-                    <el-main style="position: fixed;top: 60px;left:12%;padding:0;/*background-color: rgba(240, 242, 245, 1);*/">
-                        <BlogBanner2/>
-                    </el-main>
-                    <el-col :span="10" offset="6">
+                    <el-col :span="3" offset="3">
+                        <el-main style="padding:0;/*background-color: rgba(240, 242, 245, 1);*/">
+                            <BlogBanner2/>
+                        </el-main>
+                    </el-col>
+                    <el-col :span="10" offset="0">
                         <el-main>
                             <div class="main"  style="height: 2000px">
                                 <Main/>
