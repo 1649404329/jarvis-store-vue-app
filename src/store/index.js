@@ -5,9 +5,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    //当前登录用户的token
     token: 'dsdasd',
+    //当前登录用户的id
     userId: 102,
-    userInfo: JSON.parse(sessionStorage.getItem("userInfo"))
+    //当前登录用户的详细信息
+    userInfo: JSON.parse(sessionStorage.getItem("userInfo")),
+
+    //当前浏览的其他用户的博客主页的用户id
+    blogUserInfoId: 0,
+
   },
   mutations: {
     //set
@@ -24,6 +31,11 @@ export default new Vuex.Store({
       state.userInfo = {};
       localStorage.setItem("token", "");
       sessionStorage.setItem("userInfo", JSON.stringify(''));
+    },
+
+    set_blogUserInfoId: (state, blogUserInfoId) => {
+      state.blogUserInfoId = blogUserInfoId;
+      localStorage.setItem("blogUserInfoId", blogUserInfoId);
     }
   },
   getters: {
@@ -36,6 +48,9 @@ export default new Vuex.Store({
     },
     getUserId:state => {
       return state.userId;
+    },
+    getBlogUserInfoId:state => {
+      return state.blogUserInfoId;
     }
   },
   actions: {

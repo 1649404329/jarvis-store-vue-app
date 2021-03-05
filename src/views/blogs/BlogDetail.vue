@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div class="wrapper" style="height:100%;overflow: auto;">
+        <el-backtop target=".wrapper" :visibility-height="20" :right="40" :bottom="40"></el-backtop>
         <el-container>
             <el-header>
                     <!--<span>Jarvis store 小店，欢迎光临~</span>-->
@@ -257,7 +258,7 @@
                                     <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
                                          class="image">
                                     <div class="blog-avatar">
-                                        <router-link :to="{name:'BlogUser'}">
+                                        <router-link :to="{name:'BlogUser', params:{userId:blog.userId}}">
                                             <el-avatar :src="avatarUrl" :size="72" style="vertical-align: middle;cursor: pointer;"></el-avatar>
                                         </router-link>
                                     </div>

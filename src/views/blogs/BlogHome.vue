@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="blogHome">
+    <div class="blogHome wrapper" style="height:100%;overflow: auto;">
+        <el-backtop target=".wrapper" :visibility-height="20" :right="40" :bottom="40"></el-backtop>
             <!--<img alt="Vue logo" src="../assets/logo.png">-->
             <!--<HelloWorld msg="Welcome to Your Vue.js App ！ jarvis-store-vue-app！！"/>-->
             <el-container>
@@ -30,7 +30,7 @@
                     </el-col>
                     <el-col :span="10" offset="0">
                         <el-main>
-                            <div class="main"  style="height: 2000px">
+                            <div class="main"  style="height: auto">
                                 <Main/>
                             </div>
                         </el-main>
@@ -85,9 +85,6 @@
                 </el-footer>
 
             </el-container>
-        </div>
-
-        <el-backtop target=".el-header" visibility-height="10"></el-backtop>
     </div>
 
 </template>

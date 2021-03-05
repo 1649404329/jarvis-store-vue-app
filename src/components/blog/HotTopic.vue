@@ -4,7 +4,7 @@
             <el-card class="box-card">
                 <div slot="header" class="clearfix">
                     <span>热门话题</span>
-                    <el-button style="float: right; padding: 3px 0" type="text"><i class="el-icon-refresh"></i> 换一批</el-button>
+                    <el-button @click="getByRecommend" style="float: right; padding: 3px 0" type="text"><i class="el-icon-refresh"></i> 换一批</el-button>
                 </div>
                 <div :key="blog.id" v-for="blog in blogsOfRecommend">
                     <div class="whiteTopic font-small">
@@ -35,10 +35,10 @@
             }
         },
         created() {
-            this.page(1)
+            this.getByRecommend()
         },
         methods: {
-            page(currentPage) {
+            getByRecommend() {
                 const _this = this
                 _this.$axios.get("/api-activity/blog/getByRecommend").then(res => {
                     const response = res.data;

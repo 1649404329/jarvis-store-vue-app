@@ -44,7 +44,7 @@
 
             <el-menu-item index="5" disabled style="float: right;color: rgb(255,78,85)">充值</el-menu-item>
 
-            <el-menu-item index="5" style="float: right;">
+            <el-menu-item index="/test" style="float: right;">
                 <i class="el-icon-message"></i>
             </el-menu-item>
         </el-menu>

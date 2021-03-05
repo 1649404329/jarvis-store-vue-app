@@ -1,6 +1,8 @@
 <template>
-    <div>
-        <el-row>
+    <div id="app" class="wrapper" style="height:500px;overflow: auto;">
+        <el-backtop target=".wrapper" :visibility-height="20" :right="40" :bottom="40"></el-backtop>
+
+        <el-row style="height: 10px;">
             <el-col :span="24">
 
                 <el-menu default-active="0">
@@ -69,8 +71,10 @@
                     </el-submenu>
                 </el-menu>
 
+        <p @click="backtop">回到顶部</p>
             </el-col>
         </el-row>
+
     </div>
 </template>
 
@@ -199,6 +203,9 @@
         created() {
             //this.getMenuList();
         },
+        mounted() {
+            window.addEventListener("scroll",this.showbtn,true);
+        },
         methods: {
             getMenuList() {
                 this.$http.get("menus").then((res) => {
@@ -212,6 +219,24 @@
                     this.menuList = res.data.data;
                 });
             },
+
+            showbtn(){
+                let that = this;
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+                that.scrollTop = scrollTop
+            },
+            backtop(){
+                var timer = setInterval(function(){
+                    let osTop = document.documentElement.scrollTop || document.body.scrollTop;
+                    let ispeed = Math.floor(-osTop / 5);
+                    document.documentElement.scrollTop = document.body.scrollTop = osTop + ispeed;
+                    this.isTop = true;
+                    if(osTop === 0){
+                        clearInterval(timer);
+                    }
+                },30)
+            }
+
         },
 
     };

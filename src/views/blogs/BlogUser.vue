@@ -13,7 +13,7 @@
                             <div class="backTop_wrap"></div>
 
                             <div>
-                                <BlogUserTop/>
+                                <BlogUserTop :deliverParentAge="blogUserInfo" />
                             </div>
 
 
@@ -108,6 +108,7 @@
     import BlogUserTop from '@/components/blog/BlogUserTop.vue'
     import TestComponents from '@/components/blog/TestComponents.vue'
     import BlogUserAside from '@/components/blog/BlogUserAside.vue'
+    import VueEvent from '../../common/VueEvent.js'
 
     export default {
         name: "BlogUser",
@@ -124,6 +125,8 @@
                 lookSwitch:true,
 
                 blog_activeName: 'first',
+
+                blogUserInfo: {}
             }
         },
         components: {
@@ -146,12 +149,21 @@
 
             //查询用户信息
             let userId = this.$route.params.userId;
+            console.log("userId:"+ userId);
+            if(!userId){
+                userId = _this.$store.getters.getBlogUserInfoId
+            }
+            console.log("当前浏览的其他用户的博客主页的用户id: " + userId);
+            _this.$store.commit('SET_TOKEN',userId);
+            console.log("_this.$store.getters.getBlogUserInfoId: " + _this.$store.getters.getBlogUserInfoId);
             if(userId){
                 this.$axios.get('/api-user/user/info?userId=' + userId).then(res => {
                     const userInfo = res.data.data;
-                    console.log(userInfo);
-                    _this.userInfo=userInfo
-                })
+                    console.log("userInfo="+JSON.stringify(userInfo));
+                    _this.blogUserInfo = userInfo;
+                    console.log("userInfo="+JSON.stringify(this.blogUserInfo));
+
+                });
             }
 
         }

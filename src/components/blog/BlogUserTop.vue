@@ -5,7 +5,7 @@
         <el-button type="success" plain  round class="btn-hollow">留言</el-button>
         <div style="margin-left: 8px;padding: 5px 0px 0px 80px;">
             <div style="height: auto;">
-                <span style="font-size: 21px;font-weight: 700;">{{userInfo.userId}}Randolph555</span>
+                <span style="font-size: 21px;font-weight: 700;">{{deliverParentAge.username}} </span>
                 <i class="iconfont  icon-chakanguo"></i>
             </div>
             <div class="top-info">
@@ -36,11 +36,21 @@
         data(){
             return {
                 blog: { },
+                blogUserInfo_username:"默认",
 
                 avatarUrl: "https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg",
 
 
             }
+        },
+        props: {
+            deliverParentAge: Object
+        },
+        created() {
+
+        },
+        mounted() {
+
         },
         methods:{
             hrefToBlogUser(){
