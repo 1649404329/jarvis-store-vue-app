@@ -13,7 +13,7 @@
                             <div class="backTop_wrap"></div>
 
                             <div>
-                                <BlogUserTop/>
+                                <BlogUserTop :deliverBlogUserInfo="blogUserInfo"/>
                             </div>
 
                             <div style="margin-top: 10px;margin-bottom: 10px;">
@@ -107,6 +107,8 @@
 
                 blog_top_activeName: 'first',
                 avatarUrl: "https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg",
+
+                blogUserInfo: {},
             }
         },
         components: {
@@ -133,6 +135,26 @@
                 this.blog_top_activeName = "first";
             }
             console.info("this.blog_top_activeName: "+this.blog_top_activeName);
+
+            //查询正在浏览的博客用户信息
+            let blogUserId = this.$route.params.blogUserId;
+            console.log("blogUserId:"+ blogUserId);
+            if(!blogUserId){
+                blogUserId = this.$store.getters.getBlogUserInfoId;
+                console.log("本页面F5刷新，获取正在浏览用户的缓存数据")
+            }
+            this.$store.commit('set_blogUserInfoId', blogUserId);
+            console.log("当前浏览的其他用户的博客主页的用户id: " + blogUserId);
+            console.log("_this.$store.getters.getBlogUserInfoId: " + this.$store.getters.getBlogUserInfoId);
+            if(blogUserId){
+                this.$axios.get('/api-user/user/info?userId=' + blogUserId).then(res => {
+                    const userInfo = res.data.data;
+                    console.log("userInfo="+JSON.stringify(userInfo));
+                    this.blogUserInfo = userInfo;
+                    console.log("userInfo="+JSON.stringify(this.blogUserInfo));
+                });
+            }
+            //end
         },
         mounted() {
             VueEvent.$on('blog_top_activeName', function (data) {

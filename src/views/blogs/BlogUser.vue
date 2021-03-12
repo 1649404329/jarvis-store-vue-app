@@ -13,7 +13,7 @@
                             <div class="backTop_wrap"></div>
 
                             <div>
-                                <BlogUserTop :deliverParentAge="blogUserInfo" />
+                                <BlogUserTop :deliverBlogUserInfo="blogUserInfo" />
                             </div>
 
 
@@ -147,24 +147,25 @@
             }
             console.info("this.blog_activeName: "+this.blog_activeName);
 
-            //查询用户信息
-            let userId = this.$route.params.userId;
-            console.log("userId:"+ userId);
-            if(!userId){
-                userId = _this.$store.getters.getBlogUserInfoId
+            //查询正在浏览的博客用户信息
+            let blogUserId = this.$route.params.blogUserId;
+            console.log("blogUserId:"+ blogUserId);
+            if(!blogUserId){
+                blogUserId = _this.$store.getters.getBlogUserInfoId;
+                console.log("本页面F5刷新，获取正在浏览用户的缓存数据")
             }
-            console.log("当前浏览的其他用户的博客主页的用户id: " + userId);
-            _this.$store.commit('SET_TOKEN',userId);
+            _this.$store.commit('set_blogUserInfoId', blogUserId);
+            console.log("当前浏览的其他用户的博客主页的用户id: " + blogUserId);
             console.log("_this.$store.getters.getBlogUserInfoId: " + _this.$store.getters.getBlogUserInfoId);
-            if(userId){
-                this.$axios.get('/api-user/user/info?userId=' + userId).then(res => {
+            if(blogUserId){
+                this.$axios.get('/api-user/user/info?userId=' + blogUserId).then(res => {
                     const userInfo = res.data.data;
                     console.log("userInfo="+JSON.stringify(userInfo));
                     _this.blogUserInfo = userInfo;
                     console.log("userInfo="+JSON.stringify(this.blogUserInfo));
-
                 });
             }
+            //end
 
         }
     }
