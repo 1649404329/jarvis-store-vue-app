@@ -1,6 +1,6 @@
 <template>
-    <div class="blogHome wrapper" style="height:100%;overflow: auto;">
-        <el-backtop target=".wrapper" :visibility-height="20" :right="40" :bottom="40"></el-backtop>
+    <div class="blogHome wrapper" style="height:100%;">
+        <el-backtop target=".wrapper" :visibility-height="20" :right="40" :bottom="40">UP</el-backtop>
             <!--<img alt="Vue logo" src="../assets/logo.png">-->
             <!--<HelloWorld msg="Welcome to Your Vue.js App ！ jarvis-store-vue-app！！"/>-->
             <el-container>
@@ -11,7 +11,7 @@
                 </el-header>
 
 <transition name="animated  el-zoom-in-bottom">
-    <div v-show="showTransition" class="transition-box">
+    <div v-show="showTransition" class="transition-box" >
                 <!--<el-row>-->
                     <!--<el-col :span="14" offset="6">-->
                         <!--<el-container class="grayTopic">-->
@@ -22,61 +22,148 @@
                     <!--</el-col>-->
                 <!--</el-row>-->
 
-                <el-row class="grayTopic">
-                    <el-col :span="3" offset="3">
-                        <el-main style="padding:0;/*background-color: rgba(240, 242, 245, 1);*/">
-                            <BlogBanner2/>
-                        </el-main>
-                    </el-col>
-                    <el-col :span="10" offset="0">
-                        <el-main>
-                            <div class="main"  style="height: auto">
-                                <Main/>
+        <!--todo start-->
+        <el-row class="grayTopic" style="margin: 0 auto;" >
+            <!--<div>-->
+            <!--<el-main style="padding:0;-->
+            <!--position: fixed;-->
+            <!--left: 20%;-->
+            <!--/*background-color: rgba(240, 242, 245, 1);*/">-->
+            <!--<BlogBanner2/>-->
+            <!--</el-main>-->
+            <!--</div>-->
+            <div style="position: fixed;
+            left: calc((100vw - 1000px)/2 - 78px);
+            width: 200px;
+            top:70px;">
+                <el-main style="padding:0;/*background-color: rgba(240, 242, 245, 1);*/">
+                    <BlogBanner2/>
+                </el-main>
+            </div>
+
+            <div style="position: relative;
+            left: calc((100vw - 1000px)/2 + 120px);
+            width: 1000px;
+            height: 1000px;
+            top: 10px;" >
+
+                <el-col :span="16">
+                    <el-main>
+                        <div class="main"  style="height: 2000px;overflow: hidden;">
+                            <Main/>
+                        </div>
+                    </el-main>
+                </el-col>
+
+                <el-col :span="8">
+                    <el-main  class="main" style="padding: 0px;text-align: center;width: 280px;">
+                        <el-card shadow="hover" :body-style="{ padding: '0px',marginBottom: '80px' }">
+                            <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+                                 class="image">
+                            <div class="blog-avatar">
+                                <router-link :to="{name:'BlogUser'}">
+                                    <el-avatar :src="avatarUrl" :size="72" style="vertical-align: middle;cursor: pointer;"></el-avatar>
+                                </router-link>
                             </div>
-                        </el-main>
-                    </el-col>
-                    <el-col :span="4">
-
-                        <el-main  class="main" style="padding: 0px;text-align: center;width: 280px;">
-                            <el-card shadow="hover" :body-style="{ padding: '0px',marginBottom: '80px' }">
-                                <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-                                     class="image">
-                                <div class="blog-avatar">
-                                    <router-link :to="{name:'BlogUser'}">
-                                        <el-avatar :src="avatarUrl" :size="72" style="vertical-align: middle;cursor: pointer;"></el-avatar>
-                                    </router-link>
+                            <div style="padding: 14px;font-size: 14px;">
+                                <span>王淳的猫2</span>
+                                <div class="bottom clearfix">
+                                    <time class="time">{{ currentDate }}</time><br>
                                 </div>
-                                <div style="padding: 14px;font-size: 14px;">
-                                    <span>王淳的猫2</span>
-                                    <div class="bottom clearfix">
-                                        <time class="time">{{ currentDate }}</time><br>
-                                    </div>
-                                    <el-col :span="6"><p><b>89</b></p>文章</el-col>
-                                    <el-col :span="6"><p><b>46</b></p>评论</el-col>
-                                    <el-col :span="6"><p><b>4324</b></p>浏览</el-col>
-                                    <el-col :span="6"><p><b>786</b></p>获赞</el-col>
-                                </div>
-                            </el-card>
-                        </el-main>
+                                <el-col :span="6"><p><b>89</b></p>文章</el-col>
+                                <el-col :span="6"><p><b>46</b></p>评论</el-col>
+                                <el-col :span="6"><p><b>4324</b></p>浏览</el-col>
+                                <el-col :span="6"><p><b>786</b></p>获赞</el-col>
+                            </div>
+                        </el-card>
+                    </el-main>
 
-                        <div ref="scrollFixedNav1">
+                    <div ref="scrollFixedNav1">
                         <el-main style="width: 280px;padding: 0">
                             <div class="main" >
                                 <BlogRanking/>
                             </div>
                         </el-main>
-                        </div>
+                    </div>
 
-                        <div ref="scrollFixedNav2">
+                    <div ref="scrollFixedNav2">
                         <el-main style="width: 280px;padding: 0">
                             <div class="main" >
                                 <HotTopic/>
                             </div>
                         </el-main>
-                        </div>
+                    </div>
+                </el-col>
+            </div>
 
-                    </el-col>
-                </el-row>
+
+        </el-row>
+        <!--todo end-->
+
+
+                <!--<el-row class="grayTopic">-->
+                    <!--&lt;!&ndash;<div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<el-main style="padding:0;&ndash;&gt;-->
+                        <!--&lt;!&ndash;position: fixed;&ndash;&gt;-->
+                       <!--&lt;!&ndash;left: 20%;&ndash;&gt;-->
+                        <!--&lt;!&ndash;/*background-color: rgba(240, 242, 245, 1);*/">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<BlogBanner2/>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</el-main>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                    <!--<el-col :span="3" offset="3">-->
+                        <!--<el-main style="padding:0;/*background-color: rgba(240, 242, 245, 1);*/">-->
+                        <!--<BlogBanner2/>-->
+                        <!--</el-main>-->
+                    <!--</el-col>-->
+                    <!--<el-col :span="10" offset="0">-->
+                        <!--<el-main>-->
+                            <!--<div class="main"  style="height: auto">-->
+                                <!--<Main/>-->
+                            <!--</div>-->
+                        <!--</el-main>-->
+                    <!--</el-col>-->
+                    <!--<el-col :span="4">-->
+
+                        <!--<el-main  class="main" style="padding: 0px;text-align: center;width: 280px;">-->
+                            <!--<el-card shadow="hover" :body-style="{ padding: '0px',marginBottom: '80px' }">-->
+                                <!--<img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"-->
+                                     <!--class="image">-->
+                                <!--<div class="blog-avatar">-->
+                                    <!--<router-link :to="{name:'BlogUser'}">-->
+                                        <!--<el-avatar :src="avatarUrl" :size="72" style="vertical-align: middle;cursor: pointer;"></el-avatar>-->
+                                    <!--</router-link>-->
+                                <!--</div>-->
+                                <!--<div style="padding: 14px;font-size: 14px;">-->
+                                    <!--<span>王淳的猫2</span>-->
+                                    <!--<div class="bottom clearfix">-->
+                                        <!--<time class="time">{{ currentDate }}</time><br>-->
+                                    <!--</div>-->
+                                    <!--<el-col :span="6"><p><b>89</b></p>文章</el-col>-->
+                                    <!--<el-col :span="6"><p><b>46</b></p>评论</el-col>-->
+                                    <!--<el-col :span="6"><p><b>4324</b></p>浏览</el-col>-->
+                                    <!--<el-col :span="6"><p><b>786</b></p>获赞</el-col>-->
+                                <!--</div>-->
+                            <!--</el-card>-->
+                        <!--</el-main>-->
+
+                        <!--<div ref="scrollFixedNav1">-->
+                        <!--<el-main style="width: 280px;padding: 0">-->
+                            <!--<div class="main" >-->
+                                <!--<BlogRanking/>-->
+                            <!--</div>-->
+                        <!--</el-main>-->
+                        <!--</div>-->
+
+                        <!--<div ref="scrollFixedNav2">-->
+                        <!--<el-main style="width: 280px;padding: 0">-->
+                            <!--<div class="main" >-->
+                                <!--<HotTopic/>-->
+                            <!--</div>-->
+                        <!--</el-main>-->
+                        <!--</div>-->
+
+                    <!--</el-col>-->
+                <!--</el-row>-->
     </div>
      </transition>
 
@@ -113,7 +200,7 @@
                 pageSize: 5,
                 avatarUrl: "https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg",
 
-                showTransition:false
+                showTransition:false,
             }
         },
         components: {
@@ -131,12 +218,13 @@
             this.showTransition=true;
 
             //绑定页面滚动事件
-            window.addEventListener('scroll',this.scrollHandle);
+            window.addEventListener('scroll',this.scrollHandle, true);
         },
         methods: {
-            scrollHandle(e){
-                let top = e.srcElement.scrollingElement.scrollTop;    // 获取页面滚动高度
-                if(top>593){
+            scrollHandle(){
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;    // 获取页面滚动高度
+                console.log("scrollHandle：" + scrollTop);
+                if(scrollTop>593){
                     this.$refs.scrollFixedNav1.classList.add('sfixed')
                     this.$refs.scrollFixedNav2.classList.add('sfixed2')
                 }else{
@@ -175,7 +263,7 @@
         overflow: hidden;
         margin: 0;
         padding-top: 60px;
-        overflow-y: auto;
+        /*overflow-y: auto;*/
         box-sizing: border-box;
     }
 

@@ -6,91 +6,93 @@
             </el-header>
 
             <el-container style="background: #fff;width: 100%;height: 100%;padding-top: 40px;">
-                <el-col :span="9" offset="6">
+                <el-row style="margin: 0 auto;">
+                    <div style="width: 800px;float: left;">
 
-                    <el-main  class="main detail">
-                        <div>
-                            <div class="backTop_wrap"></div>
-
+                        <el-main  class="main detail">
                             <div>
-                                <BlogUserTop :deliverBlogUserInfo="blogUserInfo" />
-                            </div>
+                                <div class="backTop_wrap"></div>
+
+                                <div>
+                                    <BlogUserTop :deliverBlogUserInfo="blogUserInfo" />
+                                </div>
 
 
-                            <div style="margin-top: 10px;margin-bottom: 10px;">
-                                <el-tabs v-model="blog_activeName" @tab-click="handleClick">
-                                    <el-tab-pane label="文章" name="first">
-                                        <span slot="label"><i class="iconfont icon-top-wenzhang"></i> 文章</span>
-                                        <div style="padding-bottom: 30px;">
-                                            <ul class="note-list">
-                                                <li v-for="(item, key) in 2 ">
-                                                    <div class="content">
-                                                            <router-link class="title"
-                                                                    :to="{name:'BlogDetail',params:{blogId:blog.id}}">
-                                                                Spring Event使用
-                                                            </router-link>
-                                                        <p class="abstract">
-                                                        SpringEvent 自定义事件链，实用性很强的一种设计，可以利用它来做业务剥离，复杂场景解耦、代码独立等，也是事件驱动模型的核心，并且可以处...
-                                                        </p>
+                                <div style="margin-top: 10px;margin-bottom: 10px;">
+                                    <el-tabs v-model="blog_activeName" @tab-click="handleClick">
+                                        <el-tab-pane label="文章" name="first">
+                                            <span slot="label"><i class="iconfont icon-top-wenzhang"></i> 文章</span>
+                                            <div style="padding-bottom: 30px;">
+                                                <ul class="note-list">
+                                                    <li v-for="blog in pageBlog_blogList ">
+                                                        <div class="content">
+                                                                <router-link class="title"
+                                                                        :to="{name:'BlogDetail',params:{blogId:blog.id}}">
+                                                                    {{blog.title}}
+                                                                </router-link>
+                                                            <p class="abstract">
+                                                            {{blog.content}}
+                                                            </p>
 
-                                                        <div class="meta">
-                                                            <span class="jsd-meta"><i class="iconfont icon-chakanguo">dsd</i></span>
-                                                            <a><i class="iconfont icon-pinglun"> 0</i></a>
-                                                            <a><i class="iconfont icon-pinglun"> 0</i></a>
-                                                            <a><i class="iconfont icon-pinglun"> 0</i></a>
-                                                            <span style="margin-right: 10px;color: #b4b4b4;">2019.03.12 16:07</span>
+                                                            <div class="meta">
+                                                                <span class="jsd-meta"><i class="iconfont icon-chakanguo">dsd</i></span>
+                                                                <a><i class="iconfont icon-pinglun">{{blog.viewCount}}</i></a>
+                                                                <a><i class="iconfont icon-pinglun">{{blog.viewCount}}</i></a>
+                                                                <a><i class="iconfont icon-pinglun">{{blog.viewCount}}</i></a>
+                                                                <span style="margin-right: 10px;color: #b4b4b4;">{{dateFormat(blog.createTime)}}</span>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <el-divider></el-divider>
-                                        <div style="display:flex;flex-direction: column;align-items: center;">
-                                            <p>扫码联系作者</p>
-                                            <img style="width: 100px; height: 100px" src="../../assets/images/weixin.png"><br>
-                                            <p style="font-size: 16px;">"小礼物走一走，来小店关注我"</p>
-                                            <el-button type="danger" size="mini" class="_2Bo4Th"  round>赞赏支持</el-button>
-                                            <p style="font-size: 14px;color: rgb(150,150,150)">还没有人赞赏，支持一下</p>
-                                        </div>
-                                    </el-tab-pane>
-                                    <el-tab-pane label="动态" name="second">
-                                        <span slot="label"><i class="iconfont icon-top-clock"></i> 动态</span>
-                                        <div style="padding-bottom: 30px;">
-                                            <ul class="note-list">
-                                                <li v-for="(item, key) in 2 ">
-                                                    <div class="content">
-                                                        <p class="title">Spring Event使用2</p>
-                                                        <p class="abstract">SpringEvent 自定义事件链，实用性很强的一种设计，可以利用它来做业务剥离，复杂场景解耦、代码独立等，也是事件驱动模型的核心，并且可以处...</p>
-                                                        <div class="meta">
-                                                            <span class="jsd-meta"><i class="iconfont icon-chakanguo">dsd</i></span>
-                                                            <a><i class="iconfont icon-pinglun"> 0</i></a>
-                                                            <a><i class="iconfont icon-pinglun"> 0</i></a>
-                                                            <a><i class="iconfont icon-pinglun"> 0</i></a>
-                                                            <span style="margin-right: 10px;color: #b4b4b4;">2019.03.12 16:07</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <el-divider></el-divider>
+                                            <div style="display:flex;flex-direction: column;align-items: center;">
+                                                <p>扫码联系作者</p>
+                                                <img style="width: 100px; height: 100px" src="../../assets/images/weixin.png"><br>
+                                                <p style="font-size: 16px;">"小礼物走一走，来小店关注我"</p>
+                                                <el-button type="danger" size="mini" class="_2Bo4Th"  round>赞赏支持</el-button>
+                                                <p style="font-size: 14px;color: rgb(150,150,150)">还没有人赞赏，支持一下</p>
+                                            </div>
+                                        </el-tab-pane>
+                                        <el-tab-pane label="动态" name="second">
+                                            <span slot="label"><i class="iconfont icon-top-clock"></i> 动态</span>
+                                            <div style="padding-bottom: 30px;">
+                                                <ul class="note-list">
+                                                    <li v-for="(item, key) in 2 ">
+                                                        <div class="content">
+                                                            <p class="title">Spring Event使用2</p>
+                                                            <p class="abstract">SpringEvent 自定义事件链，实用性很强的一种设计，可以利用它来做业务剥离，复杂场景解耦、代码独立等，也是事件驱动模型的核心，并且可以处...</p>
+                                                            <div class="meta">
+                                                                <span class="jsd-meta"><i class="iconfont icon-chakanguo">dsd</i></span>
+                                                                <a><i class="iconfont icon-pinglun"> 0</i></a>
+                                                                <a><i class="iconfont icon-pinglun"> 0</i></a>
+                                                                <a><i class="iconfont icon-pinglun"> 0</i></a>
+                                                                <span style="margin-right: 10px;color: #b4b4b4;">2019.03.12 16:07</span>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <el-divider></el-divider>
-                                    </el-tab-pane>
-                                    <el-tab-pane label="动态" name="second">
-                                        <span slot="label"><i class="iconfont icon-top-remenx"></i> 动态</span>
-                                    </el-tab-pane>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <el-divider></el-divider>
+                                        </el-tab-pane>
+                                        <el-tab-pane label="动态" name="second">
+                                            <span slot="label"><i class="iconfont icon-top-remenx"></i> 动态</span>
+                                        </el-tab-pane>
 
-                                </el-tabs>
+                                    </el-tabs>
+                                </div>
+
+
                             </div>
+                        </el-main>
+                    </div>
 
-
-                        </div>
-                    </el-main>
-                </el-col>
-
-                <el-col :span="3">
-                    <el-main  class="main detail">
-                        <BlogUserAside/>
-                    </el-main>
-                </el-col>
+                    <div style="width: 200px;float: left;">
+                        <el-main  class="main detail">
+                            <BlogUserAside/>
+                        </el-main>
+                    </div>
+                </el-row>
             </el-container>
 
             <el-footer>
@@ -126,7 +128,12 @@
 
                 blog_activeName: 'first',
 
-                blogUserInfo: {}
+                blogUserInfo: {},
+                blogUserId: 0,
+                pageBlog_currentPage: 0,
+                pageBlog_pageSize: 20,
+                pageBlog_total: 0,
+                pageBlog_blogList: [],
             }
         },
         components: {
@@ -137,6 +144,7 @@
             BlogUserAside,
         },
         created() {
+
             const _this = this;
             //跳转选中
             let params_page = this.$route.params.p;
@@ -154,19 +162,50 @@
                 blogUserId = _this.$store.getters.getBlogUserInfoId;
                 console.log("本页面F5刷新，获取正在浏览用户的缓存数据")
             }
+            this.blogUserId = blogUserId;
             _this.$store.commit('set_blogUserInfoId', blogUserId);
             console.log("当前浏览的其他用户的博客主页的用户id: " + blogUserId);
             console.log("_this.$store.getters.getBlogUserInfoId: " + _this.$store.getters.getBlogUserInfoId);
             if(blogUserId){
+                //1 查询博主信息
                 this.$axios.get('/api-user/user/info?userId=' + blogUserId).then(res => {
                     const userInfo = res.data.data;
                     console.log("userInfo="+JSON.stringify(userInfo));
                     _this.blogUserInfo = userInfo;
                     console.log("userInfo="+JSON.stringify(this.blogUserInfo));
                 });
+
+                //2 查询博主的文章
+                this.$axios.get("/api-activity/blog/pageBlog?currentPage=" + this.pageBlog_currentPage
+                    + "&pageSize=" + this.pageBlog_pageSize
+                    + "&userId=" + blogUserId
+                ).then(res => {
+                    const response = res.data;
+                    this.pageBlog_blogList = response.data.records;
+                    this.pageBlog_currentPage = response.data.current;
+                    this.pageBlog_total = response.data.total;
+                    this.pageBlog_pageSize = response.data.size;
+                })
+
             }
             //end
 
+        },
+        methods:{
+            dateFormat(time){
+                let date = new Date(time);
+                let year = date.getFullYear();
+                /* 在日期格式中，月份是从0开始的，因此要加0
+                 * 使用三元表达式在小于10的前面加0，以达到格式统一  如 09:11:05
+                 * */
+                let month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+                let day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+                let hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+                let minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+                let seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+                // 拼接
+                return year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
+            }
         }
     }
 </script>

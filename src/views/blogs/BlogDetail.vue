@@ -17,7 +17,7 @@
                 </el-col>
             </el-row>
 
-        <el-row>
+        <el-row style="margin: 0 auto;">
             <div class="left-fixed">
                 <div class="left-fixed-btn">
                 <el-button circle icon="iconfont icon-dianzan"></el-button><br>点赞</div>
@@ -30,260 +30,265 @@
 
             </div>
 
-            <el-col :span="10" offset="6">
-                <el-main  class="main detail">
-                    <div>
+            <div>
+                <div style="width: 800px;float: left;">
+                    <el-main  class="main detail">
                         <div>
-                            <div class="backTop_wrap"></div>
                             <div>
-                                <el-page-header @back="goBack" content="详情页面">
-                                </el-page-header>
-                            </div>
-
-                            <h2>{{blog.title}}</h2>
-                            <el-row>
-                                <el-col :span="18" style="color:rgb(150,150,150);font-size:12px;">
-                                    <div class="rEsl9f">
-                                        <el-avatar :src="avatarUrl" :size="32" style="vertical-align: middle;"></el-avatar>
-                                        <div style="display: block;margin-left: 8px;">
-                                            <div>
-                                                <span>{{blog.userId}}作者 </span>
-                                                <!--<el-button round style="font-size:12px">圆角按钮</el-button>-->
-
-                                                <el-link icon="el-icon-edit" v-if="ownBlog">
-                                                    <router-link :to="{name:'BlogEdit',params:{blogId:blog.id}}">
-                                                        编辑
-                                                    </router-link>
-                                                </el-link>
-                                            </div>
-                                            <div>
-                                                <span><i class="el-icon-s-flag"></i>{{this.publicMethod.dateFormat(blog.createTime)}} </span>
-                                                <span><i class="el-icon-user-solid"></i>{{blog.userId}} </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </el-col>
-                                <el-col :span="6">
-                                    <el-col :span="8">
-                                        <span class="iconfont  icon-chakanguo">{{blog.userId}}</span>
-                                    </el-col>
-                                    <el-col :span="8">
-                                    <span class="iconfont  icon-pinglun">{{blog.userId}}</span>
-                                    </el-col>
-                                    <el-col :span="8">
-                                    <span class="iconfont  icon-dianzan">{{blog.userId}}</span>
-                                    </el-col>
-                                </el-col>
-
-                            </el-row>
-                            <el-divider></el-divider>
-                            <!-- <div class="markdown-body" v-html="blog.content"></div> -->
-                            <div style="padding-bottom: 20px;"><span v-html="blog.content"></span></div>
-
-                            <div>
-                                <el-button class="_2Bo4Th" circle icon="iconfont icon-dianzan"></el-button>
-                                <el-button type="text" style="color: rgb(150,150,150);" @click="open"><span class="gt">38人点赞</span></el-button>
-                                <el-button type="info" class="_2Bo4Th" circle icon="iconfont icon-dianzan"></el-button>
-                            </div>
-                            <el-divider></el-divider>
-                            <div style="display:flex;flex-direction: column;align-items: center;">
-                                <p>扫码联系作者</p>
-                                <img style="width: 100px; height: 100px" src="../../assets/images/weixin.png"><br>
-                                <p style="font-size: 16px;">"小礼物走一走，来小店关注我"</p>
-                                <el-button type="danger" size="mini" class="_2Bo4Th"  round>赞赏支持</el-button>
-                                <p style="font-size: 14px;color: rgb(150,150,150)">还没有人赞赏，支持一下</p>
-                            </div>
-
-                            <el-row class="d0hShY">
-
-                                <el-avatar :src="avatarUrl" :size="38" style="vertical-align: middle;"></el-avatar>
-                                <div style="display: block;margin-left: 8px;width:90%;">
-                                    <div>
-                                        <span>{{blog.userId}}作者 </span>
-                                    </div>
-                                    <div style="font-size: 14px;color: #969696;">
-                                        <span><i class="el-icon-s-flag"></i>{{this.publicMethod.dateFormat(blog.createTime)}} </span>
-                                        <span><i class="el-icon-user-solid"></i>{{blog.userId}} </span>
-                                        <span>总资产6 (约0.28元)</span>
-                                        <span>共写了3581字</span>
-                                        <span>获得52个赞共13个粉丝</span>
-                                    </div>
-                                </div>
-                                <el-button type="danger" size="mini" class="_2Bo4Th" round style="margin-right: 0px;">关注</el-button>
-                            </el-row>
-
-                        </div>
-
-                    </div>
-                </el-main>
-
-                <el-main>
-                    <div>
-                        <div>
-                            <el-badge :value="12" class="item">
-                                <el-button size="small">评论</el-button>
-                            </el-badge>
-                            <el-badge :value="3" class="item">
-                                <el-button size="small">回复</el-button>
-                            </el-badge>
-                            <el-badge :value="1" class="item" type="primary">
-                                <el-button size="small">评论</el-button>
-                            </el-badge>
-                            <el-badge :value="2" class="item" type="warning">
-                                <el-button size="small">回复</el-button>
-                            </el-badge>
-
-                            <el-dropdown trigger="click">
-                                  <span class="el-dropdown-link">
-                                    点我查看<i class="el-icon-caret-bottom el-icon--right"></i>
-                                  </span>
-                                <el-dropdown-menu slot="dropdown">
-                                    <el-dropdown-item class="clearfix">
-                                        评论
-                                        <el-badge class="mark" :value="12" />
-                                    </el-dropdown-item>
-                                    <el-dropdown-item class="clearfix">
-                                        回复
-                                        <el-badge class="mark" :value="3" />
-                                    </el-dropdown-item>
-                                </el-dropdown-menu>
-                            </el-dropdown>
-                        </div>
-                    </div>
-                </el-main>
-
-                <el-main>
-                    <div style="font-size: 14px;text-align: left;">
-                    <p><b>版权声明：</b>大鹏 发表于 2020-06-30 12:58:57。</p>
-                    <p><b>转载请注明：</b>无损音乐与高清MV资源索引 | 爱达杂货铺</p>
-                    </div>
-                </el-main>
-
-                <el-main>
-                    <div style="font-size: 14px;text-align: left;">
-                        <el-row>
-                            <el-col :span="6"><b > 上一篇 </b><br>免费音乐下载软件合集</el-col>
-                            <el-col :span="6" :offset="12"><b > 下一篇 </b><br>免费音乐下载软件合集</el-col>
-                        </el-row>
-                    </div>
-                </el-main>
-
-                <h4 style="text-align: left;"><b>评论区</b></h4>
-                <el-main>
-                    <div style="font-size: 14px;text-align: left;margin-bottom: 20px;">
-                        <el-row>
-                            <el-col :span="24" style="margin-bottom: 10px;">
-                                <el-input
-                                        type="textarea"
-                                        style=""
-                                        :autosize="{ minRows: 2, maxRows: 4}"
-                                        placeholder="请输入内容"
-                                        v-model="comment_textarea">
-                                </el-input>
-                            </el-col>
-                            <el-col :span="4" :offset="20">
+                                <div class="backTop_wrap"></div>
                                 <div>
-                                    <el-col :span="12"><el-button type="danger" size="mini" round>发布</el-button></el-col>
-                                    <el-col :span="12"><el-button type="info" size="mini" round plain>取消</el-button></el-col>
+                                    <el-page-header @back="goBack" content="详情页面">
+                                    </el-page-header>
                                 </div>
-                            </el-col>
-                        </el-row>
-                    </div>
 
-                    <div class="comment-list">
-                        <h3 style="border-left: 4px solid #ec7259;font-weight: 500;height: 20px;line-height: 20px;font-size: 18px;display: flex;">
-                            <div style=" padding-left: 12px;width: 75%;">
-                                <span>全部评论</span>
-                                <span style="margin-left: 6px;font-size: 14px;font-weight: normal;">15</span>
-                                <span style="font-size: 12px; font-weight: normal; color: #969696; margin-left: 12px;"></span>
-                                <el-tooltip :content="'随心所欲'" placement="top">
-                                    <el-switch
-                                            v-model="lookSwitch"
-                                            active-color="#409EFF"
-                                            inactive-color="#ff4949"
-                                            active-text="全都要"
-                                            inactive-text="只看作者">
-                                    </el-switch>
-                                </el-tooltip>
-                            </div>
-                            <div style="display: flex;font-size: 14px;margin-right: 0px;">
-                                <span style="margin-left: 12px;">按时间倒序</span>
-                                <span style="margin-left: 12px;">按时间正序</span>
-                            </div>
-                        </h3>
-                        <div v-for="(item, key) in 2 ">
-                            <el-row>
-                                <el-col :span="24" style="display: flex;">
-                                    <el-avatar :src="avatarUrl" :size="42" ></el-avatar>
-                                    <div style="margin-left: 10px;width: 100%;">
-                                        <div><span style="line-height: 22px">uuIOO</span></div>
-                                        <div><span class="datePublished">8楼 </span><span class="datePublished">10个月前</span></div>
-                                        <p style="font-size: 16px;margin: 8px 0 8px 0;">隔离手段只要能满足你们业务场景那种都可以，只是如果所有微服务要公用一套common配置文件的时候，有解决方案吗</p>
-                                        <div>
-                                            <span class="comment-reply-button"><i class="iconfont icon-dianzan"></i> 赞</span>
-                                            <span class="comment-reply-button"><i class="iconfont icon-pinglun"></i> 回复</span></div>
-                                        <el-divider class="comment-divider"></el-divider>
-                                        <div style="margin-bottom: 20px;">
-                                            <el-row>
-                                                <el-col :span="24" style="display: flex;">
-                                                    <el-avatar :src="avatarUrl" :size="38"></el-avatar>
-                                                    <div style="margin-left: 10px;width: 100%;">
-                                                        <div><span style="line-height: 22px">村上花开</span></div>
-                                                        <div><span class="datePublished">10个月前</span></div>
-                                                    </div>
-                                                </el-col>
-                                                <el-col :span="24" >
-                                                    <p>百度网盘很多链接失效了，可以更新下链接吗 dataid 的约定规则</p>
-                                                    <div> <span type="text" class="comment-reply-button"><i class="iconfont icon-pinglun"></i> 回复</span></div>
-                                                    <el-divider class="comment-divider"></el-divider>
-                                                    <div>
-                                                        <span class="comment-reply-button"><i class="el-icon-edit"></i>添加新评论</span>
-                                                    </div>
-                                                </el-col>
-                                            </el-row>
+                                <h2>{{blog.title}}</h2>
+                                <el-row>
+                                    <el-col :span="18" style="color:rgb(150,150,150);font-size:12px;">
+                                        <div class="rEsl9f">
+                                            <el-avatar :src="avatarUrl" :size="32" style="vertical-align: middle;"></el-avatar>
+                                            <div style="display: block;margin-left: 8px;">
+                                                <div>
+                                                    <span>{{blog.userId}}作者 </span>
+                                                    <!--<el-button round style="font-size:12px">圆角按钮</el-button>-->
+
+                                                    <el-link icon="el-icon-edit" v-if="ownBlog">
+                                                        <router-link :to="{name:'BlogEdit',params:{blogId:blog.id}}">
+                                                            编辑
+                                                        </router-link>
+                                                    </el-link>
+                                                </div>
+                                                <div>
+                                                    <span><i class="el-icon-s-flag"></i>{{this.publicMethod.dateFormat(blog.createTime)}} </span>
+                                                    <span><i class="el-icon-user-solid"></i>{{blog.userId}} </span>
+                                                </div>
+                                            </div>
                                         </div>
+                                    </el-col>
+                                    <el-col :span="6">
+                                        <el-col :span="8">
+                                            <span class="iconfont  icon-chakanguo">{{blog.userId}}</span>
+                                        </el-col>
+                                        <el-col :span="8">
+                                        <span class="iconfont  icon-pinglun">{{blog.userId}}</span>
+                                        </el-col>
+                                        <el-col :span="8">
+                                        <span class="iconfont  icon-dianzan">{{blog.userId}}</span>
+                                        </el-col>
+                                    </el-col>
+
+                                </el-row>
+                                <el-divider></el-divider>
+                                <!-- <div class="markdown-body" v-html="blog.content"></div> -->
+                                <div style="padding-bottom: 20px;"><span v-html="blog.content"></span></div>
+
+                                <div>
+                                    <el-button class="_2Bo4Th" circle icon="iconfont icon-dianzan"></el-button>
+                                    <el-button type="text" style="color: rgb(150,150,150);" @click="open"><span class="gt">38人点赞</span></el-button>
+                                    <el-button type="info" class="_2Bo4Th" circle icon="iconfont icon-dianzan"></el-button>
+                                </div>
+                                <el-divider></el-divider>
+                                <div style="display:flex;flex-direction: column;align-items: center;">
+                                    <p>扫码联系作者</p>
+                                    <img style="width: 100px; height: 100px" src="../../assets/images/weixin.png"><br>
+                                    <p style="font-size: 16px;">"小礼物走一走，来小店关注我"</p>
+                                    <el-button type="danger" size="mini" class="_2Bo4Th"  round>赞赏支持</el-button>
+                                    <p style="font-size: 14px;color: rgb(150,150,150)">还没有人赞赏，支持一下</p>
+                                </div>
+
+                                <el-row class="d0hShY">
+
+                                    <el-avatar :src="avatarUrl" :size="38" style="vertical-align: middle;"></el-avatar>
+                                    <div style="display: block;margin-left: 8px;width:90%;">
+                                        <div>
+                                            <span>{{blog.userId}}作者 </span>
+                                        </div>
+                                        <div style="font-size: 14px;color: #969696;">
+                                            <span><i class="el-icon-s-flag"></i>{{this.publicMethod.dateFormat(blog.createTime)}} </span>
+                                            <span><i class="el-icon-user-solid"></i>{{blog.userId}} </span>
+                                            <span>总资产6 (约0.28元)</span>
+                                            <span>共写了3581字</span>
+                                            <span>获得52个赞共13个粉丝</span>
+                                        </div>
+                                    </div>
+                                    <el-button type="danger" size="mini" class="_2Bo4Th" round style="margin-right: 0px;">关注</el-button>
+                                </el-row>
+
+                            </div>
+
+                        </div>
+                    </el-main>
+
+                    <el-main>
+                        <div>
+                            <div>
+                                <el-badge :value="12" class="item">
+                                    <el-button size="small">评论</el-button>
+                                </el-badge>
+                                <el-badge :value="3" class="item">
+                                    <el-button size="small">回复</el-button>
+                                </el-badge>
+                                <el-badge :value="1" class="item" type="primary">
+                                    <el-button size="small">评论</el-button>
+                                </el-badge>
+                                <el-badge :value="2" class="item" type="warning">
+                                    <el-button size="small">回复</el-button>
+                                </el-badge>
+
+                                <el-dropdown trigger="click">
+                                      <span class="el-dropdown-link">
+                                        点我查看<i class="el-icon-caret-bottom el-icon--right"></i>
+                                      </span>
+                                    <el-dropdown-menu slot="dropdown">
+                                        <el-dropdown-item class="clearfix">
+                                            评论
+                                            <el-badge class="mark" :value="12" />
+                                        </el-dropdown-item>
+                                        <el-dropdown-item class="clearfix">
+                                            回复
+                                            <el-badge class="mark" :value="3" />
+                                        </el-dropdown-item>
+                                    </el-dropdown-menu>
+                                </el-dropdown>
+                            </div>
+                        </div>
+                    </el-main>
+
+                    <el-main>
+                        <div style="font-size: 14px;text-align: left;">
+                        <p><b>版权声明：</b>大鹏 发表于 2020-06-30 12:58:57。</p>
+                        <p><b>转载请注明：</b>无损音乐与高清MV资源索引 | 爱达杂货铺</p>
+                        </div>
+                    </el-main>
+
+                    <el-main>
+                        <div style="font-size: 14px;text-align: left;">
+                            <el-row>
+                                <el-col :span="6"><b > 上一篇 </b><br>免费音乐下载软件合集</el-col>
+                                <el-col :span="6" :offset="12"><b > 下一篇 </b><br>免费音乐下载软件合集</el-col>
+                            </el-row>
+                        </div>
+                    </el-main>
+
+                    <h4 style="text-align: left;"><b>评论区</b></h4>
+                    <el-main>
+                        <div style="font-size: 14px;text-align: left;margin-bottom: 20px;">
+                            <el-row>
+                                <el-col :span="24" style="margin-bottom: 10px;">
+                                    <el-input
+                                            type="textarea"
+                                            style=""
+                                            :autosize="{ minRows: 2, maxRows: 4}"
+                                            placeholder="请输入内容"
+                                            v-model="comment_textarea">
+                                    </el-input>
+                                </el-col>
+                                <el-col :span="4" :offset="20">
+                                    <div>
+                                        <el-col :span="12"><el-button type="danger" size="mini" round>发布</el-button></el-col>
+                                        <el-col :span="12"><el-button type="info" size="mini" round plain>取消</el-button></el-col>
                                     </div>
                                 </el-col>
                             </el-row>
                         </div>
-                    </div>
-                </el-main>
-            </el-col>
-            <el-col :span="4">
-                <el-main  class="main detail" style="padding: 0px;text-align: center;width: 280px;">
-                    <div>
-                        <el-row>
-                            <el-col :span="24">
-                                <el-card shadow="hover" :body-style="{ padding: '0px',marginBottom: '80px' }">
-                                    <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-                                         class="image">
-                                    <div class="blog-avatar">
-                                        <router-link :to="{name:'BlogUserFollowers', params:{blogUserId:blog.userId}}">
-                                            <el-avatar :src="avatarUrl" :size="72" style="vertical-align: middle;cursor: pointer;"></el-avatar>
-                                        </router-link>
-                                    </div>
-                                    <div style="padding: 14px;font-size: 14px;">
-                                        <span>王淳的猫</span>
-                                        <div class="bottom clearfix">
-                                            <time class="time">{{ currentDate }}</time><br>
-                                            <el-button type="" class="button" plain round>+ 关注</el-button>
+
+                        <div class="comment-list">
+                            <h3 style="border-left: 4px solid #ec7259;font-weight: 500;height: 20px;line-height: 20px;font-size: 18px;display: flex;">
+                                <div style=" padding-left: 12px;width: 75%;">
+                                    <span>全部评论</span>
+                                    <span style="margin-left: 6px;font-size: 14px;font-weight: normal;">15</span>
+                                    <span style="font-size: 12px; font-weight: normal; color: #969696; margin-left: 12px;"></span>
+                                    <el-tooltip :content="'随心所欲'" placement="top">
+                                        <el-switch
+                                                v-model="lookSwitch"
+                                                active-color="#409EFF"
+                                                inactive-color="#ff4949"
+                                                active-text="全都要"
+                                                inactive-text="只看作者">
+                                        </el-switch>
+                                    </el-tooltip>
+                                </div>
+                                <div style="display: flex;font-size: 14px;margin-right: 0px;">
+                                    <span style="margin-left: 12px;">按时间倒序</span>
+                                    <span style="margin-left: 12px;">按时间正序</span>
+                                </div>
+                            </h3>
+                            <div v-for="(item, key) in 2 ">
+                                <el-row>
+                                    <el-col :span="24" style="display: flex;">
+                                        <el-avatar :src="avatarUrl" :size="42" ></el-avatar>
+                                        <div style="margin-left: 10px;width: 100%;">
+                                            <div><span style="line-height: 22px">uuIOO</span></div>
+                                            <div><span class="datePublished">8楼 </span><span class="datePublished">10个月前</span></div>
+                                            <p style="font-size: 16px;margin: 8px 0 8px 0;">隔离手段只要能满足你们业务场景那种都可以，只是如果所有微服务要公用一套common配置文件的时候，有解决方案吗</p>
+                                            <div>
+                                                <span class="comment-reply-button"><i class="iconfont icon-dianzan"></i> 赞</span>
+                                                <span class="comment-reply-button"><i class="iconfont icon-pinglun"></i> 回复</span></div>
+                                            <el-divider class="comment-divider"></el-divider>
+                                            <div style="margin-bottom: 20px;">
+                                                <el-row>
+                                                    <el-col :span="24" style="display: flex;">
+                                                        <el-avatar :src="avatarUrl" :size="38"></el-avatar>
+                                                        <div style="margin-left: 10px;width: 100%;">
+                                                            <div><span style="line-height: 22px">村上花开</span></div>
+                                                            <div><span class="datePublished">10个月前</span></div>
+                                                        </div>
+                                                    </el-col>
+                                                    <el-col :span="24" >
+                                                        <p>百度网盘很多链接失效了，可以更新下链接吗 dataid 的约定规则</p>
+                                                        <div> <span type="text" class="comment-reply-button"><i class="iconfont icon-pinglun"></i> 回复</span></div>
+                                                        <el-divider class="comment-divider"></el-divider>
+                                                        <div>
+                                                            <span class="comment-reply-button"><i class="el-icon-edit"></i>添加新评论</span>
+                                                        </div>
+                                                    </el-col>
+                                                </el-row>
+                                            </div>
                                         </div>
-                                        <el-col :span="6"><p><b>89</b></p>文章</el-col>
-                                        <el-col :span="6"><p><b>46</b></p>评论</el-col>
-                                        <el-col :span="6"><p><b>4324</b></p>浏览</el-col>
-                                        <el-col :span="6"><p><b>786</b></p>获赞</el-col>
-                                    </div>
-                                </el-card>
-                            </el-col>
-                        </el-row>
-                    </div>
-                </el-main>
-                <div ref="scrollFixedNav" >
-                <el-main  class="main " style="width: 280px;padding: 0">
-                    <BlogRanking/>
-                </el-main>
+                                    </el-col>
+                                </el-row>
+                            </div>
+                        </div>
+                    </el-main>
                 </div>
-            </el-col>
+
+                <div style="float: left;">
+                <!--<el-col :span="4">-->
+                    <el-main  class="main detail" style="padding: 0px;text-align: center;width: 280px;">
+                        <div>
+                            <el-row>
+                                <el-col :span="24">
+                                    <el-card shadow="hover" :body-style="{ padding: '0px',marginBottom: '80px' }">
+                                        <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+                                             class="image">
+                                        <div class="blog-avatar">
+                                            <router-link :to="{name:'BlogUser', params:{blogUserId:blog.userId}}">
+                                                <el-avatar :src="avatarUrl" :size="72" style="vertical-align: middle;cursor: pointer;"></el-avatar>
+                                            </router-link>
+                                        </div>
+                                        <div style="padding: 14px;font-size: 14px;">
+                                            <span>王淳的猫</span>
+                                            <div class="bottom clearfix">
+                                                <time class="time">{{ currentDate }}</time><br>
+                                                <el-button type="" class="button" plain round>+ 关注</el-button>
+                                            </div>
+                                            <el-col :span="6"><p><b>89</b></p>文章</el-col>
+                                            <el-col :span="6"><p><b>46</b></p>评论</el-col>
+                                            <el-col :span="6"><p><b>4324</b></p>浏览</el-col>
+                                            <el-col :span="6"><p><b>786</b></p>获赞</el-col>
+                                        </div>
+                                    </el-card>
+                                </el-col>
+                            </el-row>
+                        </div>
+                    </el-main>
+                    <div ref="scrollFixedNav" >
+                        <el-main  class="main " style="width: 280px;padding: 0">
+                            <BlogRanking/>
+                        </el-main>
+                    </div>
+                <!--</el-col>-->
+                </div>
+            </div>
         </el-row>
 
         <el-footer>
@@ -295,7 +300,7 @@
         <el-backtop target=".backTop_wrap"></el-backtop>
 
         <!--查看点赞人-->
-        <transition name="el-zoom-in-center">
+        <!--<transition name="el-zoom-in-center">-->
         <div v-if="play" class="box-card-out" @click="playPopover">
             <div @click.stop="stopPlayPopover">
                 <el-card class="box-card">
@@ -316,7 +321,7 @@
                 </el-card>
             </div>
         </div>
-        </transition>
+        <!--</transition>-->
     </div>
 </template>
 
@@ -513,9 +518,8 @@
     /*左侧点赞/赞赏固定悬浮按钮*/
     .left-fixed{
         position: fixed;
-        top: 30%;
-        /*left: calc((100vw - 1000px)/2 - 190px);*/
-        left: 20%;
+        top: 216px;
+        left: calc((100vw - 1000px)/2 - 178px);
         user-select: none;
     }
     .left-fixed-btn{

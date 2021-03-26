@@ -78,7 +78,9 @@
         methods: {
             handleSizeChange(pageSize) {
                 const _this = this
-                _this.$axios.get("/api-activity/blog/pageBlog?currentPage=1&pageSize=" + pageSize).then(res => {
+                _this.$axios.get("/api-activity/blog/pageBlog?currentPage=1"
+                    + "&pageSize=" + this.pageBlog_pageSize
+                ).then(res => {
                     const response = res.data;
                     this.blogs = response.data.records
                     this.currentPage = response.data.current

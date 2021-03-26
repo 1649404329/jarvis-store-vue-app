@@ -6,6 +6,7 @@ import AccountHome from '../views/account/AccountHome.vue'
 import Login from '../views/login/Login.vue'
 import Help from '../views/login/Help.vue'
 import Test from '../views/Test.vue'
+import MessageCenter from '../views/MessageCenter.vue'
 import BlogHome from '../views/blogs/BlogHome.vue'
 import BlogUser from '../views/blogs/BlogUser.vue'
 import BlogDetail from '../views/blogs/BlogDetail.vue'
@@ -36,6 +37,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
 
+    //消息中心
+  {
+    path: '/messageCenter',
+    name: 'MessageCenter',
+    component: MessageCenter
+  },
     // 账号管理
   {
     path: '/accountHome',

@@ -10,8 +10,11 @@
                     <Header/>
                 </el-header>
 
-                <el-row>
-                    <el-col :span="18" offset="3">
+                <el-container>
+                    <el-row style="margin: 0 auto;">
+                        <div style="width: 1200px;">
+                            <el-row>
+                    <el-col :span="24">
                         <el-container class="grayTopic">
                             <el-aside width="200px">
                                 <Aside/>
@@ -25,6 +28,9 @@
                         </el-container>
                     </el-col>
                 </el-row>
+                        </div>
+                    </el-row>
+                </el-container>
 
                 <el-footer><Footer/></el-footer>
 
@@ -42,6 +48,7 @@
     import Footer from '@/components/common/Footer.vue'
     import Aside from '@/components/account/Aside.vue'
     import Main from '@/components/account/Main.vue'
+    import PanelTitle from '@/components/common/PanelTitle.vue'
 
     export default {
         name: 'AccountHome',

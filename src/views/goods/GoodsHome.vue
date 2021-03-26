@@ -7,10 +7,11 @@
                     <Header/>
                 </el-header>
 
-<transition name="animated  el-zoom-in-bottom">
-    <div v-show="showTransition" class="transition-box">
-                <el-row>
-                    <el-col :span="18" offset="3">
+    <transition name="animated  el-zoom-in-bottom">
+        <div v-show="showTransition" class="transition-box">
+            <el-container>
+                <el-row style="margin: 0 auto;">
+                    <div style="width: 800px;">
                         <el-container class="grayTopic">
                             <el-aside width="200px">
                                 <Aside/>
@@ -22,9 +23,10 @@
                                 </div>
                             </el-main>
                         </el-container>
-                    </el-col>
-                </el-row>
                     </div>
+                </el-row>
+            </el-container>
+        </div>
      </transition>
 
                 <el-footer><Footer/></el-footer>

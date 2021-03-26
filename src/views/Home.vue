@@ -9,232 +9,237 @@
                 <Header/>
             </el-header>
 
-            <!--欢迎横幅-->
-            <el-row>
-                <el-col :span="21" offset="2">
-                    <el-container class="grayTopic" style="margin-top:60px;">
-                        <el-main>
-                            <div class="main">
-                                <MyWelcomeBanner/>
-                            </div>
-                        </el-main>
-                    </el-container>
-                </el-col>
-            </el-row>
-
-            <el-row>
-                <el-col :span="4" offset="2">
-                    <!--首页分类大纲-->
-                    <el-container>
-                        <el-main style="padding:0;/*background-color: rgba(240, 242, 245, 1);*/">
-                            <ClassOutline/>
-                        </el-main>
-                    </el-container>
-                </el-col>
-
-                <el-col :span="13">
-                    <!--首页发现轮播图-->
-                    <el-col :span="24">
-                        <el-container>
-                            <el-main style="padding: 0;background-color: rgba(240,242,245,1);">
-                                <div class="main">
-                                    <HomeCarousel/>
-                                </div>
-                            </el-main>
-                        </el-container>
-                    </el-col>
-                    <el-col :span="24">
-                        <el-container>
-                            <el-main>
-                                <div class="main">
-                                    <HotSearchList/>
-                                </div>
-                            </el-main>
-                        </el-container>
-                    </el-col>
-                </el-col>
-
-                <el-col :span="4">
-                    <!--自定义快速导航-->
-                    <el-container>
-                        <el-main>
-                            <div class="main">
-                                <span>自定义快捷导航</span><br><br>
-                                <el-card shadow="hover">
-                                    <el-button style="padding: 3px 0" type="text">+ 自定义设置</el-button>
-                                </el-card>
-                                <el-divider></el-divider>
-                                <img style="width: 100px; height: 100px" src="../assets/images/weixin.png"><br>
-                                <span>扫码联系作者</span>
-                                <br>
-                                <br>
-                                <br>
-                                <br>
-                                <br>
-                                <br>
-                                <br>
-                                <br>
-                            </div>
-                        </el-main>
-                    </el-container>
-                </el-col>
-            </el-row>
-
-            <el-row>
-                <el-col :span="9" offset="2">
-                    <!--美食-->
-                    <el-container>
-                        <el-main>
-                            <div class="main">
-                                <PanelTitle msg="美食" showAllBtn/>
-
-                                <div class="tab-pane-content-text">
-                                    <el-row>
-                                        <el-col :span="4">
-                                            <el-image
-                                                    style="width: 50px; height: 50px"
-                                                    :src="eatList"
-                                                    :fit="fill"></el-image>
-                                        </el-col>
-                                        <el-col :span="8">
-                                            <span>美食美食美食美食美食美食</span>
-                                        </el-col>
-                                        <el-col :span="6">
-                                            <span style="color: #909399">上下九</span>
-                                        </el-col>
-                                    </el-row>
-                                    <el-divider></el-divider>
-                                    <div v-for="item in 4">
-                                        <el-row>
-                                            <el-col :span="4">
-                                                <el-image
-                                                        style="width: 50px; height: 50px"
-                                                        :src="eatList"
-                                                        :fit="fill"></el-image>
-                                            </el-col>
-                                            <el-col :span="8">
-                                                <span>美食美食美食美食美食美食</span>
-                                            </el-col>
-                                            <el-col :span="6">
-                                                <span style="color: #909399">北京路</span>
-                                            </el-col>
-                                        </el-row>
-                                        <el-divider></el-divider>
+            <el-container>
+                <el-row style="margin: 0 auto;">
+                    <div style="width: 1300px;">
+                        <!--欢迎横幅-->
+                        <el-row>
+                            <el-container class="grayTopic" style="margin-top:60px;">
+                                <el-main>
+                                    <div class="main">
+                                        <MyWelcomeBanner/>
                                     </div>
-                                </div>
+                                </el-main>
+                            </el-container>
+                        </el-row>
 
-                            </div>
-                        </el-main>
-                    </el-container>
-                </el-col>
-                <el-col :span="9">
-                    <!--电影-->
-                    <el-container>
-                        <el-main>
-                            <div class="main">
-                                <PanelTitle msg="电影" showAllBtn/>
+                        <el-row>
+                            <el-col :span="5" >
+                                <!--首页分类大纲-->
+                                <el-container>
+                                    <el-main style="padding:0;/*background-color: rgba(240, 242, 245, 1);*/">
+                                        <ClassOutline/>
+                                    </el-main>
+                                </el-container>
+                            </el-col>
 
-                                <div class="tab-pane-content-text">
-                                    <el-row>
-                                        <el-col :span="4">
-                                            <el-image
-                                                    style="width: 50px; height: 50px"
-                                                    :src="eatList"
-                                                    :fit="fill"></el-image>
-                                        </el-col>
-                                        <el-col :span="8">
-                                            <span>美食美食美食美食美食美食</span>
-                                        </el-col>
-                                        <el-col :span="6">
-                                            <span style="color: #909399">上下九</span>
-                                        </el-col>
-                                    </el-row>
-                                    <el-divider></el-divider>
-                                    <div v-for="item in 4">
-                                        <el-row>
-                                            <el-col :span="4">
-                                                <el-image
-                                                        style="width: 50px; height: 50px"
-                                                        :src="eatList"
-                                                        :fit="fill"></el-image>
-                                            </el-col>
-                                            <el-col :span="8">
-                                                <span>美食美食美食美食美食美食</span>
-                                            </el-col>
-                                            <el-col :span="6">
-                                                <span style="color: #909399">北京路</span>
-                                            </el-col>
-                                        </el-row>
-                                        <el-divider></el-divider>
-                                    </div>
-                                </div>
+                            <el-col :span="14">
+                                <!--首页发现轮播图-->
+                                <el-col :span="24">
+                                    <el-container>
+                                        <el-main style="padding: 0;background-color: rgba(240,242,245,1);">
+                                            <div class="main">
+                                                <HomeCarousel/>
+                                            </div>
+                                        </el-main>
+                                    </el-container>
+                                </el-col>
+                                <el-col :span="24">
+                                    <el-container>
+                                        <el-main>
+                                            <div class="main">
+                                                <HotSearchList/>
+                                            </div>
+                                        </el-main>
+                                    </el-container>
+                                </el-col>
+                            </el-col>
 
-                            </div>
-                        </el-main>
-                    </el-container>
-                </el-col>
-                <el-col :span="20" offset="2">
-                    <!--公告栏-->
-                    <el-container>
-                        <el-main>
-                            <div class="main">
-                                <PanelTitle msg="公告栏" showAllBtn/>
+                            <el-col :span="5">
+                                <!--自定义快速导航-->
+                                <el-container>
+                                    <el-main>
+                                        <div class="main">
+                                            <span>自定义快捷导航</span><br><br>
+                                            <el-card shadow="hover">
+                                                <el-button style="padding: 3px 0" type="text">+ 自定义设置</el-button>
+                                            </el-card>
+                                            <el-divider></el-divider>
+                                            <img style="width: 100px; height: 100px" src="../assets/images/weixin.png"><br>
+                                            <span>扫码联系作者</span>
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <br>
+                                            <br>
+                                        </div>
+                                    </el-main>
+                                </el-container>
+                            </el-col>
+                        </el-row>
 
-                                <Bulletin/>
-                            </div>
-                        </el-main>
-                    </el-container>
-                </el-col>
-            </el-row>
+                        <el-row>
+                            <el-col :span="9" offset="2">
+                                <!--美食-->
+                                <el-container>
+                                    <el-main>
+                                        <div class="main">
+                                            <PanelTitle msg="美食" showAllBtn/>
 
-            <el-row>
-                <el-col :span="21" offset="2">
-                    <!--旅游-->
-                    <el-container>
-                        <el-main>
-                            <div class="main">
-                                <PanelTitle msg="旅游" showAllBtn/>
+                                            <div class="tab-pane-content-text">
+                                                <el-row>
+                                                    <el-col :span="4">
+                                                        <el-image
+                                                                style="width: 50px; height: 50px"
+                                                                :src="eatList"
+                                                                :fit="fill"></el-image>
+                                                    </el-col>
+                                                    <el-col :span="8">
+                                                        <span>美食美食美食美食美食美食</span>
+                                                    </el-col>
+                                                    <el-col :span="6">
+                                                        <span style="color: #909399">上下九</span>
+                                                    </el-col>
+                                                </el-row>
+                                                <el-divider></el-divider>
+                                                <div v-for="item in 4">
+                                                    <el-row>
+                                                        <el-col :span="4">
+                                                            <el-image
+                                                                    style="width: 50px; height: 50px"
+                                                                    :src="eatList"
+                                                                    :fit="fill"></el-image>
+                                                        </el-col>
+                                                        <el-col :span="8">
+                                                            <span>美食美食美食美食美食美食</span>
+                                                        </el-col>
+                                                        <el-col :span="6">
+                                                            <span style="color: #909399">北京路</span>
+                                                        </el-col>
+                                                    </el-row>
+                                                    <el-divider></el-divider>
+                                                </div>
+                                            </div>
 
-                                <div class="tab-pane-content-text">
-                                    <el-row>
-                                        <el-col :span="4">
-                                            <el-image
-                                                    style="width: 50px; height: 50px"
-                                                    :src="eatList"
-                                                    :fit="fill"></el-image>
-                                        </el-col>
-                                        <el-col :span="8">
-                                            <span>美食美食美食美食美食美食</span>
-                                        </el-col>
-                                        <el-col :span="6">
-                                            <span style="color: #909399">上下九</span>
-                                        </el-col>
-                                    </el-row>
-                                    <el-divider></el-divider>
-                                    <div v-for="item in 4">
-                                        <el-row>
-                                            <el-col :span="4">
-                                                <el-image
-                                                        style="width: 50px; height: 50px"
-                                                        :src="eatList"
-                                                        :fit="fill"></el-image>
-                                            </el-col>
-                                            <el-col :span="8">
-                                                <span>美食美食美食美食美食美食</span>
-                                            </el-col>
-                                            <el-col :span="6">
-                                                <span style="color: #909399">北京路</span>
-                                            </el-col>
-                                        </el-row>
-                                        <el-divider></el-divider>
-                                    </div>
-                                </div>
+                                        </div>
+                                    </el-main>
+                                </el-container>
+                            </el-col>
+                            <el-col :span="9">
+                                <!--电影-->
+                                <el-container>
+                                    <el-main>
+                                        <div class="main">
+                                            <PanelTitle msg="电影" showAllBtn/>
 
-                            </div>
-                        </el-main>
-                    </el-container>
-                </el-col>
-            </el-row>
+                                            <div class="tab-pane-content-text">
+                                                <el-row>
+                                                    <el-col :span="4">
+                                                        <el-image
+                                                                style="width: 50px; height: 50px"
+                                                                :src="eatList"
+                                                                :fit="fill"></el-image>
+                                                    </el-col>
+                                                    <el-col :span="8">
+                                                        <span>美食美食美食美食美食美食</span>
+                                                    </el-col>
+                                                    <el-col :span="6">
+                                                        <span style="color: #909399">上下九</span>
+                                                    </el-col>
+                                                </el-row>
+                                                <el-divider></el-divider>
+                                                <div v-for="item in 4">
+                                                    <el-row>
+                                                        <el-col :span="4">
+                                                            <el-image
+                                                                    style="width: 50px; height: 50px"
+                                                                    :src="eatList"
+                                                                    :fit="fill"></el-image>
+                                                        </el-col>
+                                                        <el-col :span="8">
+                                                            <span>美食美食美食美食美食美食</span>
+                                                        </el-col>
+                                                        <el-col :span="6">
+                                                            <span style="color: #909399">北京路</span>
+                                                        </el-col>
+                                                    </el-row>
+                                                    <el-divider></el-divider>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </el-main>
+                                </el-container>
+                            </el-col>
+                            <el-col :span="20" offset="2">
+                                <!--公告栏-->
+                                <el-container>
+                                    <el-main>
+                                        <div class="main">
+                                            <PanelTitle msg="公告栏" showAllBtn/>
+
+                                            <Bulletin/>
+                                        </div>
+                                    </el-main>
+                                </el-container>
+                            </el-col>
+                        </el-row>
+
+                        <el-row>
+                            <el-col :span="21" offset="2">
+                                <!--旅游-->
+                                <el-container>
+                                    <el-main>
+                                        <div class="main">
+                                            <PanelTitle msg="旅游" showAllBtn/>
+
+                                            <div class="tab-pane-content-text">
+                                                <el-row>
+                                                    <el-col :span="4">
+                                                        <el-image
+                                                                style="width: 50px; height: 50px"
+                                                                :src="eatList"
+                                                                :fit="fill"></el-image>
+                                                    </el-col>
+                                                    <el-col :span="8">
+                                                        <span>美食美食美食美食美食美食</span>
+                                                    </el-col>
+                                                    <el-col :span="6">
+                                                        <span style="color: #909399">上下九</span>
+                                                    </el-col>
+                                                </el-row>
+                                                <el-divider></el-divider>
+                                                <div v-for="item in 4">
+                                                    <el-row>
+                                                        <el-col :span="4">
+                                                            <el-image
+                                                                    style="width: 50px; height: 50px"
+                                                                    :src="eatList"
+                                                                    :fit="fill"></el-image>
+                                                        </el-col>
+                                                        <el-col :span="8">
+                                                            <span>美食美食美食美食美食美食</span>
+                                                        </el-col>
+                                                        <el-col :span="6">
+                                                            <span style="color: #909399">北京路</span>
+                                                        </el-col>
+                                                    </el-row>
+                                                    <el-divider></el-divider>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </el-main>
+                                </el-container>
+                            </el-col>
+                        </el-row>
+
+                    </div>
+                </el-row>
+            </el-container>
 
         </el-container>
 

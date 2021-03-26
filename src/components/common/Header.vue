@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="margin: 0 auto;width: 1300px;">
         <el-menu :default-active="$route.path" router class="el-menu-demo" mode="horizontal" @select="handleSelect"
                  text-color="rgb(57,77,97)" active-text-color="rgb(91,137,230)">
             <el-menu-item index="/home" style="border-bottom: 2px solid #FFF; color: rgb(0,0,0);">
@@ -45,7 +45,10 @@
             <el-menu-item index="5" disabled style="float: right;color: rgb(255,78,85)">充值</el-menu-item>
 
             <el-menu-item index="/test" style="float: right;">
-                <i class="el-icon-message"></i>
+                <i class="el-icon-message"></i>test
+            </el-menu-item>
+            <el-menu-item index="/messageCenter" style="float: right;">
+                <i class="el-icon-bell"></i>消息
             </el-menu-item>
         </el-menu>
     </div>

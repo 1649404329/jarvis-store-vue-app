@@ -6,9 +6,10 @@
             </el-header>
 
             <el-container style="background: #fff;width: 100%;height: 100%;padding-top: 40px;">
-                <el-col :span="9" offset="6">
+                <el-row style="margin: 0 auto;">
+                    <div style="width: 800px;float: left;">
 
-                    <el-main  class="main detail">
+                        <el-main  class="main detail">
                         <div>
                             <div class="backTop_wrap"></div>
 
@@ -76,13 +77,14 @@
 
                         </div>
                     </el-main>
-                </el-col>
+                    </div>
 
-                <el-col :span="3">
+                    <div style="width: 200px;float: left;">
                     <el-main  class="main detail">
                         <BlogUserAside/>
                     </el-main>
-                </el-col>
+                    </div>
+                </el-row>
             </el-container>
 
             <el-footer>

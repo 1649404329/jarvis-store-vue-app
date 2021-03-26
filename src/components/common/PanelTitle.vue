@@ -23,7 +23,7 @@
         border-left: 6px solid dodgerblue;
         text-align: left;
         padding-left: 4px;
-        margin-left: -10px;
+        margin-left: 10px;
         margin-bottom: 5px;
     }
 
@@ -35,7 +35,7 @@
 
     .title-small {
         line-height: 32px;
-        font-size: 8px;
+        font-size: 14px;
         float: right;
     }
 
