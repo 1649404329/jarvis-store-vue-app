@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import GoodsHome from '../views/goods/GoodsHome.vue'
 import AccountHome from '../views/account/AccountHome.vue'
 import Login from '../views/login/Login.vue'
+import Register from '../views/login/Register.vue'
 import Help from '../views/login/Help.vue'
 import Test from '../views/Test.vue'
 import MessageCenter from '../views/MessageCenter.vue'
@@ -94,6 +95,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register
   },
   {
     path: '/help',

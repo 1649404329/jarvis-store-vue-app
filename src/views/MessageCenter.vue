@@ -11,9 +11,9 @@
                 <el-row style="margin: 0 auto;">
                     <div style="width: 1000px;">
                         <el-main>
-                            <PanelTitle msg="消息中心" showAllBtn/>
+                            <PanelTitle msg="消息中心" />
 
-                            <div style="padding: 30px 40px;text-align: left;">
+                            <div style="padding: 30px 40px;text-align: left;min-height: 300px;">
                                 <el-collapse v-model="activeNames" @change="handleChange">
                                     <el-collapse-item>
                                         <template slot="title">

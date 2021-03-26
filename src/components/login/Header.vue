@@ -1,7 +1,7 @@
 <template>
     <div>
         <el-menu :default-active="$route.path" router class="el-menu-demo" mode="horizontal" @select="handleSelect"
-                 text-color="rgb(57,77,97)" active-text-color="rgb(91,137,230)">
+                 text-color="rgb(57,77,97)" active-text-color="rgb(91,137,230)" style="width: 1200px;margin: 0 auto;">
             <el-menu-item index="/home" style="border-bottom: 2px solid #FFF; color: rgb(82,127,255);">
                 <!--<el-avatar :size="50">JARVIS</el-avatar>-->
                 <el-avatar :src="logoUrl" :size="40"></el-avatar>
@@ -12,7 +12,7 @@
 
             <el-menu-item index="/help" style="float: right;">帮助</el-menu-item>
 
-            <el-menu-item index="/test" style="float: right;">
+            <el-menu-item index="/register" style="float: right;">
                 <el-button type="primary">立即注册</el-button>
             </el-menu-item>
         </el-menu>

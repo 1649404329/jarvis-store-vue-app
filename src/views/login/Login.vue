@@ -11,7 +11,8 @@
                         <el-image :fit="fill" :src="item"></el-image>
                     </el-carousel-item>
                 </el-carousel>
-                <el-card shadow="always" style="position: absolute;top: 80px;width: 225px;height: 250px;right: 100px;z-index: 99;text-align: left;">
+                <el-card shadow="always" style="position: absolute;top: 80px;
+                right: calc((100vw - 1000px)/2 - 78px);width: 225px;height: 250px; z-index: 99;text-align: left;">
                     <p>用户登录</p>
                     <el-form>
                         <el-form-item>
@@ -53,22 +54,22 @@
 
             <el-main style="background-color: #f9fafc;">
                 <h3>他们的小店</h3>
-                <el-row>
-                    <el-col :span="20" offset="2">
-                        <el-col :span="4" v-for="(o, index) in 5" :key="o" :offset="index > 0 ? 1 : 0">
-                            <el-card shadow="hover" :body-style="{ padding: '0px' }">
-                                <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-                                     class="image">
-                                <div style="padding: 14px;font-size: 14px;">
-                                    <el-avatar :src="avatarUrl" :size="25" style="vertical-align: middle;"></el-avatar>
-                                    <span>王淳的猫</span>
-                                    <div class="bottom clearfix">
-                                        <time class="time">{{ currentDate }}</time>
-                                        <el-button type="text" class="button">+ 关注</el-button>
-                                    </div>
+                <el-row style="margin:0 auto; width: 1200px;">
+                    <el-col :span="4" v-for="(o, index) in 5" :key="o" :offset="index > 0 ? 1 : 0">
+                        <div style="width:200px;">
+                        <el-card shadow="hover" :body-style="{ padding: '0px' }">
+                            <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+                                 class="image">
+                            <div style="padding: 14px;font-size: 14px;">
+                                <el-avatar :src="avatarUrl" :size="25" style="vertical-align: middle;"></el-avatar>
+                                <span>王淳的猫</span>
+                                <div class="bottom clearfix">
+                                    <time class="time">{{ currentDate }}</time>
+                                    <el-button type="text" class="button">+ 关注</el-button>
                                 </div>
-                            </el-card>
-                        </el-col>
+                            </div>
+                        </el-card>
+                        </div>
                     </el-col>
                 </el-row>
                 <br/>
