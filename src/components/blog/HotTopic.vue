@@ -9,7 +9,7 @@
                 <div :key="blog.id" v-for="blog in blogsOfRecommend">
                     <div class="whiteTopic font-small">
                         <router-link
-                            :to="{name:'BlogDetail',params:{blogId:blog.id}}"  target="_blank">
+                            :to="{name:'BlogDetail',params:{blogId:blog.id}}"  >
                         <el-col :span="18" style="display:-webkit-box;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
                             <span>#{{blog.title}}</span>
                             <span>#{{blog.userId}}</span>

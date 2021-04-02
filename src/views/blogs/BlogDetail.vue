@@ -1,5 +1,5 @@
 <template>
-    <div class="wrapper" style="height:100%;overflow: auto;">
+    <div class="wrapper" style="height:100%; ">
         <el-backtop target=".wrapper" :visibility-height="20" :right="40" :bottom="40"></el-backtop>
         <el-container>
             <el-header>
@@ -7,15 +7,15 @@
                     <Header/>
             </el-header>
 
-            <el-row>
-                <el-col :span="14" offset="6">
-                    <el-container class="grayTopic">
-                        <!--<el-main style="margin-bottom: 0;">-->
-                            <!--<BlogBanner/>-->
-                        <!--</el-main>-->
-                    </el-container>
-                </el-col>
-            </el-row>
+            <!--<el-row>-->
+                <!--<el-col :span="14" offset="6">-->
+                    <!--<el-container class="grayTopic">-->
+                        <!--&lt;!&ndash;<el-main style="margin-bottom: 0;">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<BlogBanner/>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</el-main>&ndash;&gt;-->
+                    <!--</el-container>-->
+                <!--</el-col>-->
+            <!--</el-row>-->
 
         <el-row style="margin: 0 auto;">
             <div class="left-fixed">
@@ -66,20 +66,21 @@
                                     </el-col>
                                     <el-col :span="6">
                                         <el-col :span="8">
-                                            <span class="iconfont  icon-chakanguo">{{blog.userId}}</span>
+                                            <span class="iconfont  icon-chakanguo">{{blog.viewCount}}</span>
                                         </el-col>
                                         <el-col :span="8">
-                                        <span class="iconfont  icon-pinglun">{{blog.userId}}</span>
+                                        <span class="iconfont  icon-pinglun">{{blog.commentCount}}</span>
                                         </el-col>
                                         <el-col :span="8">
-                                        <span class="iconfont  icon-dianzan">{{blog.userId}}</span>
+                                        <span class="iconfont  icon-dianzan">{{blog.voteUp}}</span>
                                         </el-col>
                                     </el-col>
 
                                 </el-row>
                                 <el-divider></el-divider>
-                                <!-- <div class="markdown-body" v-html="blog.content"></div> -->
-                                <div style="padding-bottom: 20px;"><span v-html="blog.content"></span></div>
+                                <div style="padding-bottom: 20px;">
+                                    <span v-html="blog.content"></span>
+                                </div>
 
                                 <div>
                                     <el-button class="_2Bo4Th" circle icon="iconfont icon-dianzan"></el-button>
@@ -266,15 +267,15 @@
                                             </router-link>
                                         </div>
                                         <div style="padding: 14px;font-size: 14px;">
-                                            <span>王淳的猫</span>
+                                            <span>{{blogUserInfo.username}}</span>
                                             <div class="bottom clearfix">
-                                                <time class="time">{{ currentDate }}</time><br>
+                                                <time class="time"> </time><br>
                                                 <el-button type="" class="button" plain round>+ 关注</el-button>
                                             </div>
-                                            <el-col :span="6"><p><b>89</b></p>文章</el-col>
-                                            <el-col :span="6"><p><b>46</b></p>评论</el-col>
-                                            <el-col :span="6"><p><b>4324</b></p>浏览</el-col>
-                                            <el-col :span="6"><p><b>786</b></p>获赞</el-col>
+                                            <el-col :span="6"><p><b>{{blogUserInfo.postCount}}</b></p>文章</el-col>
+                                            <el-col :span="6"><p><b>{{blogUserInfo.commentCount}}</b></p>评论</el-col>
+                                            <el-col :span="6"><p><b>{{blogUserInfo.viewCount}}</b></p>浏览</el-col>
+                                            <el-col :span="6"><p><b>{{blogUserInfo.praisedCount}}</b></p>获赞</el-col>
                                         </div>
                                     </el-card>
                                 </el-col>
@@ -338,6 +339,7 @@
             return {
                 blog: { },
                 ownBlog: true,
+                blogUserInfo: {},
 
                 comment_textarea: "",
                 avatarUrl: "https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg",
@@ -359,24 +361,37 @@
             const blogId = this.$route.params.blogId
             console.log(blogId)
             if (blogId) {
+                //获取文章详情
                 this.$axios.get('/api-activity/blog/detail/' + blogId).then(res => {
                     const blog = res.data.data
-                    console.log(blog);
+                    console.log("详情="+blog);
                     _this.blog=blog
                     _this.blog.id = blog.id
                     _this.blog.title = blog.title
                     _this.blog.content = blog.content
-                    if(blog.editMode===0){
-
+                    _this.blog.voteUp = blog.voteUp
+                    _this.blog.viewCount = blog.viewCount
+                    if(blog.editMode==1){
+                        let MarkDownIt = require("markdown-it");
+                        let md = new MarkDownIt();
+                        let resultContent = md.render(blog.content);
+                        _this.blog.content = resultContent;
                     }
-                    // var MarkDownIt = require("markdown-it")
-                    // var md = new MarkDownIt()
-                    // var resultContent = md.render(blog.content)
-                    // _this.blog.content = resultContent
 
                     //编辑按钮可见性
-                    _this.ownBlog = (blog.userId === _this.$store.getters.getUser.id)
+                    // _this.ownBlog = (blog.userId === _this.$store.getters.getUser.id)
+
+                    //文章作者
+                    //1 查询博主信息
+                    this.$axios.get('/api-user/user/info?userId=' + blog.userId).then(res => {
+                        const userInfo = res.data.data;
+                        _this.blogUserInfo = userInfo;
+                    });
                 })
+
+                //获取文章评论
+
+
             }
 
         },
@@ -384,15 +399,16 @@
             window.scrollTo(0,0);
 
             //绑定页面滚动事件
-            window.addEventListener('scroll',this.scrollHandle);
+            window.addEventListener('scroll',this.scrollHandle,true);
         },
         methods: {
-            scrollHandle(e){
-                let top = e.srcElement.scrollingElement.scrollTop;    // 获取页面滚动高度
-                if(top>493){
-                    this.$refs.scrollFixedNav.classList.add('sfixed')
+            scrollHandle(){
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;    // 获取页面滚动高度
+                // console.log("scrollHandle：" + scrollTop);
+                if(scrollTop>493){
+                    this.$refs.scrollFixedNav.classList.add('sfixed');
                 }else{
-                    this.$refs.scrollFixedNav.classList.remove('sfixed')
+                    this.$refs.scrollFixedNav.classList.remove('sfixed');
                 }
             },
             goBack() {

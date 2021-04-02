@@ -9,7 +9,7 @@
                 <div :key="blog.id" v-for="blog in blogsOfRecommend">
                     <div class="whiteTopic font-small">
                         <router-link
-                            :to="{name:'BlogDetail',params:{blogId:blog.id}}"  target="_blank">
+                            :to="{name:'BlogDetail',params:{blogId:blog.id}}" >
                         <el-col :span="8">
                             <el-image
                                     style="max-width: 120px; height: 60px"

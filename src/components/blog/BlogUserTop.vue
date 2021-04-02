@@ -11,16 +11,16 @@
             <div class="top-info">
                 <ul>
                     <li @click="hrefToBlogUserFollowers_1">
-                        <p>6</p>关注<i  class="iconfont icon-right-arrow"></i>
+                        <p>{{deliverBlogUserInfo.followersCount}}</p>关注<i  class="iconfont icon-right-arrow"></i>
                     </li>
                     <li @click="hrefToBlogUserFollowers_2">
-                        <p>67</p>粉丝<i class="iconfont icon-right-arrow"></i>
+                        <p>{{deliverBlogUserInfo.followingCount}}</p>粉丝<i class="iconfont icon-right-arrow"></i>
                     </li>
                     <li @click="hrefToBlogUser">
-                        <p>48</p>文章<i class="iconfont icon-right-arrow"></i>
+                        <p>{{deliverBlogUserInfo.postCount}}</p>文章<i class="iconfont icon-right-arrow"></i>
                     </li>
                     <li>
-                        <p>64545</p>字数
+                        <p>{{deliverBlogUserInfo.wordsCount}}</p>字数
                     </li>
                 </ul>
             </div>

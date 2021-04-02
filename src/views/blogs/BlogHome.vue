@@ -49,7 +49,7 @@
 
                 <el-col :span="16">
                     <el-main>
-                        <div class="main"  style="height: 2000px;overflow: hidden;">
+                        <div class="main"  style=" overflow: hidden;">
                             <Main/>
                         </div>
                     </el-main>
@@ -68,7 +68,7 @@
                             <div style="padding: 14px;font-size: 14px;">
                                 <span>王淳的猫2</span>
                                 <div class="bottom clearfix">
-                                    <time class="time">{{ currentDate }}</time><br>
+                                    <time class="time">{{  }}</time><br>
                                 </div>
                                 <el-col :span="6"><p><b>89</b></p>文章</el-col>
                                 <el-col :span="6"><p><b>46</b></p>评论</el-col>
@@ -223,12 +223,12 @@
         methods: {
             scrollHandle(){
                 let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;    // 获取页面滚动高度
-                console.log("scrollHandle：" + scrollTop);
+                // console.log("scrollHandle：" + scrollTop);
                 if(scrollTop>593){
-                    this.$refs.scrollFixedNav1.classList.add('sfixed')
+                    this.$refs.scrollFixedNav1.classList.add('sfixed');
                     this.$refs.scrollFixedNav2.classList.add('sfixed2')
                 }else{
-                    this.$refs.scrollFixedNav1.classList.remove('sfixed')
+                    this.$refs.scrollFixedNav1.classList.remove('sfixed');
                     this.$refs.scrollFixedNav2.classList.remove('sfixed2')
                 }
             },

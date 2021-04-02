@@ -10,7 +10,7 @@
                     <el-card shadow="hover">
                         <h3>
                             <router-link
-                            :to="{name:'BlogDetail',params:{blogId:blog.id}}"  target="_blank">{{blog.title}}</router-link>
+                            :to="{name:'BlogDetail',params:{blogId:blog.id}}"  >{{blog.title}}</router-link>
                         </h3>
                         <p class="blog-content" v-html="blog.content"></p>
                         <p style="align-items: center;display: flex;"><el-avatar :src="url" :size="30" ></el-avatar>
@@ -21,7 +21,7 @@
             <el-pagination
                     style="text-align: center;"
                     background
-                    layout="prev, pager, next"
+                    layout="sizes, prev, pager, next"
                     @size-change="handleSizeChange"
                     @current-change="page"
                     :currentPage="currentPage"
@@ -79,7 +79,7 @@
             handleSizeChange(pageSize) {
                 const _this = this
                 _this.$axios.get("/api-activity/blog/pageBlog?currentPage=1"
-                    + "&pageSize=" + this.pageBlog_pageSize
+                    + "&pageSize=" + pageSize //this.pageBlog_pageSize
                 ).then(res => {
                     const response = res.data;
                     this.blogs = response.data.records
