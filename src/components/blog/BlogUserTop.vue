@@ -14,7 +14,7 @@
                         <p>{{deliverBlogUserInfo.followersCount}}</p>关注<i  class="iconfont icon-right-arrow"></i>
                     </li>
                     <li @click="hrefToBlogUserFollowers_2">
-                        <p>{{deliverBlogUserInfo.followingCount}}</p>粉丝<i class="iconfont icon-right-arrow"></i>
+                        <p>{{deliverBlogUserInfo.fansCount}}</p>粉丝<i class="iconfont icon-right-arrow"></i>
                     </li>
                     <li @click="hrefToBlogUser">
                         <p>{{deliverBlogUserInfo.postCount}}</p>文章<i class="iconfont icon-right-arrow"></i>
@@ -73,7 +73,7 @@
             hrefToBlogUserFollowers_2(){
                 VueEvent.$emit('blog_top_activeName', "second");
                 this.$router.push({
-                    name: 'BlogUserFollowing',
+                    name: 'BlogUserFans',
                     params:{
                         p:"second"
                     }

@@ -104,7 +104,7 @@
     import VueEvent from '../../common/VueEvent.js'
 
     export default {
-        name: "BlogUserFollowers",
+        name: "BlogUserFans",
         data(){
             return {
 
