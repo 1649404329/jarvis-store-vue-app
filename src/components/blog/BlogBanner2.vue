@@ -5,7 +5,7 @@
                 class="el-menu-vertical-demo"
                 @open="handleOpen"
                 @close="handleClose"
-                style="min-height: 350px;width:auto;height:auto;overflow-x: hidden;text-align: left;">
+                style="min-height: 350px;width:auto;height:auto;overflow-x: hidden;text-align: left;overflow-y: hidden;">
             <el-menu-item index="home">
                 <i class="el-icon-document"></i>
                 <span slot="title">首页</span>
@@ -26,26 +26,29 @@
                 <i class="el-icon-setting"></i>
                 <span slot="title">特别关注</span>
             </el-menu-item>
-            <el-menu-item index="4">
-                <i class="el-icon-setting"></i>
-                <span slot="title">头条</span>
-            </el-menu-item>
-            <el-menu-item index="4">
-                <i class="el-icon-setting"></i>
-                <span slot="title">热搜榜</span>
-            </el-menu-item>
-            <el-menu-item index="4">
-                <i class="el-icon-setting"></i>
-                <span slot="title">旅游 生活</span>
-            </el-menu-item>
-            <el-menu-item index="4">
-                <i class="el-icon-setting"></i>
-                <span slot="title">电影 小说</span>
-            </el-menu-item>
-            <el-menu-item index="4">
-                <i class="el-icon-setting"></i>
-                <span slot="title">运动 健身</span>
-            </el-menu-item>
+            <el-menu-item-group>
+                <template slot="title"><el-divider></el-divider></template>
+                <el-menu-item index="4">
+                    <i class="el-icon-setting"></i>
+                    <span slot="title">投票</span>
+                </el-menu-item>
+                <el-menu-item index="4">
+                    <i class="el-icon-setting"></i>
+                    <span slot="title">热搜榜</span>
+                </el-menu-item>
+                <el-menu-item index="4">
+                    <i class="el-icon-setting"></i>
+                    <span slot="title">旅游 生活</span>
+                </el-menu-item>
+                <el-menu-item index="4">
+                    <i class="el-icon-setting"></i>
+                    <span slot="title">电影 小说</span>
+                </el-menu-item>
+                <el-menu-item index="4">
+                    <i class="el-icon-setting"></i>
+                    <span slot="title">运动 健身</span>
+                </el-menu-item>
+            </el-menu-item-group>
             <!--<el-submenu index="1">-->
                 <!--<template slot="title">-->
                     <!--<i class="el-icon-location"></i>-->

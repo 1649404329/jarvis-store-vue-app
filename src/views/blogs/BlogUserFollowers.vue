@@ -111,6 +111,8 @@
                 avatarUrl: "https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg",
 
                 blogUserInfo: {},
+                blogUserFollows:{},
+
             }
         },
         components: {
@@ -122,6 +124,27 @@
         },
         methods:{
 
+            /**
+             * 获取我的关注
+             */
+            getMyFollows(blogUserId){
+                this.$axios.get('/api-user/user/fans/myFollow/get?blogUserId=' + blogUserId).then(res => {
+                    const info = res.data.data;
+                    console.info(info)
+                    this.blogUserFollows = info;
+                });
+            },
+
+            /**
+             * 获取我的粉丝
+             */
+            getMyFans(blogUserId){
+                this.$axios.get('/api-user/user/fans/myFans/get?blogUserId=' + blogUserId).then(res => {
+                    const info = res.data.data;
+                    this.blogUserInfo = userInfo;
+                });
+
+            }
         },
         created() {
             //显示“关注”/“粉丝”
@@ -138,8 +161,9 @@
             }
             console.info("this.blog_top_activeName: "+this.blog_top_activeName);
 
-            //查询正在浏览的博客用户信息
             let blogUserId = this.$route.params.blogUserId;
+
+            //查询正在浏览的博客用户信息
             console.log("blogUserId:"+ blogUserId);
             if(!blogUserId){
                 blogUserId = this.$store.getters.getBlogUserInfoId;
@@ -156,7 +180,9 @@
                     console.log("userInfo="+JSON.stringify(this.blogUserInfo));
                 });
             }
-            //end
+
+            //
+            this.getMyFollows(blogUserId);
         },
         mounted() {
             VueEvent.$on('blog_top_activeName', function (data) {

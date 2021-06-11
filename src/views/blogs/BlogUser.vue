@@ -38,8 +38,8 @@
                                                                 <div class="meta">
                                                                     <span class="jsd-meta"><i class="iconfont icon-chakanguo">dsd</i></span>
                                                                     <a><i class="iconfont icon-pinglun">{{blog.viewCount}}</i></a>
-                                                                    <a><i class="iconfont icon-pinglun">{{blog.viewCount}}</i></a>
-                                                                    <a><i class="iconfont icon-pinglun">{{blog.viewCount}}</i></a>
+                                                                    <a><i class="iconfont icon-pinglun">{{blog.commentCount}}</i></a>
+                                                                    <a><i class="iconfont icon-pinglun">{{blog.voteUp}}</i></a>
                                                                     <span style="margin-right: 10px;color: #b4b4b4;">{{dateFormat(blog.createTime)}}</span>
                                                                 </div>
                                                             </div>
@@ -294,6 +294,16 @@
         font-size: 16px;
         color: #333;
         line-height: 30px;
+    }
+
+    /**
+    a标签样式
+     */
+    a {
+        text-decoraction: none;
+    }
+    .router-link-active {
+        text-decoration: none;
     }
 
 </style>

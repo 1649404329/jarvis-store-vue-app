@@ -535,7 +535,7 @@
     .left-fixed{
         position: fixed;
         top: 216px;
-        left: calc((100vw - 1000px)/2 - 178px);
+        left: calc((100vw - 1000px)/2 - 128px);
         user-select: none;
     }
     .left-fixed-btn{
