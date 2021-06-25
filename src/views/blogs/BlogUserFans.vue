@@ -20,51 +20,50 @@
                             <div style="margin-top: 10px;margin-bottom: 10px;">
                                 <el-tabs v-model="blog_top_activeName" @tab-click="handleClick">
                                     <el-tab-pane   name="first">
-                                        <span slot="label">关注用户 9</span>
+                                        <span slot="label">关注用户 {{blogUserFollows.length}}</span>
                                         <div style="padding-bottom: 30px;">
                                             <ul class="user-list">
-                                                <li v-for="(item, key) in 5 ">
+                                                <li v-for="(item, key) in blogUserFollows " :key="item">
                                                     <a><el-avatar :src="avatarUrl" class="avatar"></el-avatar></a>
                                                     <el-button type="success" round class="btn-hollow">+ 关注</el-button>
                                                     <div class="info">
-                                                        <p class="title">Spring Event使用</p>
+                                                        <p class="title">{{item.toUserName}}</p>
                                                         <div class="meta">
-                                                            <span>关注 0</span>
+                                                            <span>关注 {{item.toUserFollowersCount}}</span>
                                                             <el-divider  direction="vertical"></el-divider>
-                                                            <span>粉丝 0</span>
+                                                            <span>粉丝 {{item.toUserFansCount}}</span>
                                                             <el-divider  direction="vertical"></el-divider>
-                                                            <span>文章 0</span>
+                                                            <span>文章 {{item.toUserPostCount}}</span>
                                                             <!--<span style="margin-right: 10px;color: #b4b4b4;">2019.03.12 16:07</span>-->
                                                         </div>
                                                         <div class="meta">
-                                                            <span>写了 236585 字，获得了 655 个喜欢</span>
+                                                            <span>写了 {{item.toUserWordsCount}} 字，获得了 {{item.toUserPraisedCount}} 个喜欢</span>
                                                         </div>
                                                     </div>
                                                 </li>
                                             </ul>
                                         </div>
-
                                         <el-divider></el-divider>
                                     </el-tab-pane>
                                     <el-tab-pane name="second">
-                                        <span slot="label">粉丝 6</span>
+                                        <span slot="label">粉丝 {{blogUserFans.length}}</span>
                                         <div style="padding-bottom: 30px;">
                                             <ul class="user-list">
-                                                <li v-for="(item, key) in 5 ">
+                                                <li v-for="(item, key) in blogUserFans ">
                                                     <a><el-avatar :src="avatarUrl" class="avatar"></el-avatar></a>
                                                     <el-button type="success" round class="btn-hollow">+ 关注</el-button>
                                                     <div class="info">
-                                                        <p class="title">良月柒</p>
+                                                        <p class="title">{{item.toUserName}}</p>
                                                         <div class="meta">
-                                                            <span>关注 0</span>
+                                                            <span>关注 {{item.toUserFollowersCount}}</span>
                                                             <el-divider  direction="vertical"></el-divider>
-                                                            <span>粉丝 0</span>
+                                                            <span>粉丝 {{item.toUserFansCount}}</span>
                                                             <el-divider  direction="vertical"></el-divider>
-                                                            <span>文章 0</span>
+                                                            <span>文章 {{item.toUserPostCount}}</span>
                                                             <!--<span style="margin-right: 10px;color: #b4b4b4;">2019.03.12 16:07</span>-->
                                                         </div>
                                                         <div class="meta">
-                                                            <span>写了 236585 字，获得了 655 个喜欢</span>
+                                                            <span>写了 {{item.toUserWordsCount}} 字，获得了 {{item.toUserPraisedCount}} 个喜欢</span>
                                                         </div>
                                                     </div>
                                                 </li>
@@ -113,6 +112,8 @@
 
                 blogUserInfo: {},
 
+                blogUserFollows:[],
+                blogUserFans:[],
             }
         },
         components: {
@@ -123,7 +124,26 @@
             BlogUserAside,
         },
         methods:{
-
+            /**
+             * 获取我的关注
+             */
+            getMyFollows(blogUserId){
+                this.$axios.get('/api-user/user/fans/myFollow/get?blogUserId=' + blogUserId).then(res => {
+                    const info = res.data.data  ;
+                    console.info("获取我的关注:")
+                    console.info(JSON.stringify(info))
+                    this.blogUserFollows = info;
+                });
+            },
+            /**
+             * 获取我的粉丝
+             */
+            getMyFans(blogUserId){
+                this.$axios.get('/api-user/user/fans/myFans/get?blogUserId=' + blogUserId).then(res => {
+                    const info = res.data.data;
+                    this.blogUserFans = info;
+                });
+            }
         },
         created() {
             //显示“关注”/“粉丝”
@@ -160,7 +180,9 @@
             }
             //end
 
-
+            //getMyFans
+            this.getMyFollows(blogUserId);
+            this.getMyFans(blogUserId);
         },
         mounted() {
             VueEvent.$on('blog_top_activeName', function (data) {
