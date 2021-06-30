@@ -9,9 +9,16 @@ import "element-ui/lib/theme-chalk/index.css"
 import axios from 'axios'
 //引入自定义axios.js进行全局拦截
 import "./common/axios"
-//mardown工具
+//富文本编辑器：mardown工具
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
+
+//富文本编辑器：vue-quill-editor
+import VueQuillEditor from 'vue-quill-editor'
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+
 //公共常量
 import global from "./common/Global.vue"
 
@@ -26,6 +33,7 @@ Vue.config.productionTip = false
 //添加使用element-ui
 Vue.use(Element)
 Vue.use(mavonEditor)
+Vue.use(VueQuillEditor)
 Vue.prototype.$axios=axios
 Vue.prototype.GLOBAL=global
 Vue.prototype.publicMethod = publicMethod

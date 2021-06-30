@@ -6,28 +6,96 @@
                 <Header/>
             </el-header>
 
-            <el-row style="margin: 0 auto;">
-                <div>
-                    <div style="width: 800px;float: left;">
-                        <el-main  class="main detail">
-                            <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-                                <el-form-item label="标题" prop="title">
-                                    <el-input v-model="ruleForm.title"></el-input>
-                                </el-form-item>
+            <div style="margin-top: 40px;">
 
-                                <el-form-item label="内容" prop="content">
-                                    <mavon-editor v-model="ruleForm.content"
-                                                  defaultOpen ='preview'></mavon-editor>
-                                </el-form-item>
-                                <el-form-item>
-                                    <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
-                                    <el-button @click="resetForm('ruleForm')">重置</el-button>
-                                </el-form-item>
-                            </el-form>
-                        </el-main>
+                <div class="editor-title">
+                    <el-input
+                            class="rule-input-title"
+                            type="text"
+                            placeholder="请在这里输入标题"
+                            v-model="textTitle"
+                            maxlength="64"
+                            show-word-limit
+                    ></el-input>
+                    <el-input
+                            class="rule-input-author"
+                            type="text"
+                            placeholder="请在这里输入作者"
+                            v-model="textAuthor"
+                            maxlength="10"
+                            show-word-limit
+                    ></el-input>
+                </div>
+                <Editor v-model="article.content"></Editor>
+
+                <div class="editor-extend">
+                    <el-divider></el-divider>
+                    <div class="setting-group__cover_area">
+                        <div class="setting-group__title">
+                            封面和摘要
+                        </div>
+                        <div class="setting-group__content">
+                            <div class="js_cover">
+                                <el-upload
+                                    class="avatar-uploader"
+                                    action="https://jsonplaceholder.typicode.com/posts/"
+                                    :show-file-list="false"
+                                    :on-success="handleAvatarSuccess"
+                                    :before-upload="beforeAvatarUpload">
+                                <img v-if="imageUrl" :src="imageUrl" class="avatar">
+                                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                                </el-upload>
+                            </div>
+                            <div class="js_description_area">
+                                <el-input
+                                        style="width: 300px;"
+                                        type="textarea"
+                                        placeholder="请输入内容"
+                                        v-model="textarea"
+                                        maxlength="30"
+                                        show-word-limit
+                                >
+                                </el-input>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </el-row>
+            </div>
+
+            <div class="form-save">
+                <div style="padding: 20px 60px 15px 30px;">
+                    <div style="float: left; margin-top: 5px;vertical-align: middle; font-size: 16px;">正文字数 0</div>
+                    <div style="float: right;">
+                        <el-button type="success">保存</el-button>
+                        <el-button >预览</el-button>
+                    </div>
+                </div>
+            </div>
+
+            <!--<el-row style="margin: 0 auto;">-->
+                <!--<div>-->
+                    <!--<div style="width: 800px;float: left;">-->
+                        <!--<el-main  class="main detail">-->
+                            <!--<el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">-->
+                                <!--<el-form-item label="标题" prop="title">-->
+                                    <!--<el-input v-model="ruleForm.title"></el-input>-->
+                                <!--</el-form-item>-->
+
+                                <!--<el-form-item label="内容" prop="content">-->
+                                    <!--<mavon-editor v-model="ruleForm.content"-->
+                                                  <!--defaultOpen ='preview'></mavon-editor>-->
+
+
+                                <!--</el-form-item>-->
+                                <!--<el-form-item>-->
+                                    <!--<el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>-->
+                                    <!--<el-button @click="resetForm('ruleForm')">重置</el-button>-->
+                                <!--</el-form-item>-->
+                            <!--</el-form>-->
+                        <!--</el-main>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</el-row>-->
 
         </el-container>
     </div>
@@ -36,11 +104,24 @@
 <script>
     import Header from '@/components/common/Header.vue'
     import Footer from '@/components/common/Footer.vue'
+    import Editor from '@/components/common/QuillEditor.vue'
 
     export default {
         name: "BlogEdit",
+        components: {
+            Header,
+            Footer,
+            Editor,
+        },
         data() {
             return {
+                textTitle: '',
+                textAuthor: '',
+                textarea: '',
+                imageUrl: '',
+                article: {
+                    content: '',
+                },
                 ruleForm: {
                     id: '',
                     title: '',
@@ -81,10 +162,6 @@
                     navigation: true // 导航目录
                 }
             };
-        },
-        components: {
-            Header,
-            Footer,
         },
         created() {
             const _this = this
@@ -132,12 +209,28 @@
             },
             resetForm(formName) {
                 this.$refs[formName].resetFields();
+            },
+
+            handleAvatarSuccess(res, file) {
+                this.imageUrl = URL.createObjectURL(file.raw);
+            },
+            beforeAvatarUpload(file) {
+                const isJPG = file.type === 'image/jpeg';
+                const isLt2M = file.size / 1024 / 1024 < 2;
+
+                if (!isJPG) {
+                    this.$message.error('上传头像图片只能是 JPG 格式!');
+                }
+                if (!isLt2M) {
+                    this.$message.error('上传头像图片大小不能超过 2MB!');
+                }
+                return isJPG && isLt2M;
             }
+
         }
     }
 </script>
-
-<style scoped>
+<style >
     .main {
         height: auto;
         text-align: left;
@@ -152,5 +245,139 @@
         min-height: 300px;
         padding: 20px;
         box-sizing: border-box;
+    }
+    .form-save {
+        position: fixed;
+        background-color: rgb(255,255,255);
+        left:0;
+        right:0;
+        bottom:0;
+        width:50%;
+        height:80px;
+        margin: 0 auto;
+        z-index: 20;
+        box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
+    }
+
+    /**
+    编辑器样式
+     */
+    .editor {
+        height: 100%;
+    }
+    .ql-toolbar {
+        background-color: rgb(250,250,250);
+        position: fixed;
+        top: 60px;
+        z-index: 20;
+        width: 100%;
+        border: none !important;
+    }
+    .ql-container {
+        border: none !important;
+        min-height: 200px;
+        height: auto;
+    }
+    .ql-editor {
+        padding: 20px;
+        margin: 0 auto;
+        width: 50%;
+        min-height: 200px;
+        height: auto;
+        z-index: 10;
+        background-color: rgb(255,255,255);
+    }
+    .ql-editor.ql-blank::before {
+        margin: 0 auto;
+        width: 50%;
+        color: rgba(0,0,0,0.6);
+        content: attr(data-placeholder);
+        font-style: italic;
+        padding-left: 45px;
+        pointer-events: none;
+        position: absolute;
+        right: 15px;
+    }
+    /**
+    文章设置
+    */
+    .editor-title {
+        margin: 100px auto 0;
+        width: 50%;
+        box-sizing: border-box;
+        padding: 20px;
+        left: 0;
+        right: 0;
+        background-color: rgb(255,255,255);
+    }
+    .editor-extend {
+        background-color: rgb(255,255,255);
+        left: 0;
+        right: 0;
+        box-sizing: border-box;
+        padding: 1px 20px 100px 20px;
+        margin: 0 auto;
+        width: 50%;
+        color: rgba(0,0,0,0.6);
+    }
+    .setting-group__title {
+        font-size: 16px;
+        line-height: 20px;
+        margin-bottom: 20px;
+    }
+    .setting-group__cover_area {
+        margin-bottom: 50px;
+        text-align: left;
+    }
+    .setting-group__content {
+
+    }
+    /**
+    标题input去边框
+    */
+    .rule-input-title input.el-input__inner {
+        border: none;
+        font-size: 20px;
+    }
+    .rule-input-author input.el-input__inner {
+        border: none;
+        font-size: 14px;
+    }
+    /**
+    封面
+     */
+    .js_cover {
+        display: inline-block;
+    }
+    .avatar-uploader .el-upload {
+        display: none;
+        border: 1px dashed #d9d9d9;
+        border-radius: 6px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+    .avatar-uploader .el-upload:hover {
+        border-color: #409EFF;
+    }
+    .avatar-uploader-icon {
+        font-size: 28px;
+        color: #8c939d;
+        width: 200px;
+        height: 80px;
+        line-height: 60px;
+        text-align: center;
+    }
+    .avatar {
+        width: 80px;
+        height: 80px;
+        display: block;
+    }
+    /**
+    摘要
+     */
+    .js_description_area {
+        margin-left: 20px;
+        display:inline-block;
     }
 </style>

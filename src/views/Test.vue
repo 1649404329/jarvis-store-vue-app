@@ -1,6 +1,22 @@
 <template>
-    <div id="app" class="wrapper" style="height:500px;overflow: auto;">
+    <div id="app" class="wrapper" style="overflow: auto;">
+        <Footer/>
         <el-backtop target=".wrapper" :visibility-height="20" :right="40" :bottom="40"></el-backtop>
+
+        <div style=" width: 50%;">
+            <quill-editor class="editor"
+                          ref="myTextEditor"
+                          v-model="content"
+                          :options="editorOption"
+                          @blur="onEditorBlur($event)"
+                          @focus="onEditorFocus($event)"
+                          @ready="onEditorReady($event)"
+                          @change="onEditorChange($event)">
+            </quill-editor>
+        </div>
+
+        <!--<Editor v-model="article.content"/>-->
+
 
         <el-row style="height: 10px;">
             <el-col :span="24">
@@ -79,10 +95,19 @@
 </template>
 
 <script>
+    import Editor from '@/components/common/QuillEditor.vue'
+    import Footer from '@/components/common/Footer.vue'
     export default {
         name: "Test",
+        components: {
+            Editor,
+            Footer
+        },
         data() {
             return {
+                article: {
+                    content: '',
+                },
                 menuList: [
                     {
                         "id":125,
@@ -198,13 +223,61 @@
                     }
 
                 ],
-            };
+
+                //编辑器
+                content: null,
+                editorOption: {
+                    modules: {
+                        toolbar: [
+                            // 加粗 斜体 下划线 删除线 代码块 公式 图片 视频
+                            ["bold", "italic", "underline", "strike", "formula", "image", "video", "clean"],
+                            // 引用  代码块
+                            ["blockquote", "code-block"],
+                            // 1、2 级标题
+                            [{ header: 1 }, { header: 2 }],
+                            // 有序、无序列表
+                            [{ list: "ordered" }, { list: "bullet" }],
+                            // 上标/下标
+                            [{ script: "sub" }, { script: "super" }],
+                            // 缩进
+                            [{ indent: "-1" }, { indent: "+1" }],
+                            // 文本方向
+                            // [{'direction': 'rtl'}],
+                            // 字体大小
+                            [{ size: ["small", false, "large", "huge"] }],
+                            // 标题
+                            [{ header: [1, 2, 3, 4, 5, 6, false] }],
+                            // 字体颜色、字体背景颜色
+                            [{ color: [] }, { background: [] }],
+                            // 字体种类
+                            [{ font: [] }],
+                            // 对齐方式
+                            [{ align: [] }],
+                            // 清除文本格式
+                            ["clean"],
+                            // 链接、图片、视频
+                            ["link", "image", "video"],
+
+                        ], //工具菜单栏配置
+                    },
+                    placeholder: '请在这里记录你的美好瞬间', //提示
+                    readyOnly: false, //是否只读
+                    theme: 'snow', //主题 snow/bubble
+                    syntax: true, //语法检测
+                }//editorOption
+            }//return;
         },
         created() {
             //this.getMenuList();
         },
         mounted() {
             window.addEventListener("scroll",this.showbtn,true);
+
+        },
+        computed: {
+            editor() {
+                return this.$refs.myTextEditor.quillEditor;
+            }
         },
         methods: {
             getMenuList() {
@@ -235,7 +308,21 @@
                         clearInterval(timer);
                     }
                 },30)
-            }
+            },
+
+
+
+            // 失去焦点
+            onEditorBlur(editor) {},
+            // 获得焦点
+            onEditorFocus(editor) {},
+            // 开始
+            onEditorReady(editor) {},
+            // 值发生变化
+            onEditorChange(editor) {
+                this.content = editor.html;
+                console.log(editor);
+            },
 
         },
 
