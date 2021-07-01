@@ -1,6 +1,5 @@
 <template>
     <div id="app" class="wrapper" style="overflow: auto;">
-        <Footer/>
         <el-backtop target=".wrapper" :visibility-height="20" :right="40" :bottom="40"></el-backtop>
 
         <div style=" width: 50%;">
@@ -91,6 +90,7 @@
             </el-col>
         </el-row>
 
+        <Footer/>
     </div>
 </template>
 
@@ -332,5 +332,15 @@
 <style scoped>
     .el-row {
         width: 200px;
+    }
+</style>
+<style scoped>
+    .ql-toolbar {
+        background-color: rgb(250,250,250);
+        position: relative;
+        top: 60px;
+        z-index: 20;
+        width: 100%;
+        border: none !important;
     }
 </style>

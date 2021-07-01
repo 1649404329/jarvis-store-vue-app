@@ -279,7 +279,7 @@
         height: auto;
     }
     .ql-editor {
-        padding: 20px;
+        padding: 26px;
         margin: 0 auto;
         width: 50%;
         min-height: 200px;
@@ -305,7 +305,7 @@
         margin: 100px auto 0;
         width: 50%;
         box-sizing: border-box;
-        padding: 20px;
+        padding: 10px;
         left: 0;
         right: 0;
         background-color: rgb(255,255,255);
@@ -315,7 +315,7 @@
         left: 0;
         right: 0;
         box-sizing: border-box;
-        padding: 1px 20px 100px 20px;
+        padding: 1px 26px 100px 26px;
         margin: 0 auto;
         width: 50%;
         color: rgba(0,0,0,0.6);
