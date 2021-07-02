@@ -13,7 +13,7 @@
                             class="rule-input-title"
                             type="text"
                             placeholder="请在这里输入标题"
-                            v-model="textTitle"
+                            v-model="article.textTitle"
                             maxlength="64"
                             show-word-limit
                     ></el-input>
@@ -21,12 +21,12 @@
                             class="rule-input-author"
                             type="text"
                             placeholder="请在这里输入作者"
-                            v-model="textAuthor"
+                            v-model="article.textAuthor"
                             maxlength="10"
                             show-word-limit
                     ></el-input>
                 </div>
-                <Editor v-model="article.content"></Editor>
+                <div class="my-editor-area"><Editor v-model="article.content"></Editor></div>
 
                 <div class="editor-extend">
                     <el-divider></el-divider>
@@ -42,7 +42,7 @@
                                     :show-file-list="false"
                                     :on-success="handleAvatarSuccess"
                                     :before-upload="beforeAvatarUpload">
-                                <img v-if="imageUrl" :src="imageUrl" class="avatar">
+                                <img v-if="imageUrl" :src="article.imageUrl" class="avatar">
                                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                                 </el-upload>
                             </div>
@@ -51,7 +51,7 @@
                                         style="width: 300px;"
                                         type="textarea"
                                         placeholder="请输入内容"
-                                        v-model="textarea"
+                                        v-model="article.textarea"
                                         maxlength="30"
                                         show-word-limit
                                 >
@@ -66,7 +66,7 @@
                 <div style="padding: 20px 60px 15px 30px;">
                     <div style="float: left; margin-top: 5px;vertical-align: middle; font-size: 16px;">正文字数 0</div>
                     <div style="float: right;">
-                        <el-button type="success">保存</el-button>
+                        <el-button type="success" @click="saveMyArticle()">保存</el-button>
                         <el-button >预览</el-button>
                     </div>
                 </div>
@@ -115,12 +115,13 @@
         },
         data() {
             return {
-                textTitle: '',
-                textAuthor: '',
-                textarea: '',
-                imageUrl: '',
                 article: {
+                    id:'',
+                    textTitle: '',
                     content: '',
+                    textAuthor: '',
+                    imageUrl: '',
+                    textarea: '',
                 },
                 ruleForm: {
                     id: '',
@@ -179,6 +180,15 @@
 
         },
         methods: {
+            //保存文章
+            saveMyArticle(){
+                this.$message({
+                    type: 'info',
+                    message: this.article,
+                });
+            },
+
+            //通过form表单保存文章
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
@@ -230,7 +240,53 @@
         }
     }
 </script>
-<style >
+<style>
+    .my-editor-area {
+        margin: 0 auto;
+        min-height: 300px;
+        height: auto;
+    }
+    /**
+    编辑器样式
+     */
+    .editor {
+        height: 100%;
+    }
+    .ql-toolbar {
+        background-color: rgb(250,250,250);
+        position: fixed;
+        top: 60px;
+        z-index: 21;
+        width: 100%;
+        border: none !important;
+    }
+    .ql-container {
+        border: none !important;
+        min-height: 200px;
+        height: auto;
+    }
+    .ql-editor {
+        padding: 26px;
+        margin: 0 auto;
+        width: 50%;
+        min-height: 300px;
+        height: auto;
+        z-index: 10;
+        background-color: rgb(255,255,255);
+    }
+    .ql-editor.ql-blank::before {
+        margin: 0 auto;
+        width: 50%;
+        color: rgba(0,0,0,0.6);
+        content: attr(data-placeholder);
+        font-style: italic;
+        padding-left: 45px;
+        pointer-events: none;
+        position: absolute;
+        right: 15px;
+    }
+</style>
+<style>
     .main {
         height: auto;
         text-align: left;
@@ -259,45 +315,7 @@
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
     }
 
-    /**
-    编辑器样式
-     */
-    .editor {
-        height: 100%;
-    }
-    .ql-toolbar {
-        background-color: rgb(250,250,250);
-        position: fixed;
-        top: 60px;
-        z-index: 20;
-        width: 100%;
-        border: none !important;
-    }
-    .ql-container {
-        border: none !important;
-        min-height: 200px;
-        height: auto;
-    }
-    .ql-editor {
-        padding: 26px;
-        margin: 0 auto;
-        width: 50%;
-        min-height: 200px;
-        height: auto;
-        z-index: 10;
-        background-color: rgb(255,255,255);
-    }
-    .ql-editor.ql-blank::before {
-        margin: 0 auto;
-        width: 50%;
-        color: rgba(0,0,0,0.6);
-        content: attr(data-placeholder);
-        font-style: italic;
-        padding-left: 45px;
-        pointer-events: none;
-        position: absolute;
-        right: 15px;
-    }
+
     /**
     文章设置
     */
@@ -318,6 +336,7 @@
         padding: 1px 26px 100px 26px;
         margin: 0 auto;
         width: 50%;
+        height: 100%;
         color: rgba(0,0,0,0.6);
     }
     .setting-group__title {

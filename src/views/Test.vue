@@ -337,7 +337,7 @@
 <style scoped>
     .ql-toolbar {
         background-color: rgb(250,250,250);
-        position: relative;
+        position: fixed;
         top: 60px;
         z-index: 20;
         width: 100%;
