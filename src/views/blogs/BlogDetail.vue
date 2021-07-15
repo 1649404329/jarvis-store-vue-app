@@ -28,6 +28,9 @@
                 <div class="left-fixed-btn">
                 <el-button plain circle icon="iconfont icon-dianzan"></el-button><br>扫一扫</div>
 
+                <div class="left-fixed-btn">
+                <el-button plain circle icon="iconfont icon-dianzan" @click="hrefToBlogAddPage()"></el-button><br>我要创作</div>
+
             </div>
 
             <div>
@@ -49,13 +52,10 @@
                                             <div style="display: block;margin-left: 8px;">
                                                 <div>
                                                     <span>{{blog.userId}}作者 </span>
-                                                    <!--<el-button round style="font-size:12px">圆角按钮</el-button>-->
 
-                                                    <el-link icon="el-icon-edit" v-if="ownBlog">
-                                                        <router-link :to="{name:'BlogEdit',params:{blogId:blog.id}}">
-                                                            编辑
-                                                        </router-link>
-                                                    </el-link>
+                                                    <el-button round plain type="danger" style="font-size:12px;">关注ta</el-button>
+                                                    <el-button v-if="ownBlog" type="primary" icon="el-icon-edit" circle @click="hrefToBlogEditPage()"></el-button>
+
                                                 </div>
                                                 <div>
                                                     <span><i class="el-icon-s-flag"></i>{{this.publicMethod.dateFormat(blog.createTime)}} </span>
@@ -456,8 +456,44 @@
             },
             stopPlayPopover(){
 
-            }
+            },
 
+            //跳转到页面编辑
+            hrefToBlogEditPage(){
+                let blogId = this.blog.id;
+                this.$router.push({
+                    name: 'BlogEdit',
+                    params:{
+                        blogId: blogId
+                    }
+                });
+
+                // let route = this.$router.resolve({
+                //     name: 'BlogEdit',
+                //     params:{
+                //         blogId: blogId
+                //     }
+                // });
+                // window.open(route.href, '_blank');
+            },
+            //跳转到页面编辑新增页面
+            hrefToBlogAddPage(){
+                let blogId = this.blog.id;
+                this.$router.push({
+                    name: 'BlogAdd',
+                    params:{
+                        blogId: blogId
+                    }
+                });
+
+                // let route = this.$router.resolve({
+                //     name: 'BlogAdd',
+                //     params:{
+                //         blogId: blogId
+                //     }
+                // });
+                // window.open(route.href, '_blank');
+            },
         }
     }
 </script>

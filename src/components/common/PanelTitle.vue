@@ -20,7 +20,7 @@
 
 <style scoped>
     .title {
-        border-left: 6px solid dodgerblue;
+        border-left: 6px solid rgb(255,130,0);
         text-align: left;
         padding-left: 4px;
         margin-left: 10px;

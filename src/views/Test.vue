@@ -106,7 +106,7 @@
         data() {
             return {
                 article: {
-                    content: '',
+                    content: '# kkkkkkk\\n151514***斜体***\\n```\\ndsdsd\\n````\\n==sdsadda==',
                 },
                 menuList: [
                     {
@@ -225,7 +225,7 @@
                 ],
 
                 //编辑器
-                content: null,
+                content: "# kkkkkkk\\n151514***斜体***\\n```\\ndsdsd\\n````\\n==sdsadda==",
                 editorOption: {
                     modules: {
                         toolbar: [

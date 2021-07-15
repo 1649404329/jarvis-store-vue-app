@@ -28,6 +28,7 @@
 <script>
     //封装quill-editor成可以直接引入调用的vue组件
     import { quillEditor } from "vue-quill-editor";
+    import { addQuillTitle } from "../../common/quill-title.js";
     import "quill/dist/quill.core.css";
     import "quill/dist/quill.snow.css";
     import "quill/dist/quill.bubble.css";
@@ -106,6 +107,9 @@
                     // token: sessionStorage.token
                 } // 有的图片服务器要求请求头需要有token
             };
+        },
+        mounted(){
+            addQuillTitle();
         },
 
         methods: {

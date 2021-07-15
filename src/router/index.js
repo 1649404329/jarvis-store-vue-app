@@ -72,7 +72,7 @@ const routes = [
   {
     path: '/blog/add',
     name: 'BlogAdd',
-    component: BlogEdit,
+    component: BlogAdd,
     meta:{
       requireAuth:true
     }

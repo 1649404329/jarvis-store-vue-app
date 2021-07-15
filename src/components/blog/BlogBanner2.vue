@@ -2,32 +2,39 @@
     <div>
         <el-menu
                 default-active="3"
+                active-text-color="rgb(255,130,0)"
                 class="el-menu-vertical-demo"
                 @open="handleOpen"
                 @close="handleClose"
                 style="min-height: 350px;width:auto;height:auto;overflow-x: hidden;text-align: left;overflow-y: hidden;">
-            <el-menu-item index="home">
-                <i class="el-icon-document"></i>
-                <span slot="title">首页</span>
-            </el-menu-item>
-            <el-menu-item index="3" disabled>
-                <i class="el-icon-document"></i>
-                <span slot="title">我的收藏</span>
-            </el-menu-item>
-            <el-menu-item index="2">
-                <i class="el-icon-menu"></i>
-                <span slot="title">我的赞</span>
+            <el-menu-item index="1">
+                <span slot="title" style="font-size: 20px;">首页</span>
             </el-menu-item>
             <el-menu-item index="4">
                 <i class="el-icon-setting"></i>
-                <span slot="title">我的创作</span>
+                <span slot="title">全部关注</span>
+            </el-menu-item>
+            <el-menu-item index="home">
+                <i class="el-icon-document"></i>
+                <span slot="title">最新热点</span>
             </el-menu-item>
             <el-menu-item index="4">
                 <i class="el-icon-setting"></i>
                 <span slot="title">特别关注</span>
             </el-menu-item>
+            <el-menu-item index="3" disabled>
+                <i class="el-icon-document"></i>
+                <span slot="title">赞和收藏</span>
+            </el-menu-item>
+            <el-menu-item index="4">
+                <i class="el-icon-setting"></i>
+                <span slot="title">我的创作</span>
+            </el-menu-item>
+            <!--<template slot="title"><el-divider></el-divider></template>-->
             <el-menu-item-group>
-                <template slot="title"><el-divider></el-divider></template>
+                <el-menu-item index="1" style="border-top: 1px solid rgb(245,245,245)">
+                    <span slot="title" style="font-size: 16px;">自定义分组</span>
+                </el-menu-item>
                 <el-menu-item index="4">
                     <i class="el-icon-setting"></i>
                     <span slot="title">投票</span>

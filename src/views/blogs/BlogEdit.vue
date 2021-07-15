@@ -26,7 +26,10 @@
                             show-word-limit
                     ></el-input>
                 </div>
-                <div class="my-editor-area"><Editor v-model="article.content"></Editor></div>
+                <div class="my-editor-area">
+                    <!--<Editor v-model="article.content" @ready="editReady($event)"></Editor>-->
+                    <quill-editor v-model="article.content" :options="editorOption"></quill-editor>
+                </div>
 
                 <div class="editor-extend">
                     <el-divider></el-divider>
@@ -35,17 +38,17 @@
                             封面和摘要
                         </div>
                         <div class="setting-group__content">
-                            <div class="js_cover">
-                                <el-upload
-                                    class="avatar-uploader"
-                                    action="https://jsonplaceholder.typicode.com/posts/"
-                                    :show-file-list="false"
-                                    :on-success="handleAvatarSuccess"
-                                    :before-upload="beforeAvatarUpload">
-                                <img v-if="imageUrl" :src="article.imageUrl" class="avatar">
-                                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                                </el-upload>
-                            </div>
+                            <!--<div class="js_cover">-->
+                                <!--<el-upload-->
+                                    <!--class="avatar-uploader"-->
+                                    <!--action="https://jsonplaceholder.typicode.com/posts/"-->
+                                    <!--:show-file-list="false"-->
+                                    <!--:on-success="handleAvatarSuccess"-->
+                                    <!--:before-upload="beforeAvatarUpload">-->
+                                <!--<img v-if="imageUrl" :src="article.imageUrl" class="avatar">-->
+                                <!--<i v-else class="el-icon-plus avatar-uploader-icon"></i>-->
+                                <!--</el-upload>-->
+                            <!--</div>-->
                             <div class="js_description_area">
                                 <el-input
                                         style="width: 300px;"
@@ -102,16 +105,25 @@
 </template>
 
 <script>
+    //页面组件
     import Header from '@/components/common/Header.vue'
     import Footer from '@/components/common/Footer.vue'
-    import Editor from '@/components/common/QuillEditor.vue'
+    //富文本编辑器
+    import { quillEditor } from "vue-quill-editor";
+    import { addQuillTitle } from "../../common/quill-title.js";
+    import "quill/dist/quill.core.css";
+    import "quill/dist/quill.snow.css";
+    import "quill/dist/quill.bubble.css";
+
+    // import Editor from "@/components/common/QuillEditor.vue"
 
     export default {
         name: "BlogEdit",
         components: {
             Header,
             Footer,
-            Editor,
+            // Editor,
+            quillEditor,
         },
         data() {
             return {
@@ -138,7 +150,44 @@
                     ]
                 },
 
-
+                //新
+                editorOption: {
+                    placeholder: "请在这里写入",
+                    theme: "snow",
+                    modules: {
+                        toolbar: {
+                            container: [
+                                ["bold", "italic", "underline", "strike"], // toggled buttons
+                                [{ header: 1 }, { header: 2 }], // custom button values
+                                [{ list: "ordered" }, { list: "bullet" }],
+                                [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
+                                [{ direction: "rtl" }], // text direction
+                                [{ size: ["small", false, "large", "huge"] }], // custom dropdown
+                                [{ header: [1, 2, 3, 4, 5, 6, false] }],
+                                [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+                                [
+                                    {
+                                        font: [
+                                            false,
+                                            "SimSun",
+                                            "SimHei",
+                                            "Microsoft-YaHei",
+                                            "KaiTi",
+                                            "FangSong",
+                                            "Arial",
+                                            "sans-serif"
+                                        ]
+                                    }
+                                ],
+                                [{ align: [] }],
+                                ["image"],
+                                ["video"],
+                                ["clean"]
+                            ]
+                        }
+                    }
+                },
+                //旧
                 toolbars: {
                     bold: true, // 粗体
                     italic: true, // 斜体
@@ -165,21 +214,40 @@
             };
         },
         created() {
-            const _this = this
             const blogId = this.$route.params.blogId
-            if (blogId) {
-                this.$axios.get('/post/blog/' + blogId).then(res => {
-                    const blog = res.data.data
-                    _this.ruleForm.id = blog.id
-                    _this.ruleForm.title = blog.title
-                    _this.ruleForm.content = blog.content
-                })
-            }
+            this.queryArticle(blogId);
         },
         mounted(){
+            const blogId = this.$route.params.blogId
+            this.queryArticle(blogId);
 
+            //本页面加载富文本编辑器需要使用的初始化
+            addQuillTitle();
         },
         methods: {
+            //执行编辑器富文本渲染
+            editReady(quill){
+                document.querySelector("div.ql-editor").innerHTML =  "==sdsadda==";
+            },
+            //查询文章
+            queryArticle(blogId){
+                const _this = this
+
+                console.log("编辑页博客id="+blogId)
+                if (blogId) {
+                    this.$axios.get('/api-activity/blog/detail/' + blogId).then(res => {
+                        const blog = res.data.data
+                        _this.ruleForm.id = blog.id
+                        _this.ruleForm.title = blog.title
+                        _this.ruleForm.content = blog.content
+                        _this.article.id = blog.id
+                        _this.article.textTitle = blog.title
+                        _this.article.imageUrl = blog.imageUrl
+                        _this.article.content = blog.content
+                        _this.article.textAuthor = blog.username
+                    })
+                }
+            },
             //保存文章
             saveMyArticle(){
                 this.$message({

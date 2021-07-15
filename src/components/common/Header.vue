@@ -1,16 +1,16 @@
 <template>
     <div style="margin: 0 auto;width: 1300px;">
         <el-menu :default-active="$route.path" router class="el-menu-demo" mode="horizontal" @select="handleSelect"
-                 text-color="rgb(57,77,97)" active-text-color="rgb(91,137,230)">
+                 text-color="rgb(57,77,97)" active-text-color="rgb(255,130,0)">
             <el-menu-item index="/home" style="border-bottom: 2px solid #FFF; color: rgb(0,0,0);">
                 <!--<el-avatar :size="50">JARVIS</el-avatar>-->
                 <el-avatar :src="logoUrl" :size="40"></el-avatar>
                 <b> 小店</b><br>
             </el-menu-item>
 
-            <el-menu-item index="/home">广场</el-menu-item>
+            <el-menu-item index="/blogHome" >首页</el-menu-item>
 
-            <el-menu-item index="/goodsHome">我的小店</el-menu-item>
+            <el-menu-item index="/home">滑板广场</el-menu-item>
 
             <el-submenu index="3" disabled>
                 <template slot="title">今日推荐</template>
@@ -25,12 +25,12 @@
                 </el-submenu>
             </el-submenu>
 
-            <el-menu-item index="/blogHome" >写点啥</el-menu-item>
-
-            <el-menu-item index="6" disabled>交易中心</el-menu-item>
+            <!--<el-menu-item index="6" disabled>交易中心</el-menu-item>-->
 
             <!--<el-menu-item index="6"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>-->
-            <el-menu-item index="/accountHome">账号管理</el-menu-item>
+            <el-menu-item index="/accountHome">我的主页</el-menu-item>
+
+            <el-menu-item index="/goodsHome">我的小店</el-menu-item>
 
             <el-submenu index="8" style="float: right;">
                 <template slot="title">
@@ -39,6 +39,7 @@
                 </template>
                 <el-menu-item index="8-1">已绑定手机号</el-menu-item>
                 <el-menu-item index="8-2">账号信息</el-menu-item>
+                <el-menu-item index="8-2">我的简文</el-menu-item>
                 <el-menu-item index="/login">退出登录</el-menu-item>
             </el-submenu>
 
