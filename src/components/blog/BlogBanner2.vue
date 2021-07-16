@@ -1,32 +1,29 @@
 <template>
     <div>
         <el-menu
-                default-active="3"
+                :default-active="$route.path"
+                router
                 active-text-color="rgb(255,130,0)"
                 class="el-menu-vertical-demo"
                 @open="handleOpen"
                 @close="handleClose"
                 style="min-height: 350px;width:auto;height:auto;overflow-x: hidden;text-align: left;overflow-y: hidden;">
-            <el-menu-item index="1">
+            <el-menu-item index="">
                 <span slot="title" style="font-size: 20px;">首页</span>
             </el-menu-item>
-            <el-menu-item index="4">
-                <i class="el-icon-setting"></i>
-                <span slot="title">全部关注</span>
-            </el-menu-item>
-            <el-menu-item index="home">
+            <el-menu-item index="/topicGroup">
                 <i class="el-icon-document"></i>
                 <span slot="title">最新热点</span>
             </el-menu-item>
-            <el-menu-item index="4">
+            <el-menu-item index="/topicGroupAllFocusOn">
                 <i class="el-icon-setting"></i>
-                <span slot="title">特别关注</span>
+                <span slot="title">全部关注</span>
             </el-menu-item>
-            <el-menu-item index="3" disabled>
+            <el-menu-item index="3" >
                 <i class="el-icon-document"></i>
                 <span slot="title">赞和收藏</span>
             </el-menu-item>
-            <el-menu-item index="4">
+            <el-menu-item index="4" disabled>
                 <i class="el-icon-setting"></i>
                 <span slot="title">我的创作</span>
             </el-menu-item>
@@ -38,6 +35,10 @@
                 <el-menu-item index="4">
                     <i class="el-icon-setting"></i>
                     <span slot="title">投票</span>
+                </el-menu-item>
+                <el-menu-item index="/blogHome">
+                    <i class="el-icon-setting"></i>
+                    <span slot="title">博客区</span>
                 </el-menu-item>
                 <el-menu-item index="4">
                     <i class="el-icon-setting"></i>
@@ -90,6 +91,7 @@
 </script>
 
 <style scoped>
-
-
+    .el-menu-item{
+        height: 50px;
+    }
 </style>

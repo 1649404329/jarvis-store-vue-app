@@ -1,14 +1,19 @@
 <template>
     <div style="margin: 0 auto;width: 1300px;">
-        <el-menu :default-active="$route.path" router class="el-menu-demo" mode="horizontal" @select="handleSelect"
-                 text-color="rgb(57,77,97)" active-text-color="rgb(255,130,0)">
+        <el-menu :default-active="$route.path"
+                 router
+                 class="el-menu-demo"
+                 mode="horizontal"
+                 @select="handleSelect"
+                 text-color="rgb(57,77,97)"
+                 active-text-color="rgb(255,130,0)">
             <el-menu-item index="/home" style="border-bottom: 2px solid #FFF; color: rgb(0,0,0);">
                 <!--<el-avatar :size="50">JARVIS</el-avatar>-->
                 <el-avatar :src="logoUrl" :size="40"></el-avatar>
                 <b> 小店</b><br>
             </el-menu-item>
 
-            <el-menu-item index="/blogHome" >首页</el-menu-item>
+            <el-menu-item index="/topicGroup" >首页</el-menu-item>
 
             <el-menu-item index="/home">滑板广场</el-menu-item>
 

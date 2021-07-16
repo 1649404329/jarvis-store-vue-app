@@ -10,7 +10,7 @@
                     <Header/>
                 </el-header>
 
-<!--<transition name="animated  el-zoom-in-bottom">-->
+<transition name="animated  el-zoom-in-bottom">
     <div v-show="showTransition" class="transition-box" >
                 <!--<el-row>-->
                     <!--<el-col :span="14" offset="6">-->
@@ -48,9 +48,9 @@
             top: 10px;" >
 
                 <el-col :span="16">
-                    <el-main>
+                    <el-main style="background-color: rgb(240,242,245);padding: 0">
                         <div class="main"  style=" overflow: hidden;">
-                            <Main/>
+                            <TopicMain/>
                         </div>
                     </el-main>
                 </el-col>
@@ -66,7 +66,7 @@
                                 </router-link>
                             </div>
                             <div style="padding: 14px;font-size: 14px;">
-                                <span>王淳的猫2</span>
+                                <span>王淳的猫1</span>
                                 <div class="bottom clearfix">
                                     <time class="time">{{  }}</time><br>
                                 </div>
@@ -101,71 +101,8 @@
         <!--todo end-->
 
 
-                <!--<el-row class="grayTopic">-->
-                    <!--&lt;!&ndash;<div>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<el-main style="padding:0;&ndash;&gt;-->
-                        <!--&lt;!&ndash;position: fixed;&ndash;&gt;-->
-                       <!--&lt;!&ndash;left: 20%;&ndash;&gt;-->
-                        <!--&lt;!&ndash;/*background-color: rgba(240, 242, 245, 1);*/">&ndash;&gt;-->
-                            <!--&lt;!&ndash;<BlogBanner2/>&ndash;&gt;-->
-                        <!--&lt;!&ndash;</el-main>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--<el-col :span="3" offset="3">-->
-                        <!--<el-main style="padding:0;/*background-color: rgba(240, 242, 245, 1);*/">-->
-                        <!--<BlogBanner2/>-->
-                        <!--</el-main>-->
-                    <!--</el-col>-->
-                    <!--<el-col :span="10" offset="0">-->
-                        <!--<el-main>-->
-                            <!--<div class="main"  style="height: auto">-->
-                                <!--<Main/>-->
-                            <!--</div>-->
-                        <!--</el-main>-->
-                    <!--</el-col>-->
-                    <!--<el-col :span="4">-->
-
-                        <!--<el-main  class="main" style="padding: 0px;text-align: center;width: 280px;">-->
-                            <!--<el-card shadow="hover" :body-style="{ padding: '0px',marginBottom: '80px' }">-->
-                                <!--<img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"-->
-                                     <!--class="image">-->
-                                <!--<div class="blog-avatar">-->
-                                    <!--<router-link :to="{name:'BlogUser'}">-->
-                                        <!--<el-avatar :src="avatarUrl" :size="72" style="vertical-align: middle;cursor: pointer;"></el-avatar>-->
-                                    <!--</router-link>-->
-                                <!--</div>-->
-                                <!--<div style="padding: 14px;font-size: 14px;">-->
-                                    <!--<span>王淳的猫2</span>-->
-                                    <!--<div class="bottom clearfix">-->
-                                        <!--<time class="time">{{ currentDate }}</time><br>-->
-                                    <!--</div>-->
-                                    <!--<el-col :span="6"><p><b>89</b></p>文章</el-col>-->
-                                    <!--<el-col :span="6"><p><b>46</b></p>评论</el-col>-->
-                                    <!--<el-col :span="6"><p><b>4324</b></p>浏览</el-col>-->
-                                    <!--<el-col :span="6"><p><b>786</b></p>获赞</el-col>-->
-                                <!--</div>-->
-                            <!--</el-card>-->
-                        <!--</el-main>-->
-
-                        <!--<div ref="scrollFixedNav1">-->
-                        <!--<el-main style="width: 280px;padding: 0">-->
-                            <!--<div class="main" >-->
-                                <!--<BlogRanking/>-->
-                            <!--</div>-->
-                        <!--</el-main>-->
-                        <!--</div>-->
-
-                        <!--<div ref="scrollFixedNav2">-->
-                        <!--<el-main style="width: 280px;padding: 0">-->
-                            <!--<div class="main" >-->
-                                <!--<HotTopic/>-->
-                            <!--</div>-->
-                        <!--</el-main>-->
-                        <!--</div>-->
-
-                    <!--</el-col>-->
-                <!--</el-row>-->
     </div>
-     <!--</transition>-->
+     </transition>
 
                 <el-footer>
                     <Footer/>
@@ -183,13 +120,14 @@
     import Footer from '@/components/common/Footer.vue'
     import Aside from '@/components/blog/Aside.vue'
     import Main from '@/components/blog/Main.vue'
+    import TopicMain from '@/components/topic/TopicMain.vue'
     import BlogBanner from '@/components/blog/BlogBanner.vue'
     import BlogBanner2 from '@/components/blog/BlogBanner2.vue'
     import BlogRanking from '@/components/blog/BlogRanking.vue'
     import HotTopic from '@/components/blog/HotTopic.vue'
 
     export default {
-        name: 'BlogHome',
+        name: 'TopicGroup',
         data() {
             return {
 
@@ -209,6 +147,7 @@
             Footer,
             Aside,
             Main,
+            TopicMain,
             BlogBanner,
             BlogBanner2,
             BlogRanking,

@@ -8,6 +8,8 @@ import Register from '../views/login/Register.vue'
 import Help from '../views/login/Help.vue'
 import Test from '../views/Test.vue'
 import MessageCenter from '../views/MessageCenter.vue'
+import TopicGroup from '../views/topic/TopicGroup.vue'
+import TopicGroupAllFocusOn from '../views/topic/TopicGroupAllFocusOn.vue'
 import BlogHome from '../views/blogs/BlogHome.vue'
 import BlogUser from '../views/blogs/BlogUser.vue'
 import BlogDetail from '../views/blogs/BlogDetail.vue'
@@ -56,6 +58,17 @@ const routes = [
     path:'/goodsHome',
     name:'GoodsHome',
     component:GoodsHome
+  },
+    //话题首页圈
+  {
+    path:'/topicGroup',
+    name:'TopicGroup',
+    component:TopicGroup
+  },
+  {
+    path:'/topicGroupAllFocusOn',
+    name:'TopicGroupAllFocusOn',
+    component:TopicGroupAllFocusOn
   },
 
     // 博客博文
