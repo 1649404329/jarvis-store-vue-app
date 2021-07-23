@@ -1,8 +1,41 @@
 <template>
     <div class="accountAside">
-        <div class="aside-row ">
-            <el-avatar shape="square" :size="100" :fit="fits[0]" :src="avatarUrl"></el-avatar>
-        </div>
+        <el-menu
+                :default-active="$route.path"
+                router
+                active-text-color="rgb(255,130,0)"
+                class="el-menu-vertical-demo"
+                @open="handleOpen"
+                @close="handleClose"
+                style="min-height: 350px;width:auto;
+                height:auto;overflow-x: hidden;border-right: none;
+                text-align: left;overflow-y: hidden;">
+            <el-menu-item index="">
+                <span slot="title" style="font-size: 20px;">个人主页</span>
+            </el-menu-item>
+            <el-menu-item index="/topicGroup">
+                <i class="el-icon-document"></i>
+                <span slot="title">我的主页</span>
+            </el-menu-item>
+            <el-menu-item index="/topicGroupAllFocusOn">
+                <i class="el-icon-setting"></i>
+                <span slot="title">我的关注</span>
+            </el-menu-item>
+            <el-menu-item index="/topicGroupAllFocusOn">
+                <i class="el-icon-setting"></i>
+                <span slot="title">我的粉丝</span>
+            </el-menu-item>
+            <el-menu-item index="3" >
+                <i class="el-icon-document"></i>
+                <span slot="title">我的收藏</span>
+            </el-menu-item>
+            <el-menu-item index="4">
+                <i class="el-icon-setting"></i>
+                <span slot="title">我的赞</span>
+            </el-menu-item>
+        </el-menu>
+
+
         <div class="aside-row ">
             <i class="el-icon-edit"></i>
         </div>

@@ -2,7 +2,7 @@
     <div class="block">
         <el-tabs><!--type="border-card"-->
             <el-tab-pane>
-                <span slot="label"><i class="el-icon-date"></i> 基础设置</span>
+                <span slot="label"><i class="el-icon-date"></i> 精选</span>
                 <div class="tab-pane-content-text">
                     <el-row>
                         <el-col :span="1"><i class="el-icon-lock"></i></el-col>
@@ -56,15 +56,13 @@
                 </div>
             </el-tab-pane>
 
-            <el-tab-pane label="粉丝管理">
+            <el-tab-pane label="微博">
                 <span>青春是一个短暂的美梦, 当你醒来时, 它早已消失无踪</span>
                 <el-divider></el-divider>
                 <span>少量的邪恶足以抵消全部高贵的品质, 害得人声名狼藉</span>
             </el-tab-pane>
 
-            <el-tab-pane label="我的关注">我的关注</el-tab-pane>
-
-            <el-tab-pane label="赞">赞</el-tab-pane>
+            <el-tab-pane label="相册">我的关注</el-tab-pane>
 
         </el-tabs>
     </div>

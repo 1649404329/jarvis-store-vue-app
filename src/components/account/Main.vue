@@ -1,5 +1,6 @@
 <template>
     <div>
+
         <AccountDetail/>
     </div>
 </template>
