@@ -7,7 +7,8 @@
                 class="el-menu-vertical-demo"
                 @open="handleOpen"
                 @close="handleClose"
-                style="min-height: 350px;width:auto;height:auto;overflow-x: hidden;text-align: left;overflow-y: hidden;">
+                style="width:auto;height:auto;overflow-x: hidden;text-align: left;overflow-y: hidden;
+box-sizing: border-box">
             <el-menu-item index="">
                 <span slot="title" style="font-size: 20px;">首页</span>
             </el-menu-item>
@@ -43,18 +44,6 @@
                 <el-menu-item index="4">
                     <i class="el-icon-setting"></i>
                     <span slot="title">热搜榜</span>
-                </el-menu-item>
-                <el-menu-item index="4">
-                    <i class="el-icon-setting"></i>
-                    <span slot="title">旅游 生活</span>
-                </el-menu-item>
-                <el-menu-item index="4">
-                    <i class="el-icon-setting"></i>
-                    <span slot="title">电影 小说</span>
-                </el-menu-item>
-                <el-menu-item index="4">
-                    <i class="el-icon-setting"></i>
-                    <span slot="title">运动 健身</span>
                 </el-menu-item>
             </el-menu-item-group>
             <!--<el-submenu index="1">-->

@@ -18,6 +18,7 @@
     background-color: rgba(240, 242, 245, 1);
     color: rgb(192, 194, 240);
     line-height: 60px;
+    height: auto;
     padding: 0 50px;
     box-sizing: border-box;
 }

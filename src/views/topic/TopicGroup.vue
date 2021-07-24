@@ -56,32 +56,32 @@
                 </el-col>
 
                 <el-col :span="8">
-                    <el-main  class="main" style="padding: 0px;text-align: center;width: 280px;">
-                        <el-card shadow="hover" :body-style="{ padding: '0px',marginBottom: '80px' }">
-                            <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-                                 class="image">
-                            <div class="blog-avatar">
-                                <router-link :to="{name:'BlogUser'}">
-                                    <el-avatar :src="avatarUrl" :size="72" style="vertical-align: middle;cursor: pointer;"></el-avatar>
-                                </router-link>
-                            </div>
-                            <div style="padding: 14px;font-size: 14px;">
-                                <span>王淳的猫1</span>
-                                <div class="bottom clearfix">
-                                    <time class="time">{{  }}</time><br>
-                                </div>
-                                <el-col :span="6"><p><b>89</b></p>文章</el-col>
-                                <el-col :span="6"><p><b>46</b></p>评论</el-col>
-                                <el-col :span="6"><p><b>4324</b></p>浏览</el-col>
-                                <el-col :span="6"><p><b>786</b></p>获赞</el-col>
-                            </div>
-                        </el-card>
-                    </el-main>
+                    <!--<el-main  class="main" style="padding: 0px;text-align: center;width: 280px;">-->
+                        <!--<el-card shadow="hover" :body-style="{ padding: '0px',marginBottom: '80px' }">-->
+                            <!--<img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"-->
+                                 <!--class="image">-->
+                            <!--<div class="blog-avatar">-->
+                                <!--<router-link :to="{name:'BlogUser'}">-->
+                                    <!--<el-avatar :src="avatarUrl" :size="72" style="vertical-align: middle;cursor: pointer;"></el-avatar>-->
+                                <!--</router-link>-->
+                            <!--</div>-->
+                            <!--<div style="padding: 14px;font-size: 14px;">-->
+                                <!--<span>王淳的猫1</span>-->
+                                <!--<div class="bottom clearfix">-->
+                                    <!--<time class="time">{{  }}</time><br>-->
+                                <!--</div>-->
+                                <!--<el-col :span="6"><p><b>89</b></p>文章</el-col>-->
+                                <!--<el-col :span="6"><p><b>46</b></p>评论</el-col>-->
+                                <!--<el-col :span="6"><p><b>4324</b></p>浏览</el-col>-->
+                                <!--<el-col :span="6"><p><b>786</b></p>获赞</el-col>-->
+                            <!--</div>-->
+                        <!--</el-card>-->
+                    <!--</el-main>-->
 
                     <div ref="scrollFixedNav1">
                         <el-main style="width: 280px;padding: 0">
                             <div class="main" >
-                                <BlogRanking/>
+                                <RecommendUserPage/>
                             </div>
                         </el-main>
                     </div>
@@ -125,6 +125,7 @@
     import BlogBanner2 from '@/components/blog/BlogBanner2.vue'
     import BlogRanking from '@/components/blog/BlogRanking.vue'
     import HotTopic from '@/components/blog/HotTopic.vue'
+    import RecommendUserPage from '@/components/topic/RecommendUserPage.vue'
 
     export default {
         name: 'TopicGroup',
@@ -152,6 +153,7 @@
             BlogBanner2,
             BlogRanking,
             HotTopic,
+            RecommendUserPage,
         },
         mounted(){
             this.showTransition=true;

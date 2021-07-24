@@ -35,26 +35,6 @@
             </el-menu-item>
         </el-menu>
 
-
-        <div class="aside-row ">
-            <i class="el-icon-edit"></i>
-        </div>
-
-        <div class="aside-row ">
-            登录手机号
-        </div>
-        <div class="aside-row ">
-            159****4812
-            <br>
-            <br>
-        </div>
-
-        <div class="aside-row ">
-            绑定微信
-        </div>
-        <div class="aside-row ">
-            Lee
-        </div>
     </div>
 </template>
 

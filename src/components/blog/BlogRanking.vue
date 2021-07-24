@@ -4,7 +4,7 @@
             <el-card class="box-card">
                 <div slot="header" class="clearfix">
                     <span>文章排行榜</span>
-                    <el-button @click="getByRecommend" style="float: right; padding: 3px 0" type="text"><i class="el-icon-refresh"></i> 换一批</el-button>
+                    <el-button @click="getByRecommend" style="float: right; padding: 3px 0;color: rgb(205,205,205);" type="text"><i class="el-icon-refresh"></i> 换一批</el-button>
                 </div>
                 <div :key="blog.id" v-for="blog in blogsOfRecommend">
                     <div class="whiteTopic font-small">
@@ -34,7 +34,12 @@
         data() {
             return {
                 url: "https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg",
-                blogsOfRecommend: {},
+                blogsOfRecommend: [
+                    {"title":"标题","createTime":1627121613000,'userId':0,'viewCount':23},
+                    {"title":"标题","createTime":1627121613000,'userId':0,'viewCount':23},
+                    {"title":"标题","createTime":1627121613000,'userId':0,'viewCount':23},
+                    {"title":"标题","createTime":1627121613000,'userId':0,'viewCount':23},
+                ],
             }
         },
         created() {
