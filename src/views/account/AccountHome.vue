@@ -7,7 +7,7 @@
                     <!--:preview-src-list="avatarUrls">-->
             <!--</el-image>-->
         <!--</div>-->
-        <el-backtop :visibility-height="20" :right="40" :bottom="40">UP</el-backtop>
+        <el-backtop :visibility-height="20" :right="40" :bottom="40">↑</el-backtop>
         <div class="accountHome">
             <!--<img alt="Vue logo" src="../assets/logo.png">-->
             <!--<HelloWorld msg="Welcome to Your Vue.js App ！ jarvis-store-vue-app！！"/>-->
@@ -29,7 +29,7 @@
                                         <el-row >
                                         <el-col :span="24">
                                         <el-main  class="main" style="padding: 0px;text-align: center;width: 660px;margin-bottom: 0px;">
-                                            <el-card shadow="hover" :body-style="{ padding: '0px',marginBottom: '80px' }">
+                                            <el-card shadow="hover" :body-style="{ padding: '0px', }">
                                                 <img src="https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg"
                                                      class="image">
                                                 <div class="blog-avatar">
@@ -39,19 +39,31 @@
                                                                   :size="100" style="vertical-align: middle;cursor: pointer;border-radius: 50%;"></el-image>
                                                     <!--</router-link>-->
                                                 </div>
-                                                <div style="padding: 14px;font-size: 14px;margin-top: 5 px;text-align: left;">
+                                                <div style="padding: 14px;font-size: 14px;margin-top: 5px;text-align: left;">
                                                     <div style=" margin-left: 140px;">
                                                         <div><span style="font-size: 18px;line-height: 26px;"><b>王淳的猫</b></span></div>
-                                                        <div><span style="font-size: 14px;"><time class="time"> 粉丝：50  关注： 2</time></span></div>
+                                                        <div style="font-size: 14px;">
+                                                            <a style="margin-right: 20px;">
+                                                                <span>粉丝&nbsp;&nbsp;</span><span>50  </span>
+                                                            </a>
+                                                            <a>
+                                                                <span>关注&nbsp;&nbsp;</span><span>2  </span>
+                                                            </a>
+                                                        </div>
                                                     </div>
-                                                    <div style="padding-left: 40px;line-height: 26px;">
-                                                        登录手机号 <br/>159****4812  <br/>绑定微信
+                                                    <div style=" margin-left: 20px;padding: 5px;">
+                                                        <el-tag type="warning">昨日发博31，阅读数100万+，互动数2.7万</el-tag>&nbsp;&nbsp;
+                                                        <el-tag type="warning">标签五</el-tag>&nbsp;&nbsp;
+                                                        <el-tag type="warning">互动数2.7万</el-tag>&nbsp;&nbsp;
+                                                        <el-tag type="warning">标签五</el-tag>&nbsp;&nbsp;
                                                     </div>
-                                                    <div style="text-align: center;">
-                                                        <el-col :span="6"><p><b>89</b></p>文章</el-col>
-                                                        <el-col :span="6"><p><b>46</b></p>评论</el-col>
-                                                        <el-col :span="6"><p><b>4324</b></p>浏览</el-col>
-                                                        <el-col :span="6"><p><b>786</b></p>获赞</el-col>
+                                                    <div class="description">
+                                                        <div><i class="iconfont icon-chakanguo"></i>登录手机号</div>
+                                                        <div><i class="iconfont icon-chakanguo"></i>159****4812</div>
+                                                        <div><i class="el-icon-date"></i>2010-12-12 加入微博&nbsp;&nbsp;<i class="el-icon-location-information"></i>广州</div>
+                                                        <div>
+                                                            <i class="iconfont icon-chakanguo"></i>文章 89 <i class="iconfont icon-chakanguo"></i>评论 89
+                                                            <i class="iconfont icon-chakanguo"></i>浏览 89 <i class="iconfont icon-chakanguo"></i>获赞 89</div>
                                                     </div>
                                                 </div>
                                             </el-card>
@@ -94,8 +106,6 @@
                 </el-container>
 
                 <el-footer><Footer/></el-footer>
-
-                <el-backtop target=".el-header" visibility-height="10"></el-backtop>
 
             </el-container>
         </div>
@@ -202,6 +212,18 @@
         line-height: 30px;
     }
 
+    /*简介描述区*/
+    .description{
+        margin-left: 30px;
+        font-size: 13px;
+        color: rgb(147,147,147);
+    }
+    .description div{
+        line-height: 26px;
+    }
+    .description i{
+        margin-right: 5px;
+    }
 
 </style>
 <style>

@@ -48,13 +48,13 @@
                     </el-col>
                     <el-col :span="24" style="text-align: center;line-height: 30px;margin-top: 10px;cursor: pointer;" class="datePublished">
                         <el-col :span="8">
-                            <span class="iconfont  icon-chakanguo"> </span>&nbsp;转发
+                            <a><span class="iconfont  icon-chakanguo"> </span>&nbsp;转发</a>
                         </el-col>
                         <el-col :span="8">
-                            <span class="iconfont  icon-pinglun"> </span>&nbsp;评论
+                            <a><span class="iconfont  icon-pinglun"> </span>&nbsp;评论</a>
                         </el-col>
                         <el-col :span="8">
-                            <span class="iconfont  icon-dianzan"> </span>&nbsp;赞
+                            <a><span class="iconfont  icon-dianzan"> </span>&nbsp;赞</a>
                         </el-col>
                     </el-col>
                 </el-row>

@@ -13,15 +13,15 @@
             <el-menu-item index="">
                 <span slot="title" style="font-size: 20px;">个人主页</span>
             </el-menu-item>
-            <el-menu-item index="/topicGroup">
+            <el-menu-item index="/accountHome">
                 <i class="el-icon-document"></i>
                 <span slot="title">我的主页</span>
             </el-menu-item>
-            <el-menu-item index="/topicGroupAllFocusOn">
+            <el-menu-item index="/accountFollows">
                 <i class="el-icon-setting"></i>
                 <span slot="title">我的关注</span>
             </el-menu-item>
-            <el-menu-item index="/topicGroupAllFocusOn">
+            <el-menu-item index="/accountFans">
                 <i class="el-icon-setting"></i>
                 <span slot="title">我的粉丝</span>
             </el-menu-item>
@@ -32,6 +32,10 @@
             <el-menu-item index="4">
                 <i class="el-icon-setting"></i>
                 <span slot="title">我的赞</span>
+            </el-menu-item>
+            <el-menu-item index="4">
+                <i class="el-icon-setting"></i>
+                <span slot="title">我的博文</span>
             </el-menu-item>
         </el-menu>
 

@@ -110,10 +110,28 @@
                 blog_top_activeName: 'first',
                 avatarUrl: "https://upload.jianshu.io/users/upload_avatars/18253298/adc2ffe8-16ba-4ad7-a0d0-4d3f768625a0.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/180/h/180",
 
-                blogUserInfo: {},
+                blogUserInfo: {
+                    "username":"tutu","followersCount":33,"fansCount":42,"postCount":231,"wordsCount":312314
+                },
 
-                blogUserFollows:[],
-                blogUserFans:[],
+                blogUserFollows:[
+                    {"toUserName":"tutu","toUserFollowersCount":423, "toUserFansCount":23, "toUserPostCount":232, "toUserWordsCount":75,
+                    "toUserPraisedCount":33, },
+                    {"toUserName":"tutu","toUserFollowersCount":423, "toUserFansCount":23, "toUserPostCount":232, "toUserWordsCount":75,
+                    "toUserPraisedCount":33, },
+                    {"toUserName":"tutu","toUserFollowersCount":423, "toUserFansCount":23, "toUserPostCount":232, "toUserWordsCount":75,
+                    "toUserPraisedCount":33, },
+                    {"toUserName":"tutu","toUserFollowersCount":423, "toUserFansCount":23, "toUserPostCount":232, "toUserWordsCount":75,
+                    "toUserPraisedCount":33, },
+                ],
+                blogUserFans:[
+                    {"toUserName":"tutu","toUserFollowersCount":423, "toUserFansCount":23, "toUserPostCount":232, "toUserWordsCount":75,
+                        "toUserPraisedCount":33, },
+                    {"toUserName":"tutu","toUserFollowersCount":423, "toUserFansCount":23, "toUserPostCount":232, "toUserWordsCount":75,
+                        "toUserPraisedCount":33, },
+                    {"toUserName":"tutu","toUserFollowersCount":423, "toUserFansCount":23, "toUserPostCount":232, "toUserWordsCount":75,
+                        "toUserPraisedCount":33, },
+                ],
             }
         },
         components: {

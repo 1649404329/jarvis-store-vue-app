@@ -43,12 +43,11 @@
                     立忠
                 </template>
                 <el-menu-item index="8-1">已绑定手机号</el-menu-item>
+                <el-menu-item index="8-2">会员中心</el-menu-item>
                 <el-menu-item index="8-2">账号信息</el-menu-item>
-                <el-menu-item index="8-2">我的简文</el-menu-item>
+                <el-menu-item index="8-2">我的文章</el-menu-item>
                 <el-menu-item index="/login">退出登录</el-menu-item>
             </el-submenu>
-
-            <el-menu-item index="5" disabled style="float: right;color: rgb(255,78,85)">充值</el-menu-item>
 
             <el-menu-item index="/test" style="float: right;">
                 <i class="el-icon-message"></i>test

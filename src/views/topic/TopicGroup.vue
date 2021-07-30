@@ -1,6 +1,6 @@
 <template>
     <div class="blogHome wrapper" style="height:100%;">
-        <el-backtop target=".wrapper" :visibility-height="20" :right="40" :bottom="40">UP</el-backtop>
+        <el-backtop :visibility-height="20" :right="40" :bottom="40">UP</el-backtop>
             <!--<img alt="Vue logo" src="../assets/logo.png">-->
             <!--<HelloWorld msg="Welcome to Your Vue.js App ！ jarvis-store-vue-app！！"/>-->
             <el-container>
@@ -35,7 +35,7 @@
             <div style="position: fixed;
             left: calc((100vw - 1000px)/2 - 78px);
             width: 200px;
-            top:70px;">
+            top:60px;">
                 <el-main style="padding:0;/*background-color: rgba(240, 242, 245, 1);*/">
                     <BlogBanner2/>
                 </el-main>
@@ -45,7 +45,7 @@
             left: calc((100vw - 1000px)/2 + 120px);
             width: 1000px;
             height: 1000px;
-            top: 10px;" >
+            top: 1px;" >
 
                 <el-col :span="16">
                     <el-main style="background-color: rgb(240,242,245);padding: 0">

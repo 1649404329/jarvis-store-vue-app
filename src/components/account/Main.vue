@@ -25,15 +25,15 @@
                         </div>
                     </el-col>
                     <el-col :span="24" style="text-align: center;line-height: 30px;margin-top: 10px;cursor: pointer;" class="datePublished">
-                        <el-col :span="8">
+                        <a><el-col :span="8">
                             <span class="iconfont  icon-chakanguo"> </span>&nbsp;转发
-                        </el-col>
-                        <el-col :span="8">
+                        </el-col></a>
+                        <a><el-col :span="8">
                             <span class="iconfont  icon-pinglun"> </span>&nbsp;评论
-                        </el-col>
-                        <el-col :span="8">
+                        </el-col></a>
+                        <a><el-col :span="8">
                             <span class="iconfont  icon-dianzan"> </span>&nbsp;赞
-                        </el-col>
+                        </el-col></a>
                     </el-col>
                 </el-row>
             </el-card>

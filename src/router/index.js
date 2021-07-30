@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import GoodsHome from '../views/goods/GoodsHome.vue'
 import AccountHome from '../views/account/AccountHome.vue'
+import AccountFollows from '../views/account/AccountFollows.vue'
+import AccountFans from '../views/account/AccountFans.vue'
 import Login from '../views/login/Login.vue'
 import Register from '../views/login/Register.vue'
 import Help from '../views/login/Help.vue'
@@ -46,12 +48,23 @@ const routes = [
     name: 'MessageCenter',
     component: MessageCenter
   },
-    // 账号管理
+    // 主页管理
   {
     path: '/accountHome',
     name: 'AccountHome',
     component: AccountHome
   },
+  {
+    path: '/accountFollows',
+    name: 'AccountFollows',
+    component: AccountFollows
+  },
+  {
+    path: '/accountFans',
+    name: 'AccountFans',
+    component: AccountFans
+  },
+
 
     // 商品中心
   {

@@ -110,9 +110,23 @@
                 blog_top_activeName: 'first',
                 avatarUrl: "https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg",
 
-                blogUserInfo: {},
-                blogUserFollows:[],
-                blogUserFans:[],
+                blogUserInfo: {"username":"tutu","followersCount":33,"fansCount":42,"postCount":231,"wordsCount":312314},
+                blogUserFollows:[
+                    {"toUserName":"tutu","toUserFollowersCount":423, "toUserFansCount":23, "toUserPostCount":232, "toUserWordsCount":75,
+                        "toUserPraisedCount":33, },
+                    {"toUserName":"tutu","toUserFollowersCount":423, "toUserFansCount":23, "toUserPostCount":232, "toUserWordsCount":75,
+                        "toUserPraisedCount":33, },
+                    {"toUserName":"tutu","toUserFollowersCount":423, "toUserFansCount":23, "toUserPostCount":232, "toUserWordsCount":75,
+                        "toUserPraisedCount":33, },
+                ],
+                blogUserFans:[
+                    {"toUserName":"tutu","toUserFollowersCount":423, "toUserFansCount":23, "toUserPostCount":232, "toUserWordsCount":75,
+                        "toUserPraisedCount":33, },
+                    {"toUserName":"tutu","toUserFollowersCount":423, "toUserFansCount":23, "toUserPostCount":232, "toUserWordsCount":75,
+                        "toUserPraisedCount":33, },
+                    {"toUserName":"tutu","toUserFollowersCount":423, "toUserFansCount":23, "toUserPostCount":232, "toUserWordsCount":75,
+                        "toUserPraisedCount":33, },
+                ],
 
             }
         },
@@ -213,6 +227,7 @@
         box-sizing: border-box;
     }
 
+    /*用户列表*/
     .user-list{
         list-style: none;
         clear: both;

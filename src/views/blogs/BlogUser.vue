@@ -139,7 +139,9 @@
 
                 blog_activeName: 'first',
 
-                blogUserInfo: {},
+                blogUserInfo: {
+                    "username":"tutu","followersCount":33,"fansCount":42,"postCount":231,"wordsCount":312314
+                },
                 blogUserId: 0,
                 pageBlog_currentPage: 0,
                 pageBlog_pageSize: 20,
