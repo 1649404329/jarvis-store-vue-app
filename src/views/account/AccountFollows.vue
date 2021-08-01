@@ -20,28 +20,49 @@
                                     <el-col :span="24">
                                         <el-main style="width: 660px;display: flex;padding: 10px;margin-bottom: 0px;">
                                             <el-menu
-                                                    :default-active="activeIndex2"
+                                                    default-active="1"
                                                     class="el-menu-demo"
                                                     mode="horizontal"
                                                     @select="handleSelect"
                                                     text-color="#000000"
                                                     active-text-color="#F58200">
-                                                <el-menu-item index="1">精选</el-menu-item>
-                                                <el-menu-item index="2">微博</el-menu-item>
-                                                <el-menu-item index="3">相册</el-menu-item>
+                                                <el-menu-item index="1">关注的人</el-menu-item>
+                                                <el-menu-item index="2">经常访问</el-menu-item>
                                             </el-menu>
+                                        </el-main>
+
+                                        <el-main  style="margin-top:10px;padding: 0px;text-align: left;width: 660px;margin-bottom: 0px;">
+                                            <div style="text-align: left;padding: 10px;padding-left: 20px;border-bottom: 1px solid  rgb(245,245,245);font-size: 14px;">
+                                                <span>特别关注</span>
+                                            </div>
+                                            <div style="padding: 20px;min-height: 100px;">
+                                                <div v-for="item in 4" style="float: left;">
+                                                    <div style="display:flex;flex-direction: column;width: 100px;cursor: pointer;">
+                                                        <el-image
+                                                                style="width: 60px; height: 60px;border-radius: 50%;margin:0 20px 20px 20px;"
+                                                                src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+                                                                :fit="fill"></el-image>
+                                                        <span style="text-align: center;font-size: 12px;">人民日报</span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </el-main>
 
                                         <el-col :span="24">
                                             <el-main  class="main" style="padding: 0px;text-align: center;width: 660px;">
-                                                <div style="padding: 20px;">
+                                                <div>
+                                                    <div style="text-align: left;padding: 20px;border-bottom: 1px solid  rgb(245,245,245);font-size: 14px;">
+                                                        <span>全部关注 {{13}}</span>
+                                                    </div>
                                                     <ul class="user-list">
                                                         <li v-for="(item, key) in blogUserFollows " :key="item">
                                                             <a><el-avatar :src="avatarUrl" class="avatar"></el-avatar></a>
                                                             <el-dropdown class="btn-hollow" @command="handleFocusCommand" @click.native="handleFocusClick(key)">
                                                               <span class="el-dropdown-link">
                                                                 <el-button class="btn-hollow" v-if="item.followStatus===0" size="small" type="warning" plain round slot="reference">{{'+关注'}}</el-button>
+                                                                <el-button class="btn-hollow" v-if="item.followStatus===2" :loading="true" size="small" type="warning" plain round slot="reference">{{'+关注'}}</el-button>
                                                                 <el-button class="btn-hollow" v-if="item.followStatus===1" size="small" type="info" plain round slot="reference">{{'已关注'}}</el-button>
+                                                                <el-button class="btn-hollow" v-if="item.followStatus===3" :loading="true" size="small" type="info" plain round slot="reference">{{'已关注'}}</el-button>
                                                               </span>
                                                                 <el-dropdown-menu slot="dropdown">
                                                                     <el-dropdown-item :command="item.toUserName+'_'+item.toUserName" icon="el-icon-remove-outline">取消关注</el-dropdown-item>
@@ -131,11 +152,18 @@
             },
             handleFocusClick(index){
                 if(this.blogUserFollows[index].followStatus===1){
-                    this.$set(this.blogUserFollows[index], 'followStatus', 0);
-                    this.$message('取消关注'+index);
+                    this.$set(this.blogUserFollows[index], 'followStatus', 3);
+                    setTimeout(()=>{
+                        this.$set(this.blogUserFollows[index], 'followStatus', 0);
+                        this.$message('取消关注'+index);
+                    },1000);
                 }else {
-                    this.$set(this.blogUserFollows[index], 'followStatus', 1);
+                    this.$set(this.blogUserFollows[index], 'followStatus', 2);
                     this.$message('关注成功'+index);
+                    setTimeout(()=>{
+                        this.$set(this.blogUserFollows[index], 'followStatus', 1);
+                        this.$message('关注成功'+index);
+                    },1000);
                 }
             },
             handleFocusCommand(command) {
@@ -224,12 +252,14 @@
         list-style: none;
         clear: both;
         padding-left: 0;
+        padding: 0 20px 20px 20px;
         text-align: left;
     }
     .user-list >li {
         /*display: flex;*/
         position: relative;
         width: 100%;
+        height: 80px;
         margin: 0 0 15px 0;
         padding: 0 2px 20px 0;
         border-bottom: 1px solid #f0f0f0;

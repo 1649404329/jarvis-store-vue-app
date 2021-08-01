@@ -16,49 +16,8 @@
                                     <Aside/>
                                 </el-aside>
 
-                                <el-row >
-                                    <el-col :span="24">
-
-                                        <el-col :span="24">
-                                            <el-main  class="main" style="padding: 0px;text-align: center;width: 660px;">
-                                                <div style="padding: 20px;">
-                                                    <ul class="user-list">
-                                                        <li v-for="(item, key) in blogUserFans " :key="item">
-                                                            <a><el-avatar :src="avatarUrl" class="avatar"></el-avatar></a>
-                                                            <el-dropdown class="btn-hollow" @command="handleFocusCommand" @click.native="handleFocusClick(key)">
-                                                              <span class="el-dropdown-link">
-                                                                <el-button class="btn-hollow" v-if="item.backFollowStatus===0" :loading="false" size="small" type="warning" plain round slot="reference">回粉</el-button>
-                                                                <el-button class="btn-hollow" v-if="item.backFollowStatus===1" :loading="false" size="small" type="info" plain round slot="reference">互相关注</el-button>
-                                                                <el-button class="btn-hollow" v-if="item.backFollowStatus===2" :loading="true" size="small" type="warning" plain round slot="reference">回粉</el-button>
-                                                                <el-button class="btn-hollow" v-if="item.backFollowStatus===3" :loading="true" size="small" type="info" plain round slot="reference">互相关注</el-button>
-                                                              </span>
-                                                                <el-dropdown-menu slot="dropdown">
-                                                                    <el-dropdown-item :command="item.toUserName+'_'+item.toUserName" icon="el-icon-remove-outline">取消关注</el-dropdown-item>
-                                                                    <el-dropdown-item :command="item.toUserName+'_'+item.toUserFansCount" icon="el-icon-circle-plus-outline">设置备注</el-dropdown-item>
-                                                                </el-dropdown-menu>
-                                                            </el-dropdown>
-                                                            <div class="info">
-                                                                <p class="title">{{item.toUserName}}</p>
-                                                                <div class="meta">
-                                                                    <span>{{item.alias}}</span>
-                                                                    <el-divider  direction="vertical"></el-divider>
-                                                                    <span>关注 {{item.toUserFollowersCount}}</span>
-                                                                    <el-divider  direction="vertical"></el-divider>
-                                                                    <span>粉丝 {{item.toUserFansCount}}</span>
-                                                                    <el-divider  direction="vertical"></el-divider>
-                                                                    <span>文章 {{item.toUserPostCount}}</span>
-                                                                </div>
-                                                                <div class="meta">
-                                                                    <span>{{item.desc}}</span>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </el-main>
-                                        </el-col>
-
-                                    </el-col>
+                                <el-row style="width: 660px;text-align: left;margin-top: 20px;">
+                                    <BlogListPage/>
                                 </el-row>
 
                             </el-container>
@@ -80,10 +39,10 @@
     import Footer from '@/components/common/Footer.vue'
     import Aside from '@/components/account/Aside.vue'
     import Main from '@/components/account/Main.vue'
-    import PanelTitle from '@/components/common/PanelTitle.vue'
+    import BlogListPage from '@/components/blog/BlogListPage.vue'
 
     export default {
-        name: 'AccountFans',
+        name: 'AccountBlogPage',
         data() {
             return {
 
@@ -105,6 +64,21 @@
                         "toUserPostCount":232,"desc":"感受一下细节做到极致的体验","backFollowStatus":0},
                 ],
 
+                //话题列表数据
+                userTopicList:[
+                    // userTopic: {
+                    //     topicContent: '',
+                    // },
+                    {
+                        auhor: '全是另类',
+                        content: '隔离手段只要能满足你们业务场景那种都可以，只是如果所有微服务要公用一套common配置文件的时候，有解决方案吗',
+                    },
+                    {
+                        auhor: '全是另类.',
+                        content: '隔离手段只要能满足你们业务场景那种都可以，只是如果所有微服务要公用一套common配置文件的时候，有解决方案吗',
+                    }
+                ],
+
             }
         },
         components: {
@@ -113,6 +87,7 @@
             Footer,
             Aside,
             Main,
+            BlogListPage
         },
         methods: {
             handleSelect(key, keyPath) {

@@ -35,10 +35,21 @@
                             <div><span style="line-height: 22px;font-size: 14px;font-weight: bold;">{{item.auhor}}</span></div>
                             <div><span class="datePublished">8楼 </span><span class="datePublished">6-22 23:53 知名搞笑幽默博主</span></div>
                             <p style="font-size: 14px;margin: 8px 0 8px 0;">{{item.content}}</p>
+
+                            <div style="width: 500px;background-color: rgb(249,249,249);margin-bottom: 20px;padding: 10px;">
+                                <p><span style="font-size: 14px;">Q：微信支持多设备同时在线，你觉得能怎么样</span></p>
+                                <p><el-progress :text-inside="true" :stroke-width="22" :percentage="80" status="warning"></el-progress></p>
+                                <p><el-progress :text-inside="true" :stroke-width="22" :percentage="80" status="warning"></el-progress></p>
+                                <p><el-progress :text-inside="true" :stroke-width="22" :percentage="80" status="warning"></el-progress></p>
+                                <p><el-progress :text-inside="true" :stroke-width="22" :percentage="80" status="warning"></el-progress></p>
+                            </div>
+
                             <div style="width: 370px;">
                                 <div v-for="o in 9" :key="o">
                                     <el-col :span="8">
-                                        <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+                                        <el-image
+                                                :preview-src-list="topicUrls"
+                                                src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
                                              style="width: 120px;border-radius: 5px;"
                                         />
                                     </el-col>
@@ -47,15 +58,15 @@
                         </div>
                     </el-col>
                     <el-col :span="24" style="text-align: center;line-height: 30px;margin-top: 10px;cursor: pointer;" class="datePublished">
-                        <el-col :span="8">
+                        <a><el-col :span="8">
                             <a><span class="iconfont  icon-chakanguo"> </span>&nbsp;转发</a>
-                        </el-col>
-                        <el-col :span="8">
+                        </el-col></a>
+                        <a><el-col :span="8">
                             <a><span class="iconfont  icon-pinglun"> </span>&nbsp;评论</a>
-                        </el-col>
-                        <el-col :span="8">
+                        </el-col></a>
+                        <a><el-col :span="8">
                             <a><span class="iconfont  icon-dianzan"> </span>&nbsp;赞</a>
-                        </el-col>
+                        </el-col></a>
                     </el-col>
                 </el-row>
 
@@ -91,7 +102,10 @@
                         auhor: '全是另类.',
                         content: '隔离手段只要能满足你们业务场景那种都可以，只是如果所有微服务要公用一套common配置文件的时候，有解决方案吗',
                     }
-                ]
+                ],
+
+                topicUrls: ["https://tvax3.sinaimg.cn/crop.0.0.996.996.180/006wpMnaly8gq15cd3saxj30ro0romyz.jpg?KID=imgbed,tva&Expires=1627124560&ssig=E9hopwu17f",
+                "https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png",],
             }
         },
         methods: {

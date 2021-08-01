@@ -20,14 +20,6 @@ box-sizing: border-box">
                 <i class="el-icon-setting"></i>
                 <span slot="title">全部关注</span>
             </el-menu-item>
-            <el-menu-item index="3" >
-                <i class="el-icon-document"></i>
-                <span slot="title">赞和收藏</span>
-            </el-menu-item>
-            <el-menu-item index="4" disabled>
-                <i class="el-icon-setting"></i>
-                <span slot="title">我的创作</span>
-            </el-menu-item>
             <!--<template slot="title"><el-divider></el-divider></template>-->
             <el-menu-item-group>
                 <el-menu-item index="1" style="border-top: 1px solid rgb(245,245,245)">
@@ -41,7 +33,7 @@ box-sizing: border-box">
                     <i class="el-icon-setting"></i>
                     <span slot="title">博客区</span>
                 </el-menu-item>
-                <el-menu-item index="4">
+                <el-menu-item index="/topicHotSearch">
                     <i class="el-icon-setting"></i>
                     <span slot="title">热搜榜</span>
                 </el-menu-item>
@@ -81,6 +73,7 @@ box-sizing: border-box">
 
 <style scoped>
     .el-menu-item{
-        height: 50px;
+        height: 45px;
+        line-height: 45px;
     }
 </style>

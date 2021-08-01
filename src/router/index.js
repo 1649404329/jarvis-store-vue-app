@@ -5,6 +5,9 @@ import GoodsHome from '../views/goods/GoodsHome.vue'
 import AccountHome from '../views/account/AccountHome.vue'
 import AccountFollows from '../views/account/AccountFollows.vue'
 import AccountFans from '../views/account/AccountFans.vue'
+import AccountCollectPage from '../views/account/AccountCollectPage.vue'
+import AccountFabulousPage from '../views/account/AccountFabulousPage.vue'
+import AccountBlogPage from '../views/account/AccountBlogPage.vue'
 import Login from '../views/login/Login.vue'
 import Register from '../views/login/Register.vue'
 import Help from '../views/login/Help.vue'
@@ -12,6 +15,7 @@ import Test from '../views/Test.vue'
 import MessageCenter from '../views/MessageCenter.vue'
 import TopicGroup from '../views/topic/TopicGroup.vue'
 import TopicGroupAllFocusOn from '../views/topic/TopicGroupAllFocusOn.vue'
+import TopicHotSearch from '../views/topic/TopicHotSearch.vue'
 import BlogHome from '../views/blogs/BlogHome.vue'
 import BlogUser from '../views/blogs/BlogUser.vue'
 import BlogDetail from '../views/blogs/BlogDetail.vue'
@@ -64,6 +68,21 @@ const routes = [
     name: 'AccountFans',
     component: AccountFans
   },
+  {
+    path: '/accountCollectPage',
+    name: 'AccountCollectPage',
+    component: AccountCollectPage
+  },
+  {
+    path: '/accountFabulousPage',
+    name: 'AccountFabulousPage',
+    component: AccountFabulousPage
+  },
+  {
+    path: '/accountBlogPage',
+    name: 'AccountBlogPage',
+    component: AccountBlogPage
+  },
 
 
     // 商品中心
@@ -82,6 +101,11 @@ const routes = [
     path:'/topicGroupAllFocusOn',
     name:'TopicGroupAllFocusOn',
     component:TopicGroupAllFocusOn
+  },
+  {
+    path:'/topicHotSearch',
+    name:'TopicHotSearch',
+    component:TopicHotSearch
   },
 
     // 博客博文

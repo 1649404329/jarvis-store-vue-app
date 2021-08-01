@@ -25,15 +25,15 @@
                 <i class="el-icon-setting"></i>
                 <span slot="title">我的粉丝</span>
             </el-menu-item>
-            <el-menu-item index="3" >
+            <el-menu-item index="/accountCollectPage" >
                 <i class="el-icon-document"></i>
                 <span slot="title">我的收藏</span>
             </el-menu-item>
-            <el-menu-item index="4">
+            <el-menu-item index="/accountFabulousPage">
                 <i class="el-icon-setting"></i>
                 <span slot="title">我的赞</span>
             </el-menu-item>
-            <el-menu-item index="4">
+            <el-menu-item index="/accountBlogPage">
                 <i class="el-icon-setting"></i>
                 <span slot="title">我的博文</span>
             </el-menu-item>
@@ -67,6 +67,11 @@
         line-height: normal;
         font-size: 14px;
         box-sizing: border-box;
+    }
+
+    .el-menu-item{
+        height: 45px;
+        line-height: 45px;
     }
 
 </style>

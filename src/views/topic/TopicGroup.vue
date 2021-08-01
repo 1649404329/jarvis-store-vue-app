@@ -10,7 +10,7 @@
                     <Header/>
                 </el-header>
 
-<transition name="animated  el-zoom-in-bottom">
+<!--<transition name="animated  el-zoom-in-bottom">-->
     <div v-show="showTransition" class="transition-box" >
                 <!--<el-row>-->
                     <!--<el-col :span="14" offset="6">-->
@@ -102,7 +102,7 @@
 
 
     </div>
-     </transition>
+     <!--</transition>-->
 
                 <el-footer>
                     <Footer/>

@@ -16,49 +16,44 @@
                                     <Aside/>
                                 </el-aside>
 
-                                <el-row >
-                                    <el-col :span="24">
-
-                                        <el-col :span="24">
-                                            <el-main  class="main" style="padding: 0px;text-align: center;width: 660px;">
-                                                <div style="padding: 20px;">
-                                                    <ul class="user-list">
-                                                        <li v-for="(item, key) in blogUserFans " :key="item">
-                                                            <a><el-avatar :src="avatarUrl" class="avatar"></el-avatar></a>
-                                                            <el-dropdown class="btn-hollow" @command="handleFocusCommand" @click.native="handleFocusClick(key)">
-                                                              <span class="el-dropdown-link">
-                                                                <el-button class="btn-hollow" v-if="item.backFollowStatus===0" :loading="false" size="small" type="warning" plain round slot="reference">回粉</el-button>
-                                                                <el-button class="btn-hollow" v-if="item.backFollowStatus===1" :loading="false" size="small" type="info" plain round slot="reference">互相关注</el-button>
-                                                                <el-button class="btn-hollow" v-if="item.backFollowStatus===2" :loading="true" size="small" type="warning" plain round slot="reference">回粉</el-button>
-                                                                <el-button class="btn-hollow" v-if="item.backFollowStatus===3" :loading="true" size="small" type="info" plain round slot="reference">互相关注</el-button>
-                                                              </span>
-                                                                <el-dropdown-menu slot="dropdown">
-                                                                    <el-dropdown-item :command="item.toUserName+'_'+item.toUserName" icon="el-icon-remove-outline">取消关注</el-dropdown-item>
-                                                                    <el-dropdown-item :command="item.toUserName+'_'+item.toUserFansCount" icon="el-icon-circle-plus-outline">设置备注</el-dropdown-item>
-                                                                </el-dropdown-menu>
-                                                            </el-dropdown>
-                                                            <div class="info">
-                                                                <p class="title">{{item.toUserName}}</p>
-                                                                <div class="meta">
-                                                                    <span>{{item.alias}}</span>
-                                                                    <el-divider  direction="vertical"></el-divider>
-                                                                    <span>关注 {{item.toUserFollowersCount}}</span>
-                                                                    <el-divider  direction="vertical"></el-divider>
-                                                                    <span>粉丝 {{item.toUserFansCount}}</span>
-                                                                    <el-divider  direction="vertical"></el-divider>
-                                                                    <span>文章 {{item.toUserPostCount}}</span>
-                                                                </div>
-                                                                <div class="meta">
-                                                                    <span>{{item.desc}}</span>
-                                                                </div>
+                                <el-row style="width: 660px;text-align: left;margin-top: 20px;">
+                                    <div v-for="item in userTopicList" :key="item"  class="text item">
+                                        <el-card class="box-card" shadow="never" style="margin-bottom: 10px;">
+                                            <el-row>
+                                                <el-col :span="24" style="display: flex;">
+                                                    <el-avatar :src="avatarUrl" :size="45" ></el-avatar>
+                                                    <div style="margin-left: 10px;width: 100%;">
+                                                        <div><span style="line-height: 22px;font-size: 14px;font-weight: bold;">{{item.auhor}}</span></div>
+                                                        <div><span class="datePublished">8楼 </span><span class="datePublished">6-22 23:53 知名搞笑幽默博主</span></div>
+                                                        <p style="font-size: 14px;margin: 8px 0 8px 0;">{{item.content}}</p>
+                                                        <div style="width: 370px;">
+                                                            <div v-for="o in 3" :key="o">
+                                                                <el-col :span="8">
+                                                                    <el-image
+                                                                            :preview-src-list="topicUrls"
+                                                                            src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+                                                                            style="width: 120px;border-radius: 5px;"
+                                                                    />
+                                                                </el-col>
                                                             </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </el-main>
-                                        </el-col>
+                                                        </div>
+                                                    </div>
+                                                </el-col>
+                                                <el-col :span="24" style="text-align: center;line-height: 30px;margin-top: 10px;cursor: pointer;" class="datePublished">
+                                                    <a><el-col :span="8">
+                                                        <a><span class="iconfont  icon-chakanguo"> </span>&nbsp;转发</a>
+                                                    </el-col></a>
+                                                    <a><el-col :span="8">
+                                                        <a><span class="iconfont  icon-pinglun"> </span>&nbsp;评论</a>
+                                                    </el-col></a>
+                                                    <a><el-col :span="8">
+                                                        <a><span class="iconfont  icon-dianzan"> </span>&nbsp;赞</a>
+                                                    </el-col></a>
+                                                </el-col>
+                                            </el-row>
 
-                                    </el-col>
+                                        </el-card>
+                                    </div>
                                 </el-row>
 
                             </el-container>
@@ -83,7 +78,7 @@
     import PanelTitle from '@/components/common/PanelTitle.vue'
 
     export default {
-        name: 'AccountFans',
+        name: 'AccountFabulousPage',
         data() {
             return {
 
@@ -103,6 +98,21 @@
                         "toUserPostCount":232,"desc":"万里长征是唤醒民众的伟大远征，是中国工农红军书写的人间奇迹","backFollowStatus":1},
                     {"toUserName":"tutu3","alias":"头条文章作者","toUserFollowersCount":423, "toUserFansCount":23,
                         "toUserPostCount":232,"desc":"感受一下细节做到极致的体验","backFollowStatus":0},
+                ],
+
+                //话题列表数据
+                userTopicList:[
+                    // userTopic: {
+                    //     topicContent: '',
+                    // },
+                    {
+                        auhor: '全是另类',
+                        content: '隔离手段只要能满足你们业务场景那种都可以，只是如果所有微服务要公用一套common配置文件的时候，有解决方案吗',
+                    },
+                    {
+                        auhor: '全是另类.',
+                        content: '隔离手段只要能满足你们业务场景那种都可以，只是如果所有微服务要公用一套common配置文件的时候，有解决方案吗',
+                    }
                 ],
 
             }
@@ -276,6 +286,10 @@
     .btn-hollow li:hover{
         background-color:#99CC00;
         cursor:pointer;
+    }
+    .datePublished{
+        font-size: 12px;
+        color: rgb(147,147,147);
     }
 </style>
 <style>
