@@ -16,14 +16,67 @@
                                     v-model="quickUserTopic.topicContent">
                             </el-input>
                         </el-col>
-                        <span style="font-size: 22px;color: rgb(147,147,147);">
-                            <a><i class="el-icon-mobile" @click="dialogFormVisible = true"></i>&nbsp;</a>
-                            <a @click="editTopicAdd('@')"><span>@&nbsp;</span></a>
-                            <a @click="editTopicAdd('#')"><span>#&nbsp;</span></a>
-                            <a><i class="el-icon-picture-outline"  @click="dialogFormVisible = true"></i>&nbsp;</a>
-                            <a><i class="el-icon-location-outline"  @click="dialogFormVisible = true"></i>&nbsp;</a>
-                        </span>
-                        <el-col :span="4" :offset="21">
+                        <el-col :span="24">
+                            <div style="margin-bottom: 10px;">
+                                <el-upload
+                                    action="#"
+                                    list-type="picture-card"
+                                    :auto-upload="false">
+                                <i slot="default" class="el-icon-plus"></i>
+                                <div slot="file" slot-scope="{file}">
+                                    <img
+                                            class="el-upload-list__item-thumbnail"
+                                            :src="file.url" alt=""
+                                    >
+                                    <span class="el-upload-list__item-actions">
+                                <span
+                                        class="el-upload-list__item-preview"
+                                        @click="handlePictureCardPreview(file)"
+                                >
+                                  <i class="el-icon-zoom-in"></i>
+                                </span>
+                                <span
+                                        v-if="!disabled"
+                                        class="el-upload-list__item-delete"
+                                        @click="handleDownload(file)"
+                                >
+                                  <i class="el-icon-download"></i>
+                                </span>
+                                <span
+                                        v-if="!disabled"
+                                        class="el-upload-list__item-delete"
+                                        @click="handleRemove(file)"
+                                >
+                                  <i class="el-icon-delete"></i>
+                                </span>
+                              </span>
+                                </div>
+                            </el-upload>
+                            </div>
+                            <el-dialog :visible.sync="dialogVisible">
+                                <img width="100%" :src="dialogImageUrl" alt="">
+                            </el-dialog>
+                        </el-col>
+                        <el-col :span="22">
+                            <span style="font-size: 22px;color: rgb(147,147,147);">
+                                <el-tooltip class="item" effect="dark" content="投票" placement="top">
+                                    <a><i class="el-icon-mobile" @click="dialogFormVisible = true"></i>&nbsp;</a>
+                                </el-tooltip>
+                                <el-tooltip class="item" effect="dark" content="艾特" placement="top">
+                                    <a @click="editTopicAdd('@')"><span>@&nbsp;</span></a>
+                                </el-tooltip>
+                                <el-tooltip class="item" effect="dark" content="话题" placement="top">
+                                    <a @click="editTopicAdd('#')"><span>#&nbsp;</span></a>
+                                </el-tooltip>
+                                <el-tooltip class="item" effect="dark" content="图片" placement="top">
+                                    <a><i class="el-icon-picture-outline"  @click="dialogFormVisible = true"></i>&nbsp;</a>
+                                </el-tooltip>
+                                <el-tooltip class="item" effect="dark" content="位置" placement="top">
+                                    <a><i class="el-icon-location-outline"  @click="dialogFormVisible = true"></i>&nbsp;</a>
+                                </el-tooltip>
+                            </span>
+                        </el-col>
+                        <el-col :span="2">
                             <div>
                                 <el-col :span="11"><el-button type="warning" size="mini" round @click="saveQuickUserTopic">发送</el-button></el-col>
                             </div>
@@ -82,24 +135,28 @@
 
         <!--dialog-->
         <el-dialog title="投票内容" :visible.sync="dialogFormVisible">
-            <el-form :model="form">
-                <el-form-item label="标题" :label-width="formLabelWidth">
-                    <el-input v-model="form.name" autocomplete="off"></el-input>
+            <el-form :model="form" ref="dynamicValidateForm">
+                <el-form-item label="标题" :label-width="formLabelWidth"
+                              :rules="{  required: true, message: '标题不能为空', trigger: 'blur'  }">
+                    <el-input v-model="form.name" type="text" size="small "
+                              placeholder="请输入内容" maxlength="30"
+                              show-word-limit autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item  :label-width="formLabelWidth"
+                        v-for="(domain, index) in form.domains"
+                        :label="'选项' + (index+1)"
+                        :key="domain.key"
+                        :prop="'domains.' + index + '.value'"
+                        :rules="{  required: true, message: '选项不能为空', trigger: 'blur'  }"
+                >
+                    <el-col :span="16"><el-input v-model="domain.value" size="small " maxlength="30" show-word-limit ></el-input></el-col>
+                    <el-col :span="1" :offset="1"><el-button @click.prevent="removeDomain(domain)"  size="small ">删除</el-button></el-col>
                 </el-form-item>
                 <el-form-item>
-                    <el-input
-                            type="text"
-                            placeholder="请输入内容"
-                            v-model="text"
-                            maxlength="10"
-                            show-word-limit
-                    ></el-input>
-                </el-form-item>
-                <el-form-item label="选项" :label-width="formLabelWidth">
-                    <el-select v-model="form.region" placeholder="请选择活动区域">
-                        <el-option label="区域一" value="shanghai"></el-option>
-                        <el-option label="区域二" value="beijing"></el-option>
-                    </el-select>
+                    <el-col :span="16" :offset="5">
+                    <el-button @click="addDomain"  size="small ">新增域名</el-button>
+                    <el-button @click="resetForm('dynamicValidateForm')"  size="small ">重置</el-button>
+                    </el-col>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
@@ -147,6 +204,9 @@
                 dialogFormVisible: false,
                 formLabelWidth: '120px',
                 form: {
+                    domains: [{
+                        value: ''
+                    }],
                     name: '',
                         region: '',
                         date1: '',
@@ -156,6 +216,10 @@
                         resource: '',
                         desc: ''
                 },
+
+                dialogImageUrl: '',
+                dialogVisible: false,
+                disabled: false,
             }
         },
         methods: {
@@ -180,6 +244,34 @@
                 this.userTopicList.unshift(userTopic)
                 this.quickUserTopic.topicContent = '';
             },
+
+            resetForm(formName) {
+                this.$refs[formName].resetFields();
+            },
+            removeDomain(item) {
+                var index = this.form.domains.indexOf(item)
+                if (index !== -1) {
+                    this.form.domains.splice(index, 1)
+                }
+            },
+            addDomain() {
+                this.form.domains.push({
+                    value: '',
+                    key: Date.now()
+                });
+            },
+
+            //上传图片
+            handleRemove(file) {
+                console.log(file);
+            },
+            handlePictureCardPreview(file) {
+                this.dialogImageUrl = file.url;
+                this.dialogVisible = true;
+            },
+            handleDownload(file) {
+                console.log(file);
+            }
         },
         components: {
             PanelTitle,
