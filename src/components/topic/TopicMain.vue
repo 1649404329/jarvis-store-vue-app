@@ -10,13 +10,13 @@
                         <el-col :span="24" style="margin-bottom: 10px;">
                             <el-input
                                     type="textarea"
-                                    style="color: black;"
+                                    style="color: black;font-size: 16px;"
                                     :autosize="{ minRows: 2, maxRows: 4}"
                                     placeholder="有什么新鲜事想分享给大家"
                                     v-model="quickUserTopic.topicContent">
                             </el-input>
                         </el-col>
-                        <el-col :span="24">
+                        <el-col :span="24" v-if="switchUpload">
                             <div style="margin-bottom: 10px;">
                                 <el-upload
                                     action="#"
@@ -69,10 +69,28 @@
                                     <a @click="editTopicAdd('#')"><span>#&nbsp;</span></a>
                                 </el-tooltip>
                                 <el-tooltip class="item" effect="dark" content="图片" placement="top">
-                                    <a><i class="el-icon-picture-outline"  @click="dialogFormVisible = true"></i>&nbsp;</a>
+                                    <a><i class="el-icon-picture-outline"  @click="switchUpload = !switchUpload"></i>&nbsp;</a>
                                 </el-tooltip>
                                 <el-tooltip class="item" effect="dark" content="位置" placement="top">
-                                    <a><i class="el-icon-location-outline"  @click="dialogFormVisible = true"></i>&nbsp;</a>
+                                <a>
+                                    <el-popover
+                                        placement="right"
+                                        width="400"
+                                        trigger="click">
+                                        <div>
+                                            <el-input
+                                                    size="small"
+                                                    placeholder="请输入内容"
+                                                    >
+                                                    <i slot="prefix" class="el-input__icon el-icon-search"></i>
+                                                  </el-input>
+                                            <ul style="list-style: none;">
+                                            <li v-for="item in addressList" style="margin-left: -30px;cursor: pointer;"><i class="el-icon-location-outline"  ></i>{{item.name}}</li>
+                                            </ul>
+                                        </div>
+                                        <span  slot="reference"><i class="el-icon-location-outline"  ></i>&nbsp;</span>
+                                    </el-popover>
+                                 </a>
                                 </el-tooltip>
                             </span>
                         </el-col>
@@ -94,25 +112,31 @@
                         <div style="margin-left: 10px;width: 100%;">
                             <div><span style="line-height: 22px;font-size: 14px;font-weight: bold;">{{item.author}}</span></div>
                             <div><span class="datePublished">8楼 </span><span class="datePublished">6-22 23:53 知名搞笑幽默博主</span></div>
-                            <p style="font-size: 14px;margin: 8px 0 8px 0;">{{item.content}}</p>
 
-                            <div style="width: 500px;background-color: rgb(249,249,249);margin-bottom: 20px;padding: 10px;">
-                                <p><span style="font-size: 14px;">Q：微信支持多设备同时在线，你觉得能怎么样</span></p>
-                                <p><el-progress :text-inside="true" :stroke-width="22" :percentage="80" status="warning"></el-progress></p>
-                                <p><el-progress :text-inside="true" :stroke-width="22" :percentage="80" status="warning"></el-progress></p>
-                                <p><el-progress :text-inside="true" :stroke-width="22" :percentage="80" status="warning"></el-progress></p>
-                                <p><el-progress :text-inside="true" :stroke-width="22" :percentage="80" status="warning"></el-progress></p>
+                            <div v-if="item.topicType===1" >
+                                <p><span style="font-size: 14px;">{{item.content}}</span></p>
+                                <p v-for="choiceItem in item.choiceItem">
+                                    <el-tag v-if="choiceItem.hasChoose" type="warning" hit style="width: 100%;cursor: pointer;">
+                                        {{choiceItem.percent}}&nbsp;&nbsp;{{choiceItem.itemTitle}}<i class="el-icon-check"></i>
+                                    </el-tag>
+                                    <el-tag  v-else type="info" hit style="width: 100%;cursor: pointer;">
+                                        {{choiceItem.percent}}&nbsp;&nbsp;{{choiceItem.itemTitle}}
+                                    </el-tag>
+                                </p>
                             </div>
 
-                            <div style="width: 370px;">
-                                <div v-for="o in 9" :key="o">
-                                    <el-col :span="8">
-                                        <el-image
-                                                :preview-src-list="topicUrls"
-                                                src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-                                             style="width: 120px;border-radius: 5px;"
-                                        />
-                                    </el-col>
+                            <div v-if="item.topicType===2" >
+                                <p style="font-size: 14px;margin: 8px 0 8px 0;">{{item.content}}</p>
+                                <div style="width: 370px;">
+                                    <div v-for="o in 9" :key="o">
+                                        <el-col :span="8">
+                                            <el-image
+                                                    :preview-src-list="topicUrls"
+                                                    src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+                                                 style="width: 120px;border-radius: 5px;"
+                                            />
+                                        </el-col>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -136,8 +160,8 @@
         <!--dialog-->
         <el-dialog title="投票内容" :visible.sync="dialogFormVisible">
             <el-form :model="form" ref="dynamicValidateForm">
-                <el-form-item label="标题" :label-width="formLabelWidth"
-                              :rules="{  required: true, message: '标题不能为空', trigger: 'blur'  }">
+                <el-form-item label="标题" :label-width="formLabelWidth" prop="name"
+                              :rules="[{  required: true, message: '标题不能为空', trigger: 'blur'  }]">
                     <el-input v-model="form.name" type="text" size="small "
                               placeholder="请输入内容" maxlength="30"
                               show-word-limit autocomplete="off"></el-input>
@@ -154,14 +178,14 @@
                 </el-form-item>
                 <el-form-item>
                     <el-col :span="16" :offset="5">
-                    <el-button @click="addDomain"  size="small ">新增域名</el-button>
+                    <el-button @click="addDomain"  size="small ">新增选项</el-button>
                     <el-button @click="resetForm('dynamicValidateForm')"  size="small ">重置</el-button>
                     </el-col>
                 </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
                 <el-button @click="dialogFormVisible = false">取 消</el-button>
-                <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+                <el-button type="primary" @click="saveQuickVoteContent">确 定</el-button>
             </div>
         </el-dialog>
 
@@ -188,37 +212,47 @@
                     // },
                     {
                         author: '全是另类',
-                        content: '隔离手段只要能满足你们业务场景那种都可以，只是如果所有微服务要公用一套common配置文件的时候，有解决方案吗',
+                        content: 'Q：微信支持多设备同时在线，你觉得能怎么样? 隔离手段只要能满足你们业务场景那种都可以，只是如果所有微服务要公用一套common配置文件的时候，有解决方案吗',
+                        topicType: 1,
+                        choiceItem: [{"itemTitle":"不能怎么样","percent":"90%","hasChoose":false,},
+                            {"itemTitle":"用处大了","percent":"10%","hasChoose":true,},],
                     },
                     {
                         author: '全是另类.',
                         content: '隔离手段只要能满足你们业务场景那种都可以，只是如果所有微服务要公用一套common配置文件的时候，有解决方案吗',
+                        topicType: 2,
+                        choiceItem: [],
                     }
                 ],
 
                 topicUrls: ["https://tvax3.sinaimg.cn/crop.0.0.996.996.180/006wpMnaly8gq15cd3saxj30ro0romyz.jpg?KID=imgbed,tva&Expires=1627124560&ssig=E9hopwu17f",
                 "https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png",],
 
+                //搜索地址
+                addressList:[{"name":"中华广场","address":""},
+                    {"name":"北京路","address":""},
+                    ],
 
-                // dialog
+                // dialog 控制投票填写框
                 dialogFormVisible: false,
                 formLabelWidth: '120px',
+                //投票表单
                 form: {
-                    domains: [{
-                        value: ''
-                    }],
+                    domains: [{ value: '' }],
                     name: '',
-                        region: '',
-                        date1: '',
-                        date2: '',
-                        delivery: false,
-                        type: [],
-                        resource: '',
-                        desc: ''
+                    region: '',
+                    date1: '',
+                    date2: '',
+                    delivery: false,
+                    type: [],
+                    resource: '',
+                    desc: ''
                 },
 
                 dialogImageUrl: '',
                 dialogVisible: false,
+                //控制上传图片是否显示
+                switchUpload:false,
                 disabled: false,
             }
         },
@@ -231,6 +265,7 @@
               this.quickUserTopic.topicContent=this.quickUserTopic.topicContent+ content;
             },
 
+            //保存话题
             saveQuickUserTopic(){
                 this.$message({
                     type: 'success',
@@ -243,6 +278,34 @@
                 };
                 this.userTopicList.unshift(userTopic)
                 this.quickUserTopic.topicContent = '';
+            },
+
+            //保存投票内容
+            saveQuickVoteContent(){
+                this.$message({
+                    type: 'success',
+                    message: "完成投票",
+                });
+                this.dialogFormVisible=false;
+                let titleContent = this.form.name;
+                let choiceItem = [];
+                this.form.domains.forEach((e)=> {
+                    let item = {
+                        itemTitle: e.value,
+                        hasChoose: false,
+                    };
+                    choiceItem.unshift(item);
+                });
+                let userTopic = {
+                    author: '全是另类.3111',
+                    content: titleContent,
+                    topicType: 1,
+                    choiceItem: choiceItem,
+                };
+                //清空
+                this.userTopicList.unshift(userTopic);
+                this.quickUserTopic.topicContent = '';
+                this.form.domains=[{}];
             },
 
             resetForm(formName) {
