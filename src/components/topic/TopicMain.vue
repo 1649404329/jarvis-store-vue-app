@@ -19,8 +19,10 @@
                         <el-col :span="24" v-if="switchUpload">
                             <div style="margin-bottom: 10px;">
                                 <el-upload
+                                        ref="files"
                                     action="#"
                                     list-type="picture-card"
+                                    :file-list="fileList"
                                     :auto-upload="false">
                                 <i slot="default" class="el-icon-plus"></i>
                                 <div slot="file" slot-scope="{file}">
@@ -113,15 +115,17 @@
                             <div><span style="line-height: 22px;font-size: 14px;font-weight: bold;">{{item.author}}</span></div>
                             <div><span class="datePublished">8楼 </span><span class="datePublished">6-22 23:53 知名搞笑幽默博主</span></div>
 
-                            <div v-if="item.topicType===1" >
+                            <div v-if="item.topicType===1">
                                 <p><span style="font-size: 14px;">{{item.content}}</span></p>
-                                <p v-for="choiceItem in item.choiceItem">
-                                    <el-tag v-if="choiceItem.hasChoose" type="warning" hit style="width: 100%;cursor: pointer;">
-                                        {{choiceItem.percent}}&nbsp;&nbsp;{{choiceItem.itemTitle}}<i class="el-icon-check"></i>
-                                    </el-tag>
-                                    <el-tag  v-else type="info" hit style="width: 100%;cursor: pointer;">
-                                        {{choiceItem.percent}}&nbsp;&nbsp;{{choiceItem.itemTitle}}
-                                    </el-tag>
+                                <p v-for="(choiceItem, index)  in item.choiceItem" >
+                                    <block @click="chooseItem(choiceItem.id, index)">
+                                        <el-tag v-if="choiceItem.hasChoose" type="warning" hit style="width: 100%;cursor: pointer;">
+                                            {{choiceItem.percent}}&nbsp;&nbsp;{{choiceItem.itemTitle}}<i class="el-icon-check"></i>
+                                        </el-tag>
+                                        <el-tag  v-else type="info" hit style="width: 100%;cursor: pointer;">
+                                            {{choiceItem.percent}}&nbsp;&nbsp;{{choiceItem.itemTitle}}
+                                        </el-tag>
+                                    </block>
                                 </p>
                             </div>
 
@@ -211,13 +215,15 @@
                     //     topicContent: '',
                     // },
                     {
+                        "id":"1",
                         author: '全是另类',
                         content: 'Q：微信支持多设备同时在线，你觉得能怎么样? 隔离手段只要能满足你们业务场景那种都可以，只是如果所有微服务要公用一套common配置文件的时候，有解决方案吗',
                         topicType: 1,
-                        choiceItem: [{"itemTitle":"不能怎么样","percent":"90%","hasChoose":false,},
-                            {"itemTitle":"用处大了","percent":"10%","hasChoose":true,},],
+                        choiceItem: [{"id":"1","itemTitle":"不能怎么样","percent":"90%","hasChoose":false,},
+                            {"id":"1","itemTitle":"用处大了","percent":"10%","hasChoose":true,},],
                     },
                     {
+                        "id":"2",
                         author: '全是另类.',
                         content: '隔离手段只要能满足你们业务场景那种都可以，只是如果所有微服务要公用一套common配置文件的时候，有解决方案吗',
                         topicType: 2,
@@ -254,6 +260,7 @@
                 //控制上传图片是否显示
                 switchUpload:false,
                 disabled: false,
+                fileList:[],
             }
         },
         methods: {
@@ -291,6 +298,7 @@
                 let choiceItem = [];
                 this.form.domains.forEach((e)=> {
                     let item = {
+                        "percent":"90%",
                         itemTitle: e.value,
                         hasChoose: false,
                     };
@@ -306,6 +314,15 @@
                 this.userTopicList.unshift(userTopic);
                 this.quickUserTopic.topicContent = '';
                 this.form.domains=[{}];
+            },
+            //选中投票内容
+            chooseItem (id,index){
+                console.log(id, index);
+                this.userTopicList.forEach((item)=>{
+                    if(item.id == id){
+                        item.choiceItem[index].hasChoose = true;
+                    }
+                })
             },
 
             resetForm(formName) {
@@ -327,6 +344,7 @@
             //上传图片
             handleRemove(file) {
                 console.log(file);
+                this.$refs.files.handleRemove(file);
             },
             handlePictureCardPreview(file) {
                 this.dialogImageUrl = file.url;
